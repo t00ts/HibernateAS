@@ -1,6 +1,8 @@
 package com.as.data.primarykeys;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
@@ -9,11 +11,14 @@ public class HotelPrimaryKey implements Serializable {
 	private String nomHotel;
 	private String nomCiutat;
 	
+	public HotelPrimaryKey () {}
+	
 	public HotelPrimaryKey (String nomHotel, String nomCiutat) {
 		this.nomHotel = nomHotel;
 		this.nomCiutat = nomCiutat;
 	}
 	
+	@Column(name="nomhotel")
 	public String getNomHotel() {
 		return nomHotel;
 	}
@@ -21,6 +26,7 @@ public class HotelPrimaryKey implements Serializable {
 		this.nomHotel = nomHotel;
 	}
 	
+	@Column(name="nomciutat")
 	public String getNomCiutat() {
 		return nomCiutat;
 	}

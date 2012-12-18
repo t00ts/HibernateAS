@@ -13,24 +13,28 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import com.as.data.primarykeys.HotelPrimaryKey;
 
 @Entity
 @Table(name="hotels")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-public class Hotel {
+public abstract class Hotel {
 
 	// Primary Key
-	private HotelPrimaryKey hotelPrimaryKey;
+	protected HotelPrimaryKey hotelPrimaryKey;
 
 	// Attributes
-	private float preu;
+	protected float preu;
 
 	// Relationships
-	private Ciutat ciutat;
-	private List<Habitacio> habitacions;
+	protected Ciutat ciutat;
+	protected List<Habitacio> habitacions;
 
+	
+	public Hotel () {}
+	
 	public Hotel (HotelPrimaryKey primaryKey, float preu) {
 		this.hotelPrimaryKey = primaryKey;
 	    this.preu = preu;
@@ -45,7 +49,15 @@ public class Hotel {
 		this.hotelPrimaryKey = primaryKey;
 	}
 
-	@Column(nullable=false)
+	@Transient
+	public String getNom () {
+		return this.hotelPrimaryKey.getNomHotel();
+	}
+	public void setNom (String nom) {
+		this.hotelPrimaryKey.setNomHotel(nom);
+	}
+	
+	@Column(name="preu", nullable=false)
 	public float getPreu() {
 		return preu;
 	}
