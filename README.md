@@ -5,12 +5,14 @@ Práctica AS con Hibernate
 
 ## Requisitos
 JDK 1.6+
+
 Eclipse
 
 ## Hibernate
 Descargad lo siguiente
 
 1. Hibernate: `http://sourceforge.net/projects/hibernate/files/hibernate3/3.6.10.Final/`
+
 2. Anotaciones: `http://sourceforge.net/projects/hibernate/files/hibernate-annotations/3.4.0.GA/`
 
 ## Servidor de BBDD
@@ -26,8 +28,11 @@ En la raíz del repo encontraréis un fichero que se llama `DerbyConnectionProfi
 
 Para importarlo intentad lo siguiente. Desde Eclipse:
 1. Window -> Open perspective -> Other... Seleccionad *Database development*
+
 2. Os aparecerá el panel de "Data Source Explorer"
+
 3. Importar la configuración con el botón de importar (es una flecha que entra en una caja)
+
 4. Comprobad que funciona haciendo un Ping desde el menú contextual del recurso recien creado.
 
 ## Configurar Hibernate en el proyecto
