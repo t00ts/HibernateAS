@@ -4,9 +4,8 @@ HibernateAS
 Práctica AS con Hibernate
 
 ## Requisitos
-JDK 1.6+
-
-Eclipse
+- JDK 1.6+
+- Eclipse
 
 ## Hibernate
 Descargad lo siguiente
@@ -27,6 +26,7 @@ Lo primero es instalar un servidor de BBDD relacional, SQL en este caso. Hay un 
 En la raíz del repo encontraréis un fichero que se llama `DerbyConnectionProfile`.
 
 Para importarlo intentad lo siguiente. Desde Eclipse:
+
 1. Window -> Open perspective -> Other... Seleccionad *Database development*
 
 2. Os aparecerá el panel de "Data Source Explorer"
@@ -39,7 +39,3 @@ Para importarlo intentad lo siguiente. Desde Eclipse:
 No se hasta que punto con la configuración que trae lo que os he subido tendréis algo, pero como mínimo los paths a las librerías estarán mal seguro, con lo que tendréis que seguir los pasos descritos en este video:
 
 `http://www.youtube.com/watch?v=4oaVSnfiTE0`
-
-
-
-
