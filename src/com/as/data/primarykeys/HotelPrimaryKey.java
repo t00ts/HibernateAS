@@ -18,7 +18,7 @@ public class HotelPrimaryKey implements Serializable {
 		this.nomCiutat = nomCiutat;
 	}
 	
-	@Column(name="nomhotel")
+	@Column(name="nomHotel")
 	public String getNomHotel() {
 		return nomHotel;
 	}
@@ -26,7 +26,7 @@ public class HotelPrimaryKey implements Serializable {
 		this.nomHotel = nomHotel;
 	}
 	
-	@Column(name="nomciutat")
+	@Column(name="nomCiutat")
 	public String getNomCiutat() {
 		return nomCiutat;
 	}

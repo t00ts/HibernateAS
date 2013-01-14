@@ -7,26 +7,31 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.as.data.primarykeys.HotelPrimaryKey;
 
 @Entity
+@Table(name="HOTELSUPERIOR")
 public class HotelSuperior extends Hotel {
 
 	public HotelSuperior () {
 		super();
 	}
 
-	public HotelSuperior(HotelPrimaryKey primaryKey, float preu, float recarrec) {
-		super(primaryKey, preu);
+	public HotelSuperior(HotelPrimaryKey primaryKey, Ciutat ciutat, float preu, float recarrec) {
+		super(primaryKey, preu, ciutat);
+		
 		this.recarrec = recarrec;
 	}
 
 	// Atributs
 	private float recarrec;
-
+	
 	@Basic
 	public float getRecarrec() {
 		return recarrec;
@@ -35,13 +40,5 @@ public class HotelSuperior extends Hotel {
 		this.recarrec = recarrec;
 	}
 
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch=FetchType.EAGER)
-	@Override
-	public Ciutat getCiutat () {
-		return ciutat;
-	}
-	public void setCiutat (Ciutat c) {
-		ciutat = c;
-	}
 
 }

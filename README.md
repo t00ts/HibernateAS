@@ -33,7 +33,8 @@ Para importarlo intentad lo siguiente. Desde Eclipse:
 
 3. Importar la configuración con el botón de importar (es una flecha que entra en una caja)
 
-4. Comprobad que funciona haciendo un Ping desde el menú contextual del recurso recien creado.
+4. Id a propiedades del objeto derbyConnection editad la ruta del driver derbyclient.jar adaptada para vuestro pc.
+5. Comprobad que funciona haciendo un Ping desde el menú contextual del recurso recien creado.
 
 ## Configurar Hibernate en el proyecto
 No se hasta que punto con la configuración que trae lo que os he subido tendréis algo, pero como mínimo los paths a las librerías estarán mal seguro, con lo que tendréis que seguir los pasos descritos en este video:

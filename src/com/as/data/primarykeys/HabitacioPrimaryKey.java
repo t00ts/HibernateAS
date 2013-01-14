@@ -29,7 +29,7 @@ public class HabitacioPrimaryKey implements Serializable {
 		this.numero = numero;
 	}
 	
-	@Column(name="nomhotel")
+	@Column(name="nomHotel")
 	public String getNomHotel() {
 		return nomHotel;
 	}
@@ -37,7 +37,7 @@ public class HabitacioPrimaryKey implements Serializable {
 		this.nomHotel = nomHotel;
 	}
 	
-	@Column(name="nomciutat")
+	@Column(name="nomCiutat")
 	public String getNomCiutat() {
 		return nomCiutat;
 	}
