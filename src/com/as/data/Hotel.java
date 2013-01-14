@@ -34,7 +34,7 @@ public abstract class Hotel {
 	// Relationships
 
 	protected Ciutat ciutat;
-
+	protected List<Habitacio> habitacions;
 	
 	public Hotel () {}
 	
@@ -82,6 +82,13 @@ public abstract class Hotel {
 	}
 	public void setPreu(float preu) {
 		this.preu = preu;
+	}
+	@OneToMany(targetEntity=Habitacio.class, mappedBy="hotel", cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch=FetchType.LAZY)
+	public List<Habitacio> getHabitacions() {
+		return habitacions;
+	}
+	public void setHabitacions (List<Habitacio> ha) {
+		this.habitacions = ha;
 	}
 	
 
