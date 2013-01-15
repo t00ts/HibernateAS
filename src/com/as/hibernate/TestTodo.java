@@ -1,5 +1,6 @@
 package com.as.hibernate;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -71,7 +72,7 @@ public class TestTodo {
 		HotelSuperior hot = new HotelSuperior(new HotelPrimaryKey("Hotel NH", bcn.getNom()), bcn, 100.0f, 20.0f);
 		
 		Habitacio hab = new Habitacio(new HabitacioPrimaryKey(1, hot.getNom(), hot.getNomCiutat()), hot);
-		//Viatge vi = new Viatge(new ViatgePrimaryKey("436453K",data.getDate()), pep, hab.getHotel().getCiutat(), hab, data, dfi, hab.getHotel().getNom(), hab.getNumero());
+		Viatge vi = new Viatge(new ViatgePrimaryKey("436453K",data.getDate()), pep, hab.getHotel().getCiutat(), hab, data, dfi, hab.getHotel().getNom(), hab.getNumero());
 		
 		//guardamos datos en BD
 		session.save(data);
@@ -80,14 +81,16 @@ public class TestTodo {
 		session.save(pep);
 		session.save(hot);
 		session.save(hab);
-		//session.save(vi);
+		session.save(vi);
 		// Consulta BD
-		String hql = "From Hotel h";
+		/*String hql = "From Hotel h";
 		Query query = session.createQuery(hql);
 		List results = query.list();
 		Hotel h = (Hotel) results.get(0);
 		System.out.println ("HOTEL: "+h.getNom()+" CIUTAT: "+h.getNomCiutat());
 		/*System.out.println ("Hotel: "+hot.);
+		 * */
+		 
 		String hql = "From Viatge v";
 		Query query = session.createQuery(hql);
 		List results = query.list();
