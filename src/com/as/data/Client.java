@@ -1,6 +1,11 @@
 package com.as.data;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -10,6 +15,7 @@ import javax.persistence.Id;
 public class Client {
 
 	// Primary Key
+	@Id
 	private String dni;
 	
 	// Atributs
@@ -17,7 +23,15 @@ public class Client {
 	private String tlfn;
 	private Integer nombreViatges;
 	
+	private List<Viatge> viatges;
 	
+	public Client () {}
+	public Client (String dni, String nom, String telf, Integer nombreViatges) {
+		this.dni=dni;
+		this.nom = nom;
+		this.tlfn =telf;
+		this.nombreViatges = nombreViatges;
+	}
 	@Id
 	public String getDni() {
 		return dni;
@@ -49,6 +63,12 @@ public class Client {
 	public void setNombreViatges(Integer nombreViatges) {
 		this.nombreViatges = nombreViatges;
 	}
-
+	@OneToMany(targetEntity=Viatge.class, mappedBy="client", cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch=FetchType.LAZY)
+	public List<Viatge> getViatges() {
+		return viatges;
+	}
+	public void setViatges (List<Viatge> vi) {
+		this.viatges = vi;
+	}
 	
 }

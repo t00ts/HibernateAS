@@ -14,7 +14,12 @@ public class Data {
 
 	// Primary Key
 	private Date date;
-
+	
+	public Data () {}
+	
+	public Data (Date date) {
+		this.date=date;
+	}
 	@Id
 	public Date getDate() {
 		return date;

@@ -27,6 +27,7 @@ public class TestHotelHabitacio {
 		cfg.addAnnotatedClass(HotelSuperior.class);
 		cfg.addAnnotatedClass(HotelLowCost.class);
 		cfg.addAnnotatedClass(Habitacio.class);
+		
 
 		// Hibernate database configuration
 		cfg.configure ("hibernate.cfg.xml");
@@ -42,8 +43,7 @@ public class TestHotelHabitacio {
 		
 		/* -------------------- INSERT DATA -------------------- */
 		session.beginTransaction ();
-
-		// Crear ciudades de prueba: Barcelona, Madrid y Sevilla
+		/*// Crear ciudades de prueba: Barcelona, Madrid y Sevilla
 		Ciutat bcn = new Ciutat ("Barcelona", "La millor ciutat del mon", 80.0f);
 		Ciutat mad = new Ciutat ("Madrid", "Capital de Espa–a", 60.0f);
 		Ciutat sev = new Ciutat ("Sevilla", "Sur", 50.0f);
@@ -136,10 +136,10 @@ public class TestHotelHabitacio {
 		session.beginTransaction();
 		
 		// Leer HotelSuperior NH Barcelona
-		HotelSuperior nhbcn = (HotelSuperior) session.load(HotelSuperior.class, new HotelPrimaryKey ("NH Barcelona", "Barcelona"));
+		//HotelSuperior nhbcn = (HotelSuperior) session.load(HotelSuperior.class, new HotelPrimaryKey ("NH Barcelona", "Barcelona"));
 		
 		// Listar habitaciones
-		List<Habitacio> habitacions = nhbcn.getHabitacions();
+		/*List<Habitacio> habitacions = nhbcn.getHabitacions();
 		System.out.println ("Habitacions de " + nhbcn.getNom());
 		for (int i = 0; i < habitacions.size(); ++i) {
 			System.out.println (habitacions.get(i).getNumero());
@@ -150,10 +150,10 @@ public class TestHotelHabitacio {
 		// Informacion de la ciudad
 		Ciutat ciutat_nh = nhbcn.getCiutat ();
 		System.out.println ("L'hotel esta a " + ciutat_nh.getNom());
-		System.out.println (ciutat_nh.getNom() + " Žs " + ciutat_nh.getDescripcio());
+		System.out.println (ciutat_nh.getNom() + " és " + ciutat_nh.getDescripcio());
 		System.out.println ("El preu de vol aproximat es de " + ciutat_nh.getPreuVol() + " euros.");
 		
-		
+		*/
 		session.getTransaction().commit();
 		
 		/* --------------------- /LOAD DATA -------------------- */

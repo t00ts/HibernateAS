@@ -12,10 +12,11 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 
 @Entity
-@Table(name="ciutats")
+@Table(name="CIUTATS")
 public class Ciutat {
 
 	// Primary Key
+	@Id
 	private String nom;
 	
 	// Atributs
