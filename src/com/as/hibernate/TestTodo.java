@@ -63,25 +63,29 @@ public class TestTodo {
 		//int result = query1.executeUpdate();
 		Ciutat bcn = new Ciutat ("Barcelona", "La millor ciutat del mon", 80.0f);
 		Client pep = new Client("436453K", "Pep", "54645456", 0);
+		Client pep2 = new Client("696969X", "Juan", "111111", 0);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		@SuppressWarnings("deprecation")
 		Date dini= sdf.parse("01/01/2013");//dinici
 		Date dfi=sdf.parse("05/01/2013");//dfi
+		Date dfi2=sdf.parse("09/01/2013");//dfi
 		Data data = new Data(dini);
 		Data data2 = new Data(dfi);
 		HotelSuperior hot = new HotelSuperior(new HotelPrimaryKey("Hotel NH", bcn.getNom()), bcn, 100.0f, 20.0f);
 		
 		Habitacio hab = new Habitacio(new HabitacioPrimaryKey(1, hot.getNom(), hot.getNomCiutat()), hot);
 		Viatge vi = new Viatge(new ViatgePrimaryKey("436453K",data.getDate()), pep, hab.getHotel().getCiutat(), hab, data, dfi, hab.getHotel().getNom(), hab.getNumero());
-		
+		Viatge vi2 = new Viatge(new ViatgePrimaryKey(pep2.getDni(),data2.getDate()), pep2, hab.getHotel().getCiutat(), hab, data, dfi2, hab.getHotel().getNom(), hab.getNumero());
 		//guardamos datos en BD
 		session.save(data);
 		session.save(data2);
 		session.save(bcn);
 		session.save(pep);
+		session.save(pep2);
 		session.save(hot);
 		session.save(hab);
 		session.save(vi);
+		session.save(vi2);
 		// Consulta BD
 		/*String hql = "From Hotel h";
 		Query query = session.createQuery(hql);
