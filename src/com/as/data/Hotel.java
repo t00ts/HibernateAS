@@ -1,5 +1,6 @@
 package com.as.data;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -92,6 +93,15 @@ public abstract class Hotel {
 	}
 	public void addHabitacio (Habitacio h){
 		this.habitacions.add(h);
+	}
+	public int habLliure(Date dIni, Date dFi){
+		int i=0;
+		int numHab=0;//habitacions Lliures
+		while(i<habitacions.size()){
+			numHab = numHab + habitacions.get(i).habLliure(dIni, dFi);//si habitacio es lliure retorna 1 sino 0.
+			i++;
+		}
+		return numHab;//si numhab>0 llavors hi han habitacions lliures.
 	}
 
 	

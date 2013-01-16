@@ -1,5 +1,6 @@
 package com.as.data;
 
+import java.util.Date;
 import java.util.List;
 
 import com.as.data.primarykeys.HabitacioPrimaryKey;
@@ -70,6 +71,12 @@ public class Habitacio {
 	}
 	public void addViatge (Viatge v){
 		this.viatges.add(v);
+	}
+	public int habLliure(Date dIni, Date dFi){//si no te viatges retorna 1 si te viatges retorna 0
+		if(viatges.size()==0){//no te viatges
+			return 1;
+		}else return 0;
+		
 	}
 
 }

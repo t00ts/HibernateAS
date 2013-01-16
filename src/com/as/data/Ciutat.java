@@ -1,5 +1,7 @@
 package com.as.data;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -65,6 +67,21 @@ public class Ciutat {
 	}
 	public void setHotels (List<Hotel> hotels) {
 		this.hotels = hotels;
+	}
+	public List<Hotel> cercaHotels(Date dIni, Date dFi){
+		List<Hotel> hotelsLliures=new ArrayList<Hotel>();
+		int i=0;
+		int numHab=0; //numero habitacions lliures
+		while(i<hotels.size()){
+			numHab = hotels.get(i).habLliure(dIni, dFi);
+			
+			if(numHab!=0){//te habitacions lliures l'hotel
+				hotelsLliures.add(hotels.get(i));
+			}
+			i++;
+		}
+		
+		return hotelsLliures;		
 	}
 
 }
