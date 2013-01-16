@@ -16,6 +16,7 @@ import com.as.data.Hotel;
 import com.as.data.HotelLowCost;
 import com.as.data.HotelSuperior;
 import com.as.data.Viatge;
+import com.as.data.primarykeys.HotelPrimaryKey;
 import com.as.data.primarykeys.ViatgePrimaryKey;
 
 public class CtrlHotel {
@@ -40,11 +41,11 @@ public class CtrlHotel {
 	public Hotel get(String nomHotel, String nomCiutat){
 		Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
-    	HotelPrimaryKey hpk= new HotelPrimaryKey(dniClient, dataIni);
-		String hql = new StringBuilder("").append("FROM Hotel h WHERE h.HotelPrimaryKey=('").append(vpk.getdniClient())
-				  .append("', ").append(vpk.getdataInici()).append(")").toString();
+    	HotelPrimaryKey hpk= new HotelPrimaryKey(nomHotel, nomCiutat);
+		String hql = new StringBuilder("").append("FROM Hotel h WHERE h.HotelPrimaryKey=('").append(hpk.getNomHotel())
+				.append("', '").append(hpk.getNomCiutat()).append("')").toString();
 		Query query = session.createQuery(hql);
-		Viatge res = (Viatge) query.uniqueResult();
+		Hotel res = (Hotel) query.uniqueResult();
 		
 		session.getTransaction().commit();
 		return res;
