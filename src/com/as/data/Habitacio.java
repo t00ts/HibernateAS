@@ -1,5 +1,7 @@
 package com.as.data;
 
+import java.util.List;
+
 import com.as.data.primarykeys.HabitacioPrimaryKey;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -7,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -20,6 +23,8 @@ public class Habitacio {
 	
 	// Relationships
 	private Hotel hotel;
+	
+	private List<Viatge> viatges;
 
 	
 	public Habitacio () {}
@@ -55,6 +60,16 @@ public class Habitacio {
 	}
 	public void setHotel (Hotel hotel) {
 		this.hotel = hotel;  
+	}
+	@OneToMany(targetEntity=Viatge.class, mappedBy="habitacio", cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch=FetchType.LAZY)
+	public List<Viatge> getViatges() {
+		return viatges;
+	}
+	public void setViatges (List<Viatge> lvi) {
+		this.viatges = lvi;
+	}
+	public void addViatge (Viatge v){
+		this.viatges.add(v);
 	}
 
 }
