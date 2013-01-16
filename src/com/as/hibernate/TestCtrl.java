@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import com.as.data.CtrlViatge;
+import com.as.controllers.CtrlViatge;
 import com.as.data.Viatge;
 
 public class TestCtrl {
