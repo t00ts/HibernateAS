@@ -72,7 +72,7 @@ public class FinestraContractarViatges extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				boolean errorciutats = false;
+				boolean errorciutats = false; //????
 					if(errorciutats){
 					AvisNoCiutats frm = new AvisNoCiutats();
 					frm.setVisible(true);
@@ -89,7 +89,7 @@ public class FinestraContractarViatges extends JFrame {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(155, 14, 181, 99);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Juanjo\\workspace\\Prueba\\src\\Logo.PNG"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Usuarios\\Albert\\Mis Documentos\\GitHub\\HibernateAS\\res\\Logo.PNG"));
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("<html>Benvinguts a <font color='green'>Traveling!</font><br>Per realitzar la contractaci\u00F3 d'un viatje,<br> \r\nprem el bot\u00F3 seg\u00FCent.</html>");
