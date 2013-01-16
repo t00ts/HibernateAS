@@ -35,7 +35,7 @@ public class CtrlClient {
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
 	
-		String hql = "FROM Client c WHERE dni = '" + dni + "'";
+    	String hql = new StringBuilder("").append("FROM Client c WHERE numero='").append(dni).append("'").toString();
 		Query query = session.createQuery (hql);
 		
 		Client res = (Client) query.uniqueResult();
@@ -43,7 +43,7 @@ public class CtrlClient {
         
     }
     
-    public boolean exists (String dni) {
+     public boolean exists (String dni) {
 
     	return (get(dni) != null);
     
