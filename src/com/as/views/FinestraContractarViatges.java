@@ -32,6 +32,7 @@ import java.awt.Insets;
 public class FinestraContractarViatges extends JFrame {
 
 	private JPanel contentPane;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -67,20 +68,13 @@ public class FinestraContractarViatges extends JFrame {
 		setContentPane(contentPane);
 		ImageIcon icon = new ImageIcon("/Logo.PNG");
 		
-		JButton btnNewButton = new JButton("Contractar viatge");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				
-				boolean errorciutats = false; //????
-					if(errorciutats){
-					AvisNoCiutats frm = new AvisNoCiutats();
-					frm.setVisible(true);
-					frm.setResizable(false);
-				}
-				
-			}
-		});
+		btnNewButton = new JButton("Contractar viatge");
+		btnNewButton.setActionCommand("Contractar");
+		btnNewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            }
+        });
+
 		btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.setBounds(175, 222, 154, 35);
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -89,7 +83,7 @@ public class FinestraContractarViatges extends JFrame {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(155, 14, 181, 99);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Usuarios\\Albert\\Mis Documentos\\GitHub\\HibernateAS\\res\\Logo.PNG"));
+		lblNewLabel.setIcon(new ImageIcon(FinestraContractarViatges.class.getResource("/res/Logo.PNG")));
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("<html>Benvinguts a <font color='green'>Traveling!</font><br>Per realitzar la contractaci\u00F3 d'un viatje,<br> \r\nprem el bot\u00F3 seg\u00FCent.</html>");
@@ -99,4 +93,8 @@ public class FinestraContractarViatges extends JFrame {
 		contentPane.add(btnNewButton);
 		
 	}
+	
+	public void addContractar_Listener(ActionListener cal) {
+		btnNewButton.addActionListener(cal);
+    }
 }

@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.JTableHeader;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+
 import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -19,6 +21,8 @@ import javax.swing.SwingConstants;
 public class FinestraReservaHabitacio extends JFrame {
 
 	private JPanel contentPane;
+	private JButton btnNewButton;
+	private JButton btnConfirmar;
 
 	/**
 	 * Launch the application.
@@ -58,7 +62,7 @@ public class FinestraReservaHabitacio extends JFrame {
 		//Taula amb la sel.lecció d'hotel i preus
 
 		String data[][] = {{"NHBarcelona","130$"}}; //provisional ha de cridar a la funció del controlador
-		String col[] = {"Ciutat","Preu"};
+		String col[] = {"Hotel","Preu"};
 		JTable table = new JTable(data,col);
 		JTableHeader header = table.getTableHeader();
 		header.setBackground(Color.yellow);
@@ -69,14 +73,14 @@ public class FinestraReservaHabitacio extends JFrame {
 		
 		//Botó de cancel.lar
 		
-		JButton btnNewButton = new JButton("Cancel\u00B7lar");
+		btnNewButton = new JButton("Cancel\u00B7lar");
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnNewButton.setBounds(430, 204, 105, 23);
 		contentPane.add(btnNewButton);
 	
 		//Botó de confirmar
 		
-		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnConfirmar.setBounds(315, 204, 105, 23);
 		contentPane.add(btnConfirmar);
@@ -122,4 +126,12 @@ public class FinestraReservaHabitacio extends JFrame {
 		contentPane.add(label_5);
 	}
 
+	public void addConfirmar_RHListener(ActionListener cal) {
+		btnConfirmar.addActionListener(cal);
+    }
+	
+	public void addCancel_2Listener(ActionListener cal) {
+		btnNewButton.addActionListener(cal);
+    }
+	
 }

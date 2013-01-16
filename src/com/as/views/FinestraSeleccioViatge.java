@@ -35,6 +35,8 @@ public class FinestraSeleccioViatge extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	private JButton btnNewButton;
+	private JButton btnNewButton_1;
 
 	/**
 	 * Launch the application.
@@ -127,23 +129,15 @@ public class FinestraSeleccioViatge extends JFrame {
 		
 		//Botó confirmar
 		
-		JButton btnNewButton = new JButton("Confirmar");
+		btnNewButton = new JButton("Confirmar");
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnNewButton.setBounds(257, 222, 105, 23);
 		contentPane.add(btnNewButton);
 		
 		//Botó cancel.lar
 		
-		JButton btnNewButton_1 = new JButton("Cancel\u00B7lar");
+		btnNewButton_1 = new JButton("Cancel\u00B7lar");
 		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnNewButton_1.setBounds(372, 222, 105, 23);
 		contentPane.add(btnNewButton_1);
 
@@ -162,4 +156,12 @@ public class FinestraSeleccioViatge extends JFrame {
 		  
 		
 	}
+	
+	public void addConfirmar_SVListener(ActionListener cal) {
+		btnNewButton.addActionListener(cal);
+    }
+	
+	public void addCancel_1Listener(ActionListener cal) {
+		btnNewButton_1.addActionListener(cal);
+    }
 }
