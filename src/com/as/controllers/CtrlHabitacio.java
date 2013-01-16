@@ -30,14 +30,14 @@ public class CtrlHabitacio {
     	
     }
     
-    public Habitacio get (HabitacioPrimaryKey hpk) {
+    public Habitacio get (int numero, String nomHotel, String nomCiutat) {
     
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
 
-    	String hql = new StringBuilder("").append("FROM Habitacio h WHERE h.habitacioPrimaryKey=('").append(hpk.getNumero())
-    									  .append("', '").append(hpk.getNomHotel())
-    									  .append("', '").append(hpk.getNomCiutat()).append("')")
+    	String hql = new StringBuilder("").append("FROM Habitacio h WHERE h.habitacioPrimaryKey=('").append(numero)
+    									  .append("', '").append(nomHotel)
+    									  .append("', '").append(nomCiutat).append("')")
     									  .toString();
     	
 		Query query = session.createQuery (hql);
@@ -47,9 +47,9 @@ public class CtrlHabitacio {
         
     }
     
-    public boolean exists (HabitacioPrimaryKey hpk) {
+    public boolean exists (int numero, String nomHotel, String nomCiutat) {
 
-    	return (get(hpk) != null);
+    	return (get(numero, nomHotel, nomCiutat) != null);
     
     }
     
