@@ -18,17 +18,17 @@ import com.as.data.HotelSuperior;
 import com.as.data.Viatge;
 import com.as.data.primarykeys.ViatgePrimaryKey;
 
-public class CtrlViatge {
+public class CtrlHotel {
 	private Configuration hibernateCfg = null;
 
-    public CtrlViatge (Configuration cfg) {
+    public CtrlHotel (Configuration cfg) {
     	hibernateCfg = cfg;
     }
 	
-	public List<Viatge> getAll(){
+	public List<Hotel> getAll(){
 		Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
-		String hql = "From Viatge v";
+		String hql = "From Hotel h";
 		Query query = session.createQuery(hql);
 		List results = query.list();
 		session.getTransaction().commit();
@@ -37,11 +37,11 @@ public class CtrlViatge {
 	
 	
 	@SuppressWarnings("deprecation")
-	public Viatge get(String dniClient, Date dataIni){
+	public Hotel get(String nomHotel, String nomCiutat){
 		Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
-    	ViatgePrimaryKey vpk= new ViatgePrimaryKey(dniClient, dataIni);
-		String hql = new StringBuilder("").append("FROM Viatge v WHERE v.viatgePrimaryKey=('").append(vpk.getdniClient())
+    	HotelPrimaryKey hpk= new HotelPrimaryKey(dniClient, dataIni);
+		String hql = new StringBuilder("").append("FROM Hotel h WHERE h.HotelPrimaryKey=('").append(vpk.getdniClient())
 				  .append("', ").append(vpk.getdataInici()).append(")").toString();
 		Query query = session.createQuery(hql);
 		Viatge res = (Viatge) query.uniqueResult();
@@ -49,11 +49,10 @@ public class CtrlViatge {
 		session.getTransaction().commit();
 		return res;
 		
-	}
-	
-	public boolean exists(String dniClient, Date dataIni){
 		
-		return get(dniClient,dataIni)!=null;
 	}
 	
+	public boolean exists(String nomHotel, String nomCiutat){
+		return get(nomHotel, nomCiutat)!=null;
+	}
 }
