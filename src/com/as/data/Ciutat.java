@@ -68,14 +68,17 @@ public class Ciutat {
 	public void setHotels (List<Hotel> hotels) {
 		this.hotels = hotels;
 	}
-	public List<Hotel> cercaHotels(Date dIni, Date dFi){
+	public List<Hotel> cercaHotels(Date dIni, Date dFi){//nota comentar sobre hoteles como hacer la inheritance o ctrl
 		List<Hotel> hotelsLliures=new ArrayList<Hotel>();
 		int i=0;
-		int numHab=0; //numero habitacions lliures
+		boolean esLliure=false; //hotel amb habs lliures
 		while(i<hotels.size()){
-			numHab = hotels.get(i).habLliure(dIni, dFi);
-			
-			if(numHab!=0){//te habitacions lliures l'hotel
+			esLliure = hotels.get(i).habEsLliure(dIni, dFi);/*canvia una mica respecte al diagrama de sequencia
+															*habEslliure no la teniem definida pero la necessitem
+															*habLliure la hem dividit en 2, habEslliure(true si l'hotel conte 
+															*habitacions lliures)
+															* i numHablliure(retorna el numhab d'una habitacio lliure)->definida a hotel*/
+			if(esLliure){//te habitacions lliures l'hotel
 				hotelsLliures.add(hotels.get(i));
 			}
 			i++;

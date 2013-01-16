@@ -68,15 +68,23 @@ public class Habitacio {
 	}
 	public void setViatges (List<Viatge> lvi) {
 		this.viatges = lvi;
+		
 	}
 	public void addViatge (Viatge v){
 		this.viatges.add(v);
 	}
-	public int habLliure(Date dIni, Date dFi){//si no te viatges retorna 1 si te viatges retorna 0
+	public boolean habEsLliure(Date dIni, Date dFi){//si no te viatges registrats es lliure
 		if(viatges.size()==0){//no te viatges
-			return 1;
-		}else return 0;
+			return true;
+		}else return false;
 		
+	}
+	public float reserva(Viatge v){
+		float preuHab=0;
+		addViatge(v);//reservamos habitacion
+		preuHab=hotel.getPreu();//habria que mirar si hotel es sup/low
+		//SAVE HABITACION
+		return preuHab;
 	}
 
 }

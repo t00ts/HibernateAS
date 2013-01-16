@@ -87,6 +87,7 @@ public class Client {
 		}
 		//Creamos el viatge //decirle al abel la funcion de crear
 		Data data=new Data(dataIni);
+		//hacer gets de objetos para pasarlos a la creadora
 		Viatge v = new Viatge(new ViatgePrimaryKey(dniClient, dataIni),null,null,null, data,dataFi, nomCiutat, null);
 		nombreViatges++;
 		return v.getCiutat().getPreuVol();

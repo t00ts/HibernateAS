@@ -178,5 +178,14 @@ public class Viatge {
 		}
 		return hotels;
 	}
+	
+	public float reserva(Habitacio hab, Date dIni, Date dFi){
+		float preuHab=0;
+		habitacio=hab;//relacionamos el viatge con la habitacion
+		numHabitacio=hab.getNumero();
+		preuHab=hab.reserva(this);
+		//SAVE VIATGE
+		return preuHab;
+	}
 
 }
