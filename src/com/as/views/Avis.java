@@ -31,7 +31,7 @@ public class Avis extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Avis frame = new Avis("nociutats");
+					Avis frame = new Avis(args[0]);
 					frame.setVisible(true);
 					frame.setResizable(false);
 				} catch (Exception e) {
