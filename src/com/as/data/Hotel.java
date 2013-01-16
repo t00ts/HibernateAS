@@ -90,6 +90,10 @@ public abstract class Hotel {
 	public void setHabitacions (List<Habitacio> ha) {
 		this.habitacions = ha;
 	}
+	public void addHabitacio (Habitacio h){
+		this.habitacions.add(h);
+	}
+
 	
 
 }

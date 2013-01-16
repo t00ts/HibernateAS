@@ -1,4 +1,4 @@
-package com.as.data;
+package com.as.views;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -15,7 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-public class AvisClientViatge extends JFrame {
+public class AvisNoHotels extends JFrame {
 
 	private JPanel contentPane;
 
@@ -26,7 +26,7 @@ public class AvisClientViatge extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AvisClientViatge frame = new AvisClientViatge();
+					AvisNoHotels frame = new AvisNoHotels();
 					frame.setVisible(true);
 					frame.setResizable(false);
 				} catch (Exception e) {
@@ -39,7 +39,7 @@ public class AvisClientViatge extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AvisClientViatge() {
+	public AvisNoHotels() {
 		setFont(new Font("Arial", Font.BOLD, 12));
 		setTitle("Av\u00EDs");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,13 +66,13 @@ public class AvisClientViatge extends JFrame {
 		label.setBounds(10, 24, 145, 94);
 		contentPane.add(label);
 		
-		JLabel lblNewLabel = new JLabel("El client ja t\u00E9 un viatge.");
+		JLabel lblNewLabel = new JLabel("No hi ha hotels lliures.");
 		lblNewLabel.setForeground(new Color(255, 0, 0));
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		lblNewLabel.setBounds(180, 34, 245, 24);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNoExisteixenCiutats = new JLabel("<html>El client ja t\u00E9 un viatge contractat per <br>a un per\u00EDode solapat amb les dates <br>introdu\u00EFdes.</html>");
+		JLabel lblNoExisteixenCiutats = new JLabel("<html>No hi ha hotels disponibles per aquest viatge.</html>");
 		lblNoExisteixenCiutats.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblNoExisteixenCiutats.setBounds(180, 69, 245, 47);
 		contentPane.add(lblNoExisteixenCiutats);

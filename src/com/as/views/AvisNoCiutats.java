@@ -1,4 +1,4 @@
-package com.as.data;
+package com.as.views;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -15,7 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-public class AvisPagamentNoAu extends JFrame {
+public class AvisNoCiutats extends JFrame {
 
 	private JPanel contentPane;
 
@@ -26,7 +26,7 @@ public class AvisPagamentNoAu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AvisPagamentNoAu frame = new AvisPagamentNoAu();
+					AvisNoCiutats frame = new AvisNoCiutats();
 					frame.setVisible(true);
 					frame.setResizable(false);
 				} catch (Exception e) {
@@ -39,11 +39,11 @@ public class AvisPagamentNoAu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AvisPagamentNoAu() {
+	public AvisNoCiutats() {
 		setFont(new Font("Arial", Font.BOLD, 12));
 		setTitle("Av\u00EDs");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 469, 196);
+		setBounds(100, 100, 469, 188);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -58,7 +58,7 @@ public class AvisPagamentNoAu extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(343, 135, 100, 23);
+		btnNewButton.setBounds(343, 127, 100, 23);
 		contentPane.add(btnNewButton);
 		
 		JLabel label = new JLabel("");
@@ -66,15 +66,15 @@ public class AvisPagamentNoAu extends JFrame {
 		label.setBounds(10, 24, 145, 94);
 		contentPane.add(label);
 		
-		JLabel lblNewLabel = new JLabel("<html>El pagament no est\u00E0 <br>autoritzat.</html>");
+		JLabel lblNewLabel = new JLabel("No hi ha ciutats.");
 		lblNewLabel.setForeground(new Color(255, 0, 0));
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 20));
-		lblNewLabel.setBounds(180, 34, 245, 47);
+		lblNewLabel.setBounds(180, 34, 213, 24);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNoExisteixenCiutats = new JLabel("Contacti amb el seu administrador.");
+		JLabel lblNoExisteixenCiutats = new JLabel("<html>No existeixen ciutats disponibles<br>per fer viatges.</html>");
 		lblNoExisteixenCiutats.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblNoExisteixenCiutats.setBounds(180, 92, 245, 29);
+		lblNoExisteixenCiutats.setBounds(180, 58, 213, 47);
 		contentPane.add(lblNoExisteixenCiutats);
 	}
 }

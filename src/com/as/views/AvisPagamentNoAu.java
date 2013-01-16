@@ -1,4 +1,4 @@
-package com.as.data;
+package com.as.views;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -15,7 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-public class AvisPagamentOk extends JFrame {
+public class AvisPagamentNoAu extends JFrame {
 
 	private JPanel contentPane;
 
@@ -26,7 +26,7 @@ public class AvisPagamentOk extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AvisPagamentOk frame = new AvisPagamentOk();
+					AvisPagamentNoAu frame = new AvisPagamentNoAu();
 					frame.setVisible(true);
 					frame.setResizable(false);
 				} catch (Exception e) {
@@ -39,11 +39,11 @@ public class AvisPagamentOk extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AvisPagamentOk() {
+	public AvisPagamentNoAu() {
 		setFont(new Font("Arial", Font.BOLD, 12));
 		setTitle("Av\u00EDs");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 469, 195);
+		setBounds(100, 100, 469, 196);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,19 +62,19 @@ public class AvisPagamentOk extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\Juanjo\\workspace\\Prueba\\src\\LogoOk.PNG"));
-		label.setBounds(10, 30, 145, 94);
+		label.setIcon(new ImageIcon("C:\\Users\\Juanjo\\workspace\\Prueba\\src\\LogoError.PNG"));
+		label.setBounds(10, 24, 145, 94);
 		contentPane.add(label);
 		
-		JLabel lblNewLabel = new JLabel("<html>El pagament s'ha realitzat <br>correctament. </html>");
-		lblNewLabel.setForeground(new Color(154, 205, 50));
+		JLabel lblNewLabel = new JLabel("<html>El pagament no est\u00E0 <br>autoritzat.</html>");
+		lblNewLabel.setForeground(new Color(255, 0, 0));
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 20));
-		lblNewLabel.setBounds(165, 30, 263, 46);
+		lblNewLabel.setBounds(180, 34, 245, 47);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNoExisteixenCiutats = new JLabel("Que gaudexi del viatge!");
+		JLabel lblNoExisteixenCiutats = new JLabel("Contacti amb el seu administrador.");
 		lblNoExisteixenCiutats.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblNoExisteixenCiutats.setBounds(165, 88, 245, 36);
+		lblNoExisteixenCiutats.setBounds(180, 92, 245, 29);
 		contentPane.add(lblNoExisteixenCiutats);
 	}
 }

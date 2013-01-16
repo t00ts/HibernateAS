@@ -1,4 +1,4 @@
-package com.as.data;
+package com.as.views;
 
 import java.io.*;
 import java.awt.*;

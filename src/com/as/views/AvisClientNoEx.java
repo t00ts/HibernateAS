@@ -1,4 +1,4 @@
-package com.as.data;
+package com.as.views;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -15,7 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-public class AvisNoCiutats extends JFrame {
+public class AvisClientNoEx extends JFrame {
 
 	private JPanel contentPane;
 
@@ -26,7 +26,7 @@ public class AvisNoCiutats extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AvisNoCiutats frame = new AvisNoCiutats();
+					AvisClientNoEx frame = new AvisClientNoEx();
 					frame.setVisible(true);
 					frame.setResizable(false);
 				} catch (Exception e) {
@@ -39,7 +39,7 @@ public class AvisNoCiutats extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AvisNoCiutats() {
+	public AvisClientNoEx() {
 		setFont(new Font("Arial", Font.BOLD, 12));
 		setTitle("Av\u00EDs");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,15 +66,15 @@ public class AvisNoCiutats extends JFrame {
 		label.setBounds(10, 24, 145, 94);
 		contentPane.add(label);
 		
-		JLabel lblNewLabel = new JLabel("No hi ha ciutats.");
+		JLabel lblNewLabel = new JLabel("El client no existeix.");
 		lblNewLabel.setForeground(new Color(255, 0, 0));
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		lblNewLabel.setBounds(180, 34, 213, 24);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNoExisteixenCiutats = new JLabel("<html>No existeixen ciutats disponibles<br>per fer viatges.</html>");
+		JLabel lblNoExisteixenCiutats = new JLabel("No existeix un client amb aquest dni.");
 		lblNoExisteixenCiutats.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblNoExisteixenCiutats.setBounds(180, 58, 213, 47);
+		lblNoExisteixenCiutats.setBounds(180, 58, 245, 47);
 		contentPane.add(lblNoExisteixenCiutats);
 	}
 }
