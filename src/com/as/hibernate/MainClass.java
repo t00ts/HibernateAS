@@ -7,6 +7,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import com.as.controllers.CtrlClient;
+import com.as.controllers.CtrlHabitacio;
 import com.as.controllers.Factory;
 import com.as.data.Ciutat;
 import com.as.data.Client;
@@ -51,13 +52,12 @@ public class MainClass {
 		for (int i = 0; i < lc.size(); ++i) {
 			System.out.println (lc.get(i).getDni());
 		}
-		
-	    Client c = cClient.get("43K");
-	    System.out.println (c.getNom());
-	    
-	    
-	    
-	    
+	
+	    CtrlHabitacio cHab = ctrlFactory.getCtrlHabitacio();
+	    ArrayList<Habitacio> lh = cHab.getAll();
+		for (int i = 0; i < lh.size(); ++i) {
+			System.out.println (lh.get(i).getNumero());
+		}
 	}
 
 }

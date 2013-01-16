@@ -35,7 +35,7 @@ public class CtrlClient {
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
 	
-    	String hql = new StringBuilder("").append("FROM Client c WHERE numero='").append(dni).append("'").toString();
+    	String hql = new StringBuilder("").append("FROM Client c WHERE dni='").append(dni).append("'").toString();
 		Query query = session.createQuery (hql);
 		
 		Client res = (Client) query.uniqueResult();

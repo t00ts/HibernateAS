@@ -8,9 +8,9 @@ public class Factory {
 	private static Factory Instance = null; 
 	private static CtrlViatge ctrlViatge = null; 
 	private static CtrlClient ctrlClient = null;
+	private static CtrlHabitacio ctrlHabitacio = null;
 /*	private CtrlCiutat ctrlCiutat;
 	private CtrlData ctrlData;
-	private CtrlHabitacio ctrlHabitacio;
     private CtrlHotel ctrlHotel;
     private CtrlHotelLowCost ctrlHotelLowCost;
     private CtrlHotelSuperior ctrlHotelSuperior;
@@ -26,7 +26,8 @@ public class Factory {
 	
 		//ctrlViatge = new CtrlViatge (cfg);
 		ctrlClient = new CtrlClient (cfg);
-		
+	    ctrlHabitacio = new CtrlHabitacio (cfg);
+	    
 	}
 	
 	public Factory getInstance () {
@@ -41,5 +42,8 @@ public class Factory {
 	public static CtrlClient getCtrlClient () {
 		return ctrlClient;
 	}
-	
+
+	public static CtrlHabitacio getCtrlHabitacio () {
+		return ctrlHabitacio;
+	}
 }
