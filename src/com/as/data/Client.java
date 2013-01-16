@@ -1,5 +1,6 @@
 package com.as.data;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Id;
+
+import com.as.data.primarykeys.ViatgePrimaryKey;
 
 @Entity
 @Table(name="CLIENTS")
@@ -69,6 +72,25 @@ public class Client {
 	}
 	public void setViatges (List<Viatge> vi) {
 		this.viatges = vi;
+	}
+	public float enregistraViatge(String dniClient, Date dataIni, Date dataFi, String nomCiutat){
+		int preuVol=0;
+		int i=0;
+		boolean solapat = false;
+		
+		while(i<viatges.size()){
+			solapat = viatges.get(i).viatgeSolapat(dataIni, dataFi);
+			if(solapat){
+				//ACTIVAMOS EXC JATEVIATGE ->PANTALLA AVISCLIENTVIATGE
+			}
+			i++;
+		}
+		//Creamos el viatge //decirle al abel la funcion de crear
+		Data data=new Data(dataIni);
+		//hacer gets de objetos para pasarlos a la creadora
+		Viatge v = new Viatge(new ViatgePrimaryKey(dniClient, dataIni),null,null,null, data,dataFi, nomCiutat, null);
+		nombreViatges++;
+		return v.getCiutat().getPreuVol();
 	}
 	
 }
