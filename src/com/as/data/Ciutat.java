@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Id;
 
+import com.as.data.tuples.Tuple;
+
 @Entity
 @Table(name="CIUTATS")
 public class Ciutat {
@@ -68,7 +70,7 @@ public class Ciutat {
 	public void setHotels (List<Hotel> hotels) {
 		this.hotels = hotels;
 	}
-	public List<Tuple> cercaHotels(Date dIni, Date dFi){//nota comentar sobre hoteles como hacer la inheritance o ctrl
+	public List<Tuple> cercaHotels(Date dIni, Date dFi){//retorna una lista de nomhoteles con su precio
 		List<Tuple> hotelsLliures=new ArrayList<Tuple>();
 		int i=0;
 		boolean esLliure=false; //hotel amb habs lliures

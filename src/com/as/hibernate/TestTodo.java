@@ -15,6 +15,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.sql.Select;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
+import com.as.data.primarykeys.ViatgePrimaryKey;
 import com.as.data.Ciutat;
 import com.as.data.Client;
 import com.as.data.Data;
@@ -94,8 +95,10 @@ public class TestTodo {
 		System.out.println ("HOTEL: "+h.getNom()+" CIUTAT: "+h.getNomCiutat());
 		/*System.out.println ("Hotel: "+hot.);
 		 * */
-		 
-		String hql = "From Viatge v";
+		String var1 = "436453K";
+		Date var2 = dini;
+		ViatgePrimaryKey pk = new ViatgePrimaryKey("436453K", dini);
+		String hql = "From Viatge v WHERE v.viatgePrimaryKey.dniClient= :code";
 		Query query = session.createQuery(hql);
 		List results = query.list();
 		Viatge v = (Viatge) results.get(0);
