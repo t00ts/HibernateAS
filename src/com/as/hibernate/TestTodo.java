@@ -53,7 +53,7 @@ public class TestTodo {
 		cfg.configure ("hibernate.cfg.xml");
 
 		// Create tables
-		new SchemaExport (cfg).create (true, true);
+		//new SchemaExport (cfg).create (true, true);
 
 		// Session
 		SessionFactory factory = cfg.buildSessionFactory();
@@ -118,8 +118,9 @@ public class TestTodo {
 		
 		
 		//<=========================================TESTEAR JATEVIATGE, CLIENTNOEX
-		/*DomainCtrl dm = new DomainCtrl(cfg);
-		DATA
+		DomainCtrl dm = new DomainCtrl(cfg);
+		//DATA
+		
 		Ciutat bcn = new Ciutat ("Barcelona", "La millor ciutat del mon", 80.0f);
 		Client pep = new Client("436453K", "Pep", "54645456", 0);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -128,17 +129,16 @@ public class TestTodo {
 		Date dfi=sdf.parse("05/01/2013");//dfi
 		Date dini2=sdf.parse("05/01/2013");
 		Date dfi2=sdf.parse("09/01/2013");//dfi
-		Data data = new Data(dini);
-		Data data2 = new Data(dfi);
-		session.save(bcn);
-		session.save(pep);
-		session.save(data);
-		session.save(data2);
+		//session.save(bcn);
+		//session.save(pep);
 		
-		System.out.println("EXISTE? ===>"+dm.exClientNoEx("436453K"));*/
+		Viatge v = new Viatge(new ViatgePrimaryKey(pep.getDni(), dini), pep, bcn, null, d, dataFi, null, null  );
+
+		
+		//System.out.println("EXISTE? ===>"+dm.exClientNoEx("436453K"));
 		
 		//<===================================================TESTEAR CONVERSION
-		
+		/*
 		List<TupleCiutat> tc=new ArrayList<TupleCiutat>();
 		
 		TupleCiutat t1 = new TupleCiutat("Barcelona", 100f);
@@ -151,8 +151,7 @@ public class TestTodo {
 		DomainCtrl dm = new DomainCtrl(cfg);
 		String[][] s = dm.conversion(tc);
 		System.out.println ("t1: "+s[0][0]+"  "+s[0][1]+"  "+s[1][0]+"  "+s[0][1]+"  "+s[2][0]+"  "+s[2][1]+"  ");
-		
-		
+		*/
 		session.getTransaction().commit();
 	}
 

@@ -111,7 +111,7 @@ public class DomainCtrl {
 		Client cl = ccl.get(dni);//suponemos que el cliente existe seguro ya que antes hemos ejecutado clientNoEx
 		Ciutat c = cc.get(nomCiutat);//cogemos la ciudad
 		
-		Viatge v = new Viatge(new ViatgePrimaryKey(dni, dataIni), cl, c, null, d, dataFi, null, null  );
+		Viatge v = new Viatge(new ViatgePrimaryKey(dni, dataIni), cl, c, null, dataFi, null, null  );
 		//los 3 valores null son habitacio, nomHotel y numHab ya que aun no sabemos nada de eso hasta que no reservemos.
 		preuVol=cl.enregistraViatge(v);//asocia la clase cliente con el viatge y devuelve el precio
 		//SAVE del VIATGE NECESITAMOS SI O SI
