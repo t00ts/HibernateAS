@@ -16,7 +16,9 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.sql.Select;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
+import com.as.controllers.CtrlClient;
 import com.as.controllers.DomainCtrl;
+import com.as.controllers.Factory;
 import com.as.data.primarykeys.ViatgePrimaryKey;
 import com.as.data.Ciutat;
 import com.as.data.Client;
@@ -131,9 +133,13 @@ public class TestTodo {
 		Date dfi2=sdf.parse("09/01/2013");//dfi
 		//session.save(bcn);
 		//session.save(pep);
+		Factory.setConfiguration (cfg);
+		Factory f = Factory.getInstance();
+		DomainCtrl dm = new DomainCtrl(f);
+		CtrlClient ccl   = f.getCtrlClient();
+		ccl.update(null);
+		//Viatge v = new Viatge(new ViatgePrimaryKey(pep.getDni(), dini), pep, bcn, null, dfi, null, null  );
 		
-		Viatge v = new Viatge(new ViatgePrimaryKey(pep.getDni(), dini), pep, bcn, null, dfi, null, null  );
-
 		
 		//System.out.println("EXISTE? ===>"+dm.exClientNoEx("436453K"));
 		

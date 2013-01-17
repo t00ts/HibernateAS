@@ -12,7 +12,6 @@ import com.as.data.Habitacio;
 import com.as.data.Hotel;
 import com.as.data.Viatge;
 import com.as.data.primarykeys.ViatgePrimaryKey;
-
 import com.as.data.tuples.TupleCiutat;
 
 //import src.PagamentClient;
