@@ -42,6 +42,7 @@ public class FinestraSeleccioViatge extends JFrame {
 	private JButton btnNewButton_1;
 	final private JTable table;
 	private ListSelectionModel cellSelectionModel;
+	private JCheckBox chckbxNewCheckBox;
 	
 	/**
 	 * Launch the application.
@@ -88,7 +89,7 @@ public class FinestraSeleccioViatge extends JFrame {
 		lblNewLabel_1.setBounds(219, 55, 123, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("");
+		chckbxNewCheckBox = new JCheckBox("");
 		chckbxNewCheckBox.setBounds(377, 55, 21, 14);
 		contentPane.add(chckbxNewCheckBox);
 		
@@ -182,5 +183,9 @@ public class FinestraSeleccioViatge extends JFrame {
 	
 	public String get_DNI(){
 		return textField.getText();
+	}
+	
+	public Boolean get_check(){
+		return chckbxNewCheckBox.isSelected();
 	}
 }
