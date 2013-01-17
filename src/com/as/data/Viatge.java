@@ -42,6 +42,7 @@ public class Viatge {
 	protected String nomHotel;
 	protected Integer numHabitacio;
 	//foreign habitacio(nomCiutat, nomHotel, numHabitacio)
+	
 	public Viatge ( ){}
 	public Viatge (ViatgePrimaryKey pk, Client cl, Ciutat c, Habitacio hab, Date dfi, String nomHot, Integer numHab ){
 		this.viatgePrimaryKey=pk;
@@ -53,6 +54,7 @@ public class Viatge {
 		this.nomHotel=nomHot;
 		this.numHabitacio=numHab;
 	}
+
 	@Id
 	public ViatgePrimaryKey getPrimaryKey () {
 		return this.viatgePrimaryKey;
