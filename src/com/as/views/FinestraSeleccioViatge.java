@@ -148,7 +148,7 @@ public class FinestraSeleccioViatge extends JFrame {
 		String col[] = {"Ciutat","Preu"};
 		JTable table = new JTable(data,col);
 		JTableHeader header = table.getTableHeader();
-		header.setBackground(Color.yellow);
+		header.setBackground(Color.white);
 		JScrollPane pane = new JScrollPane(table);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		pane.setBounds(32, 39, 142, 179);

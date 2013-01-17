@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.JTableHeader;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -15,6 +17,7 @@ import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
 
@@ -23,7 +26,7 @@ public class FinestraReservaHabitacio extends JFrame {
 	private JPanel contentPane;
 	private JButton btnNewButton;
 	private JButton btnConfirmar;
-
+	final private JTable table;
 	/**
 	 * Launch the application.
 	 */
@@ -63,9 +66,14 @@ public class FinestraReservaHabitacio extends JFrame {
 
 		String data[][] = {{"NHBarcelona","130$"}}; //provisional ha de cridar a la funció del controlador
 		String col[] = {"Hotel","Preu"};
-		JTable table = new JTable(data,col);
+		table = new JTable(data,col);
+		table.setCellSelectionEnabled(true);
+		
+		ListSelectionModel cellSelectionModel = table.getSelectionModel();
+		cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
 		JTableHeader header = table.getTableHeader();
-		header.setBackground(Color.yellow);
+		header.setBackground(Color.white);
 		JScrollPane pane = new JScrollPane(table);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		pane.setBounds(354, 45, 139, 137);
@@ -134,4 +142,8 @@ public class FinestraReservaHabitacio extends JFrame {
 		btnNewButton.addActionListener(cal);
     }
 	
+	public JTable get_table() {
+		return this.table; 
+	}
 }
+
