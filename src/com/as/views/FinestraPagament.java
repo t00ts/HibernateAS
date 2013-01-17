@@ -125,7 +125,7 @@ public class FinestraPagament extends JFrame {
 		
 		//Label con el precio
 		
-		String preut = String.valueOf(preuTotal);
+		String preut = String.valueOf(preuTotal) + " €";
 		JLabel label_4 = new JLabel(preut);
 		label_4.setFont(new Font("Arial", Font.BOLD, 12));
 		label_4.setBounds(184, 27, 46, 14);
