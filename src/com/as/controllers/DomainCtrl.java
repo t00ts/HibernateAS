@@ -24,7 +24,7 @@ public class DomainCtrl {
 		int numHab;
 		float preuHab=0;
 		Factory f=new Factory(hibernateCfg);
-		
+		/*
 		CtrlViatge cv = f.getCtrlViatge();//falta hacer del abel por eso da error
 		CtrlHabitacio ch=f.getCtrlHabitacio();
 		CtrlHotel chot=f.getCtrlHotel();
@@ -34,7 +34,9 @@ public class DomainCtrl {
 		Viatge v=cv.get(dniClient, dIni);
 		preuHab=v.reserva(hab, dIni, dFi);
 		preuTotal=preuVol+preuHab;
+		*/
 		return preuTotal;
+		
 	}
 	
 	
