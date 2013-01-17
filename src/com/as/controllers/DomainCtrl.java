@@ -1,13 +1,10 @@
 package com.as.controllers;
-
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import org.apache.axis2.AxisFault;
+import java.rmi.RemoteException;
+//import org.apache.axis2.AxisFault;
 import org.hibernate.cfg.Configuration;
-
 import com.as.controllers.CtrlCiutat;
 import com.as.controllers.CtrlClient;
 import com.as.controllers.CtrlHotel;
@@ -22,7 +19,7 @@ import com.as.data.primarykeys.ViatgePrimaryKey;
 import com.as.data.tuples.Tuple;
 import com.as.data.tuples.TupleCiutat;
 
-import src.PagamentClient;
+//import src.PagamentClient;
 
 public class DomainCtrl {
 	
@@ -59,10 +56,10 @@ public class DomainCtrl {
 	}
 	
 	/**PagamentClient es una clase del cliente que tiene el stub (adaptador) para conectar al Sv **/
-	public boolean pagament(Integer numTarg, Date dataCad) {
+/*	public boolean pagament(Integer numTarg, Date dataCad) {
 		//TODO ver que los campos sean correctos creo
 		return PagamentClient.pagament(numTarg, dataCad);
-	}
+	}*/
 	
 	public List<TupleCiutat>  obteCiutats() {//devuelve una lista de nomciutat, preuvol
 		CtrlCiutat cc=new CtrlCiutat(hibernateCfg);
@@ -105,7 +102,7 @@ public class DomainCtrl {
 		
 		return c.excJaTeViatge(dniClient, dataIni, dataFi, nomCiutat);//true si solapa, falso si todo OK. Si solapa activa exc.
 	}
-	public float enregistraViatge(String dni, Date dataIni, Date dataFi, String nomCiutat) {//creamos el viatge y se lo pasamos a otra funcion
+	/*public float enregistraViatge(String dni, Date dataIni, Date dataFi, String nomCiutat) {//creamos el viatge y se lo pasamos a otra funcion
 		float preuVol = 0;
 		//sabemos que el cliente existe no hay solapados                                      //para que lo asocie con el cliente
 		CtrlClient ccl = new CtrlClient(hibernateCfg);
@@ -120,6 +117,20 @@ public class DomainCtrl {
 		preuVol=cl.enregistraViatge(v);//asocia la clase cliente con el viatge y devuelve el precio
 		//SAVE del VIATGE NECESITAMOS SI O SI
 		return preuVol;
+	}*/
+	
+	public String[][] conversion( List<TupleCiutat> listuple){
+		
+		String[][] datos=new String[listuple.size()][2];
+		int i=0;
+		
+		while(i<listuple.size()){
+			datos[i][0]= new String(listuple.get(i).nomCiutat);
+			datos[i][1]= new String(""+listuple.get(i).preuVol);
+			
+			i++;
+		}
+		return datos;
 	}
 	
 	//Faltan algunas funciones de error, pero ya se pondran.
