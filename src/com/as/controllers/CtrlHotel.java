@@ -49,6 +49,7 @@ public class CtrlHotel {
 	}
 	
     public void insert (Hotel h) {
+    	if (h == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction ();
     	session.save (h);
@@ -56,6 +57,7 @@ public class CtrlHotel {
     }
     
     public void update (Hotel h) {
+    	if (h == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
     	session.update(h);
@@ -63,6 +65,7 @@ public class CtrlHotel {
     }
     
     public void delete (Hotel h) {
+    	if (h == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
     	session.delete(h);
