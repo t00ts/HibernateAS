@@ -1,9 +1,9 @@
-package com.as.data;
+package com.as.data.tuples;
 
 public class Tuple {
-	float preu;
-	String nomHotel;
-	String nomCiutat;
+	public float preu;
+	public String nomHotel;
+	public String nomCiutat;
 	
 	public Tuple(){}
 	

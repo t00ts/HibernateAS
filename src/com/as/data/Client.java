@@ -73,22 +73,22 @@ public class Client {
 	public void setViatges (List<Viatge> vi) {
 		this.viatges = vi;
 	}
-	public float enregistraViatge(String dniClient, Date dataIni, Date dataFi, String nomCiutat){
-		int preuVol=0;
+	public boolean excJaTeViatge(String dniClient, Date dataIni, Date dataFi, String nomCiutat){//detecta si tiene viatges solapados
 		int i=0;
 		boolean solapat = false;
 		
-		while(i<viatges.size()){
+		while(i<viatges.size() && solapat==false){//miramos los viatges del client a ver si solapa alguno con el nuevo
 			solapat = viatges.get(i).viatgeSolapat(dataIni, dataFi);
-			if(solapat){
-				//ACTIVAMOS EXC JATEVIATGE ->PANTALLA AVISCLIENTVIATGE
-			}
 			i++;
 		}
-		//Creamos el viatge //decirle al abel la funcion de crear //suponemos q las datas estan todas creadas
-		//hacer gets de objetos para pasarlos a la creadora //necesito CTRL DATA
+				
+		return solapat;
+	}
+	
+	public float enregistraViatge(Viatge v){//asocia el cliente con ese viatge y retorna el precio de vuelo
+		int preuVol=0;
 		
-		Viatge v = new Viatge(new ViatgePrimaryKey(dniClient, dataIni),null,null,null, null,dataFi, nomCiutat, null);
+		viatges.add(v);//añadimos el viatge al cliente
 		nombreViatges++;
 		return v.getCiutat().getPreuVol();
 	}
