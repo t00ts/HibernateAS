@@ -11,6 +11,7 @@ import com.as.data.Client;
 import com.as.data.Habitacio;
 import com.as.data.Hotel;
 import com.as.data.Viatge;
+import com.as.data.primarykeys.ViatgePrimaryKey;
 import com.as.data.tuples.Tuple;
 import com.as.data.tuples.TupleCiutat;
 
@@ -19,11 +20,23 @@ import com.as.data.tuples.TupleCiutat;
 public class DomainCtrl {
 
 	private Factory factory = null;
+	private Client client = null;
+	private Habitacio habitacio=null;
+	private Viatge viatge=null;
 	
 	public DomainCtrl (Factory f){
 		factory = f;
 	}
 	
+	public void guardarCambios(){//guarda cambios en la db
+		CtrlClient ccl   = factory.getCtrlClient();
+		CtrlHabitacio chab   = factory.getCtrlHabitacio();
+		CtrlViatge cv   = factory.getCtrlViatge();
+		ccl.update(this.client);//update client
+		chab.update(this.habitacio);//update habitacio
+		cv.insert(this.viatge);//insert viatge
+		
+	}
 	public float reservaHabitacio(String dniClient, String nomHotel, String nomCiutat, Date dIni, Date dFi, float preuVol){
 		//buscamos el viatge previamente creado que tenia campos con null y se los configuramos con los parametros recibidos
 		//le calculamos una habitacion lliure y lo reservamos
@@ -32,19 +45,19 @@ public class DomainCtrl {
 		preuTotal = preuHab =0;
 		int numHab;
 		
-		CtrlViatge cv    = factory.getCtrlViatge();
+
 		CtrlHabitacio ch = factory.getCtrlHabitacio();
 		CtrlHotel chot   = factory.getCtrlHotel();
 		
-		Viatge v = cv.get (dniClient, dIni);
+		Viatge v = this.viatge;
 		Hotel h = chot.get (nomHotel, nomCiutat);
 		numHab = h.numHabLliure(dIni, dFi);
 		Habitacio hab = ch.get (numHab, nomHotel, nomCiutat);
 		
 		preuHab = v.reserva (hab, dIni, dFi);
-		/* SAVE de HAB, VIATGE
 		preuTotal=preuVol+preuHab;
-		*/
+		//Guardamos el objeto habitacion ya q lohemos asociado con el objeto viatge
+		this.habitacio=hab;
 		return preuTotal;
 		
 	}
@@ -100,22 +113,25 @@ public class DomainCtrl {
 		return c.excJaTeViatge(dniClient, dataIni, dataFi, nomCiutat);//true si solapa, falso si todo OK. Si solapa activa exc.
 	}
 	
-	/*public float enregistraViatge(String dni, Date dataIni, Date dataFi, String nomCiutat) {//creamos el viatge y se lo pasamos a otra funcion
+	public float enregistraViatge(String dni, Date dataIni, Date dataFi, String nomCiutat) {//creamos el viatge y se lo pasamos a otra funcion
 		float preuVol = 0;
 		//sabemos que el cliente existe no hay solapados                                      //para que lo asocie con el cliente
 		CtrlClient ccl = factory.getCtrlClient();
 		CtrlCiutat cc = factory.getCtrlCiutat();
 		
-		// OJO! Data d = cd.get(dataIni);//cogemos el objeto data
+		
 		Client cl = ccl.get(dni);//suponemos que el cliente existe seguro ya que antes hemos ejecutado clientNoEx
 		Ciutat c = cc.get(nomCiutat);//cogemos la ciudad
 		
 		Viatge v = new Viatge(new ViatgePrimaryKey(dni, dataIni), cl, c, null, dataFi, null, null  );
 		//los 3 valores null son habitacio, nomHotel y numHab ya que aun no sabemos nada de eso hasta que no reservemos.
 		preuVol=cl.enregistraViatge(v);//asocia la clase cliente con el viatge y devuelve el precio
-		//SAVE del VIATGE NECESITAMOS SI O SI
+		
+		//guardamos los objetos para luego insertarlos/actualizarlos
+		this.client=cl;
+		this.viatge=v;
 		return preuVol;
-	}*/
+	}
 	
 	public String[][] conversion( List<TupleCiutat> listuple){
 		

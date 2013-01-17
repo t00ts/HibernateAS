@@ -118,7 +118,7 @@ public class TestTodo {
 		
 		
 		//<=========================================TESTEAR JATEVIATGE, CLIENTNOEX
-		DomainCtrl dm = new DomainCtrl(cfg);
+		//DomainCtrl dm = new DomainCtrl(cfg);
 		//DATA
 		
 		Ciutat bcn = new Ciutat ("Barcelona", "La millor ciutat del mon", 80.0f);
@@ -132,7 +132,7 @@ public class TestTodo {
 		//session.save(bcn);
 		//session.save(pep);
 		
-		Viatge v = new Viatge(new ViatgePrimaryKey(pep.getDni(), dini), pep, bcn, null, d, dataFi, null, null  );
+		Viatge v = new Viatge(new ViatgePrimaryKey(pep.getDni(), dini), pep, bcn, null, dfi, null, null  );
 
 		
 		//System.out.println("EXISTE? ===>"+dm.exClientNoEx("436453K"));
