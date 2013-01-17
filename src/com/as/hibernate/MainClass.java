@@ -49,11 +49,11 @@ public class MainClass {
 		DomainCtrl domainController = new DomainCtrl (factory);
 	
 		// Init views
-		CtrlInterface viewController = new CtrlInterface (domainController);
+		FinestraContractarViatges contractarViatgeView = new FinestraContractarViatges ();
+		CtrlInterface viewController = new CtrlInterface (contractarViatgeView, domainController);
 		
-		FinestraContractarViatges ContractarViatgeView = new FinestraContractarViatges ();
-		ContractarViatgeView.setVisible(true);
-	 	ContractarViatgeView.setResizable(false);
+		contractarViatgeView.setVisible(true);
+	 	contractarViatgeView.setResizable(false);
 		
 	}
 
