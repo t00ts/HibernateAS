@@ -53,6 +53,7 @@ public class CtrlCiutat {
     }
      
     public void insert (Ciutat c) {
+    	if (c == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction ();
     	session.save (c);
@@ -60,6 +61,7 @@ public class CtrlCiutat {
     }
     
     public void update (Ciutat c) {
+    	if (c == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
     	session.update(c);
@@ -67,6 +69,7 @@ public class CtrlCiutat {
     }
     
     public void delete (Ciutat c) {
+    	if (c == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
     	session.delete(c);

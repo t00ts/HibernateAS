@@ -32,6 +32,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
+import java.lang.Object;
 
 
 public class FinestraSeleccioViatge extends JFrame {
@@ -45,7 +46,7 @@ public class FinestraSeleccioViatge extends JFrame {
 	
 	/**
 	 * Launch the application.
-	 
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -64,7 +65,7 @@ public class FinestraSeleccioViatge extends JFrame {
 		});
 	}
 
-	
+	/*
 	 * Create the frame.
 	 */
 	
@@ -151,7 +152,8 @@ public class FinestraSeleccioViatge extends JFrame {
 		//Llista de ciutats amb els seus preus
 		
 		String col[] = {"Ciutat","Preu"};
-		table = new JTable(ciu,col);
+		//TODO Descomentar esto!
+		table = new JTable(/*ciu,col*/);
 		JTableHeader header = table.getTableHeader();
 		table.setCellSelectionEnabled(true);
 		

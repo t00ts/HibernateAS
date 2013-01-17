@@ -57,6 +57,7 @@ public class CtrlHabitacio {
     }
 
     public void insert (Habitacio h) {
+    	if (h == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction ();
     	session.save (h);
@@ -64,6 +65,7 @@ public class CtrlHabitacio {
     }
     
     public void update (Habitacio h) {
+    	if (h == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
     	session.update(h);
@@ -71,6 +73,7 @@ public class CtrlHabitacio {
     }
     
     public void delete (Habitacio h) {
+    	if (h == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
     	session.delete(h);

@@ -53,6 +53,7 @@ public class CtrlViatge {
 	}
 	
     public void insert (Viatge v) {
+    	if (v == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction ();
     	session.save (v);
@@ -60,6 +61,7 @@ public class CtrlViatge {
     }
     
     public void update (Viatge v) {
+    	if (v == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
     	session.update(v);
@@ -67,6 +69,7 @@ public class CtrlViatge {
     }
     
     public void delete (Viatge v) {
+    	if (v == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
     	session.delete(v);

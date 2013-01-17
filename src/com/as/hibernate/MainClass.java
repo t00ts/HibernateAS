@@ -4,6 +4,7 @@ package com.as.hibernate;
 import org.hibernate.cfg.Configuration;
 
 
+import com.as.controllers.CtrlInterface;
 import com.as.controllers.DomainCtrl;
 import com.as.controllers.Factory;
 import com.as.data.Ciutat;
@@ -13,6 +14,7 @@ import com.as.data.Hotel;
 import com.as.data.HotelLowCost;
 import com.as.data.HotelSuperior;
 import com.as.data.Viatge;
+import com.as.views.FinestraContractarViatges;
 
 public class MainClass {
 
@@ -43,8 +45,15 @@ public class MainClass {
 		Factory.setConfiguration (cfg);
 		Factory factory = Factory.getInstance();
 		
-		// Call Domain controller
+		// Init Domain controller
 		DomainCtrl domainController = new DomainCtrl (factory);
+	
+		// Init views
+		FinestraContractarViatges contractarViatgeView = new FinestraContractarViatges ();
+		CtrlInterface viewController = new CtrlInterface (contractarViatgeView, domainController);
+		
+		contractarViatgeView.setVisible(true);
+	 	contractarViatgeView.setResizable(false);
 		
 	}
 

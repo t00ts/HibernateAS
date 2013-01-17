@@ -20,8 +20,8 @@ public class DomainCtrl {
 
 	private Factory factory = null;
 	private Client client = null;
-	private Habitacio habitacio=null;
-	private Viatge viatge=null;
+	private Habitacio habitacio = null;
+	private Viatge viatge = null;
 	
 	public DomainCtrl (Factory f){
 		factory = f;
