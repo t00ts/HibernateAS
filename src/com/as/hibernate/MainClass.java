@@ -1,15 +1,9 @@
 package com.as.hibernate;
 
-import java.util.ArrayList;
 
-import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.classic.Session;
 
-import org.hibernate.tool.hbm2ddl.SchemaExport;
 
-import com.as.controllers.CtrlClient;
-import com.as.controllers.CtrlHabitacio;
 import com.as.controllers.DomainCtrl;
 import com.as.controllers.Factory;
 import com.as.data.Ciutat;
@@ -37,7 +31,6 @@ public class MainClass {
 		cfg.addAnnotatedClass(Habitacio.class);
 		cfg.addAnnotatedClass(Client.class);
 		cfg.addAnnotatedClass(Viatge.class);
-		cfg.addAnnotatedClass(Data.class);
 
 		// Hibernate database configuration
 		cfg.configure ("hibernate.cfg.xml");

@@ -2,9 +2,6 @@ package com.as.controllers;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.rmi.RemoteException;
-//import org.apache.axis2.AxisFault;
-import org.hibernate.cfg.Configuration;
 import com.as.controllers.CtrlCiutat;
 import com.as.controllers.CtrlClient;
 import com.as.controllers.CtrlHotel;
@@ -14,7 +11,6 @@ import com.as.data.Client;
 import com.as.data.Habitacio;
 import com.as.data.Hotel;
 import com.as.data.Viatge;
-import com.as.data.primarykeys.ViatgePrimaryKey;
 import com.as.data.tuples.Tuple;
 import com.as.data.tuples.TupleCiutat;
 
