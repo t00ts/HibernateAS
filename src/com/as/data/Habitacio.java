@@ -82,7 +82,21 @@ public class Habitacio {
 	public float reserva(Viatge v){
 		float preuHab=0;
 		addViatge(v);//reservamos habitacion
-		preuHab=hotel.getPreu();//habria que mirar si hotel es sup/low
+		//habria que mirar si hotel es sup/low
+		/*posible codigo
+		 * CtrlHotelSuperior chs=new CtrlHotelSuperior();
+		 * CtrlHotelLowCost chl=new CtrlHotelLowCost();
+		 * if(chs.exists(hotel.getNom(), hotel.getNomCiutat())){//es hotel superior=> precio=preciohotel+recarrec
+		 * 		hotelSup HotelSuperior=chs.get(hotel.getNom(), hotel.getNomCiutat());
+		 * 		preuHab=hotelSup.getPreu() + hotelSup.getRecarrec();
+		 * }else if(chl.exists(hotel.getNom(), hotel.getNomCiutat()){//es hotel low cost => precio = preciohotel-descompte
+		 * 		hotelLow HotelLowCost=chl.get(hotel.getNom(), hotel.getNomCiutat());
+		 * 		preuHab=hotelLow.getPreu() - hotelLow.getDescompte();
+		 * 
+		 * }else{//es SOLO hotel => precio = preuHotel
+		 * 		preuHab=hotel.getPreu();
+		 * }
+		 */
 		//SAVE HABITACION
 		return preuHab;
 	}
