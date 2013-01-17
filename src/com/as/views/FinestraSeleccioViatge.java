@@ -32,6 +32,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
+import java.lang.Object;
 
 
 public class FinestraSeleccioViatge extends JFrame {
@@ -42,10 +43,11 @@ public class FinestraSeleccioViatge extends JFrame {
 	private JButton btnNewButton_1;
 	final private JTable table;
 	private ListSelectionModel cellSelectionModel;
+	private JCheckBox chckbxNewCheckBox;
 	
 	/**
 	 * Launch the application.
-	 
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -64,7 +66,7 @@ public class FinestraSeleccioViatge extends JFrame {
 		});
 	}
 
-	
+	/*
 	 * Create the frame.
 	 */
 	
@@ -88,7 +90,7 @@ public class FinestraSeleccioViatge extends JFrame {
 		lblNewLabel_1.setBounds(219, 55, 123, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("");
+		chckbxNewCheckBox = new JCheckBox("");
 		chckbxNewCheckBox.setBounds(377, 55, 21, 14);
 		contentPane.add(chckbxNewCheckBox);
 		
@@ -151,7 +153,8 @@ public class FinestraSeleccioViatge extends JFrame {
 		//Llista de ciutats amb els seus preus
 		
 		String col[] = {"Ciutat","Preu"};
-		table = new JTable(ciu,col);
+		//TODO Descomentar esto!
+		table = new JTable(/*ciu,col*/);
 		JTableHeader header = table.getTableHeader();
 		table.setCellSelectionEnabled(true);
 		
@@ -181,5 +184,9 @@ public class FinestraSeleccioViatge extends JFrame {
 	
 	public String get_DNI(){
 		return textField.getText();
+	}
+	
+	public Boolean get_check(){
+		return chckbxNewCheckBox.isSelected();
 	}
 }

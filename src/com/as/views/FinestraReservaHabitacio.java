@@ -30,7 +30,7 @@ public class FinestraReservaHabitacio extends JFrame {
 	private ListSelectionModel cellSelectionModel;
 	/**
 	 * Launch the application.
-	 */
+	 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -45,10 +45,10 @@ public class FinestraReservaHabitacio extends JFrame {
 		});
 	}
 
-	/**
+	
 	 * Create the frame.
 	 */
-	public FinestraReservaHabitacio() {
+	public FinestraReservaHabitacio(String Sel, String dataIni, String dataFi, String[][] hot) {
 		setFont(new Font("Arial", Font.BOLD, 12));
 		setTitle("Reserva Habitaci\u00F3");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,9 +65,8 @@ public class FinestraReservaHabitacio extends JFrame {
 		
 		//Taula amb la sel.lecció d'hotel i preus
 
-		String data[][] = {{"NHBarcelona","130$"}}; //provisional ha de cridar a la funció del controlador
 		String col[] = {"Hotel","Preu"};
-		table = new JTable(data,col);
+		table = new JTable(hot,col);
 		table.setCellSelectionEnabled(true);
 		
 		cellSelectionModel = table.getSelectionModel();
@@ -101,7 +100,7 @@ public class FinestraReservaHabitacio extends JFrame {
 		label.setBounds(36, 91, 72, 23);
 		contentPane.add(label);
 		
-		JLabel label_1 = new JLabel("XXXXXX"); //crida a funció del controlador
+		JLabel label_1 = new JLabel(Sel);
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setFont(new Font("Arial", Font.BOLD, 12));
 		label_1.setBounds(159, 91, 89, 23);
@@ -114,7 +113,7 @@ public class FinestraReservaHabitacio extends JFrame {
 		label_2.setBounds(36, 125, 72, 23);
 		contentPane.add(label_2);
 		
-		JLabel label_4 = new JLabel("XX/XX/XXXX"); //crida a funció del controlador
+		JLabel label_4 = new JLabel("dataIni"); //crida a funció del controlador
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
 		label_4.setFont(new Font("Arial", Font.BOLD, 12));
 		label_4.setBounds(159, 125, 89, 23);
@@ -128,7 +127,7 @@ public class FinestraReservaHabitacio extends JFrame {
 		contentPane.add(label_3);
 		
 		
-		JLabel label_5 = new JLabel("XX/XX/XXXX"); //crida a funció del controlador
+		JLabel label_5 = new JLabel("dataFi"); //crida a funció del controlador
 		label_5.setHorizontalAlignment(SwingConstants.CENTER);
 		label_5.setFont(new Font("Arial", Font.BOLD, 12));
 		label_5.setBounds(159, 147, 89, 23);
