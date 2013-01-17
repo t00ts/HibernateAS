@@ -28,12 +28,11 @@ public class CtrlInterface {
 	   private Integer DataIni, DataFi;
 
 	   /** Constructor */
-	    CtrlInterface(FinestraContractarViatges ContractarViatgeView, FinestraSeleccioViatge SeleccioViatgeView, FinestraReservaHabitacio ReservaHabitacioView, FinestraPagament PagamentView, Avis AvisView) {
+	  public  CtrlInterface(FinestraContractarViatges ContractarViatgeView, FinestraSeleccioViatge SeleccioViatgeView, FinestraReservaHabitacio ReservaHabitacioView, FinestraPagament PagamentView) {
 	    	ContractarViatgeView2 = ContractarViatgeView;
 	    	SeleccioViatgeView2  = SeleccioViatgeView;
 	    	ReservaHabitacioView2  = ReservaHabitacioView;
 	    	PagamentView2  = PagamentView;
-	    	AvisView2  = AvisView;
 	        
 	        //... Add listeners to the view.
 	    	ContractarViatgeView2.addContractar_Listener(new Contractar_Listener());
@@ -60,6 +59,7 @@ public class CtrlInterface {
 	    	public void actionPerformed(ActionEvent e) {
 	    		ContractarViatgeView2.setVisible(false);
 	    		SeleccioViatgeView2.setVisible(true);
+	    		SeleccioViatgeView2.setResizable(false);
 	    	}
 	    }// end inner class Contractar_Listener
 	    
@@ -86,6 +86,7 @@ public class CtrlInterface {
 
 	    class Confirmar_PListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
+	    		
 	    	}
 	    }// end inner class Confirmar_PListener
 	    
@@ -105,9 +106,30 @@ public class CtrlInterface {
 	    	public void actionPerformed(ActionEvent e) {
 	    		ReservaHabitacioView2.setVisible(false);
 	    		PagamentView2.setVisible(true);
+	    		PagamentView2.setResizable(false);
 	    	}
 	    }// end inner class Cancel_2Listener
+	 
 	    
+	    ////////////////////////////////////////////inner class Cancel_3Listener
+	    /**  Va la finestra de Sel.leccioviatge desde avis */
+	    class Cancel_3Listener implements ActionListener {
+	    	public void actionPerformed(ActionEvent e) {
+	    		SeleccioViatgeView2.setVisible(true);
+	    		SeleccioViatgeView2.setResizable(false);
+	    	}
+	    }// end inner class Cancel_3Listener
+	    
+	    
+	    ////////////////////////////////////////////inner class Cancel_4Listener
+	    /**  Va la finestra de pagament desde avis */
+
+	    class Cancel_4Listener implements ActionListener {
+	    	public void actionPerformed(ActionEvent e) {
+	    		PagamentView2.setVisible(true);
+	    		PagamentView2.setResizable(false);
+	    	}
+	    }// end inner class Cancel_4Listener
 	    
 	    ////////////////////////////////////////////inner class SelectionListener
 	    /**  Agafa els valors seleccionats de la taula */
@@ -126,23 +148,9 @@ public class CtrlInterface {
 	    	}
 
 	    }// end inner class SelectionListener
+	  
 	    
-	    /** Confirma el pagament amb el servei corresponent */
-	    
-	    class SelectionListener implements ListSelectionListener {
-	    	public void valueChanged(ListSelectionEvent e) {
-		    	JTable table = ReservaHabitacioView2.get_table();
-		        int[] selectedRow = table.getSelectedRows();
-		        int[] selectedColumns = table.getSelectedColumns();
 
-		        for (int i = 0; i < selectedRow.length; i++) {
-		        	for (int j = 0; j < selectedColumns.length; j++) {
-		        	  HotelSel = (String) table.getValueAt(selectedRow[i], selectedColumns[j]);
-		        	  PreuSel = (Integer) table.getValueAt(selectedRow[i], selectedColumns[j+1]);
-		        	}
-		        }
-	    	}
 
-	    }
-	 
+
 }
