@@ -4,13 +4,5 @@
 	<classpathentry excluding="src/" kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate3"/>
-=======
-	<classpathentry combineaccessrules="false" kind="src" path="/Client"/>
->>>>>>> 72b1a11ca98b9f222e98691954d0521813101b80
->>>>>>> 22854e14bcdfd3856798bd30de6a094b2c043b78
 	<classpathentry kind="output" path="bin"/>
 </classpath>

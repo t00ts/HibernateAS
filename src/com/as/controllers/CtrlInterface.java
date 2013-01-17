@@ -9,10 +9,18 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import org.hibernate.cfg.Configuration;
+
+import com.as.data.tuples.TupleCiutat;
 import com.as.views.*;
 
 
 public class CtrlInterface {
+	
+//Domain Controller
+		private DomainCtrl DC;
+		private Configuration hibernateCfg;
+	  
 
 //Views
 	   private  FinestraContractarViatges ContractarViatgeView2;
@@ -29,7 +37,10 @@ public class CtrlInterface {
 
 	   /** Constructor */
 	  public  CtrlInterface(FinestraContractarViatges ContractarViatgeView, FinestraReservaHabitacio ReservaHabitacioView, FinestraPagament PagamentView) {
-	    	ContractarViatgeView2 = ContractarViatgeView;
+	    	
+		  	DC = new DomainCtrl(this.hibernateCfg);
+	    	
+		    ContractarViatgeView2 = ContractarViatgeView;
 	    	ReservaHabitacioView2  = ReservaHabitacioView;
 	    	PagamentView2  = PagamentView;
 	        
@@ -47,11 +58,12 @@ public class CtrlInterface {
 	    
 	    
 	    ////////////////////////////////////////////inner class Contractar_Listener
-	    /**  Va a la vista de seleccio de viatge */
+	    /**  Va a la vista de seleccio de viatge, sempre que existeixi alguna ciutat */
 
 	    class Contractar_Listener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
-	    		if(false) { //función del dominio
+	    		List<TupleCiutat> ciutats = DC.obteCiutats();
+	    		if(ciutats.isEmpty()) { //si esta buit
 	    			ContractarViatgeView2.setVisible(false);
 	    			AvisView2 = new Avis("nociutats");
 	    			AvisView2.setVisible(true);
@@ -76,8 +88,10 @@ public class CtrlInterface {
 
 	    class Confirmar_SVListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
-	    	}
-	    }// end inner class Confirmar_SVListener
+	    		if(true) {
+	    		}
+	    		}
+	    	}// end inner class Confirmar_SVListener
 	    
 	    
 	    ////////////////////////////////////////////inner class Confirmar_RHListener

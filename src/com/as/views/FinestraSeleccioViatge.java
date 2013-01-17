@@ -96,7 +96,7 @@ public class FinestraSeleccioViatge extends JFrame {
 		textField = new JTextField();
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField.setBounds(312, 85, 86, 20);
+		textField.setBounds(312, 80, 86, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
