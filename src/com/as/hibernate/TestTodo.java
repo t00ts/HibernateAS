@@ -3,6 +3,7 @@ package com.as.hibernate;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,10 +16,10 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.sql.Select;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
+import com.as.controllers.DomainCtrl;
 import com.as.data.primarykeys.ViatgePrimaryKey;
 import com.as.data.Ciutat;
 import com.as.data.Client;
-import com.as.data.Data;
 import com.as.data.Habitacio;
 import com.as.data.Hotel;
 import com.as.data.HotelLowCost;
@@ -27,6 +28,7 @@ import com.as.data.Viatge;
 import com.as.data.primarykeys.HabitacioPrimaryKey;
 import com.as.data.primarykeys.HotelPrimaryKey;
 import com.as.data.primarykeys.ViatgePrimaryKey;
+import com.as.data.tuples.TupleCiutat;
 
 public class TestTodo {
 
@@ -46,13 +48,12 @@ public class TestTodo {
 		cfg.addAnnotatedClass(Habitacio.class);
 		cfg.addAnnotatedClass(Client.class);
 		cfg.addAnnotatedClass(Viatge.class);
-		cfg.addAnnotatedClass(Data.class);
 
 		// Hibernate database configuration
 		cfg.configure ("hibernate.cfg.xml");
 
 		// Create tables
-		new SchemaExport (cfg).create (true, true);
+		//new SchemaExport (cfg).create (true, true);
 
 		// Session
 		SessionFactory factory = cfg.buildSessionFactory();
@@ -116,7 +117,10 @@ public class TestTodo {
 		//session.delete(X);
 		
 		
-		//TESTEAR JATEVIATGE
+		//<=========================================TESTEAR JATEVIATGE, CLIENTNOEX
+		DomainCtrl dm = new DomainCtrl(cfg);
+		//DATA
+		
 		Ciutat bcn = new Ciutat ("Barcelona", "La millor ciutat del mon", 80.0f);
 		Client pep = new Client("436453K", "Pep", "54645456", 0);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -125,11 +129,29 @@ public class TestTodo {
 		Date dfi=sdf.parse("05/01/2013");//dfi
 		Date dini2=sdf.parse("05/01/2013");
 		Date dfi2=sdf.parse("09/01/2013");//dfi
-		Data data = new Data(dini);
-		Data data2 = new Data(dfi);
+		//session.save(bcn);
+		//session.save(pep);
 		
+		Viatge v = new Viatge(new ViatgePrimaryKey(pep.getDni(), dini), pep, bcn, null, d, dataFi, null, null  );
+
 		
+		//System.out.println("EXISTE? ===>"+dm.exClientNoEx("436453K"));
 		
+		//<===================================================TESTEAR CONVERSION
+		/*
+		List<TupleCiutat> tc=new ArrayList<TupleCiutat>();
+		
+		TupleCiutat t1 = new TupleCiutat("Barcelona", 100f);
+		TupleCiutat t2 = new TupleCiutat("Madrid", 150f);
+		TupleCiutat t3 = new TupleCiutat("Sevilla", 30f);
+		
+		tc.add(t1);
+		tc.add(t2);
+		tc.add(t3);
+		DomainCtrl dm = new DomainCtrl(cfg);
+		String[][] s = dm.conversion(tc);
+		System.out.println ("t1: "+s[0][0]+"  "+s[0][1]+"  "+s[1][0]+"  "+s[0][1]+"  "+s[2][0]+"  "+s[2][1]+"  ");
+		*/
 		session.getTransaction().commit();
 	}
 

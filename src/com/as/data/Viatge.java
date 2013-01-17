@@ -33,7 +33,6 @@ public class Viatge {
 	private Client client;
 	private Ciutat ciutat;
 	private Habitacio habitacio;
-	private Data data;
 	
 	// Atributs
 	protected Date dataFi;
@@ -44,12 +43,11 @@ public class Viatge {
 	protected Integer numHabitacio;
 	//foreign habitacio(nomCiutat, nomHotel, numHabitacio)
 	public Viatge ( ){}
-	public Viatge (ViatgePrimaryKey pk, Client cl, Ciutat c, Habitacio hab, Data d, Date dfi, String nomHot, Integer numHab ){
+	public Viatge (ViatgePrimaryKey pk, Client cl, Ciutat c, Habitacio hab, Date dfi, String nomHot, Integer numHab ){
 		this.viatgePrimaryKey=pk;
 		this.client=cl;
 		this.ciutat=c;
 		this.habitacio=hab;
-		this.data=d;
 		this.nomCiutat=c.getNom();
 		this.dataFi=dfi;
 		this.nomHotel=nomHot;
@@ -86,14 +84,7 @@ public class Viatge {
 		client=c;
 	}
 	//foreign key datainici->Data
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch=FetchType.EAGER)
-	@JoinColumns({@JoinColumn(name = "dataInici", insertable=false, updatable=false)})
-	public Data getData(){
-		return data;
-	}
-	public void setData(Data d){
-		data=d;
-	}
+
 	//fk (nomCiutat,nomHotel,numeroHabitacio) referencia Habitacio(nomCiutat, nomHotel, numero)
 	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch=FetchType.EAGER)
 	@JoinColumns({
