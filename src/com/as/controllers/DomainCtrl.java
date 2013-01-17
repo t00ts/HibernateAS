@@ -12,7 +12,7 @@ import com.as.data.Habitacio;
 import com.as.data.Hotel;
 import com.as.data.Viatge;
 import com.as.data.primarykeys.ViatgePrimaryKey;
-import com.as.data.tuples.Tuple;
+
 import com.as.data.tuples.TupleCiutat;
 
 //import src.PagamentClient;
@@ -90,9 +90,9 @@ public class DomainCtrl {
 		
 	}
 	
-	public List<Tuple>  mostraHotelsLliures(String dniClient, String nomHotel, String nomCiutat, Date dIni, Date dFi) {
+	public List<TupleCiutat>  mostraHotelsLliures(String dniClient, String nomCiutat, Date dIni, Date dFi) {
 		
-		List<Tuple> preuHotels;
+		List<TupleCiutat> preuHotels;
 		CtrlCiutat cc = factory.getCtrlCiutat(); 
 		Ciutat c = cc.get (nomCiutat);//obtenemos la ciudad
 		preuHotels = c.cercaHotels (dIni, dFi);//retorna una lista de (nomhotel,precio) libres de esa ciudad.

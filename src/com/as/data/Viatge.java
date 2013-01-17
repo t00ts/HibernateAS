@@ -17,7 +17,7 @@ import javax.persistence.Transient;
 
 import com.as.data.primarykeys.HotelPrimaryKey;
 import com.as.data.primarykeys.ViatgePrimaryKey;
-import com.as.data.tuples.Tuple;
+
 
 @Entity
 @Table(name="VIATGES")
@@ -161,15 +161,7 @@ public class Viatge {
 		
 		return solapa;
 	}
-	public List<Tuple> mostraHotelsLliures(){//Creo q no la usamos ya que el viatge en este momento aun no existe
-		List<Tuple> preuHotels;
-		preuHotels = ciutat.cercaHotels(getdataInici(), dataFi);
-		
-		if(preuHotels.isEmpty()){
-			//ACTIVAMOS EXC HOTELSNOLLIURES->PANTALLA AVISNOHOTELS
-		}
-		return preuHotels;
-	}
+
 	
 	public float reserva(Habitacio hab, Date dIni, Date dFi){
 		float preuHab=0;
