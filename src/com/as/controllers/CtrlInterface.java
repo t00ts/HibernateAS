@@ -1,6 +1,7 @@
 package com.as.controllers;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,7 @@ import javax.swing.event.ListSelectionListener;
 
 
 import org.hibernate.cfg.Configuration;
+
 
 import com.as.data.tuples.TupleCiutat;
 
@@ -36,26 +38,21 @@ public class CtrlInterface {
 	   private  Avis AvisView2;
 	   
 //Variables
-	   private String Sel;
+	   private String Sel, CiutatSel;
 	   private Integer PreuSel;
 	   private String DniClient;
-	   private Integer DataIni, DataFi;
+	   private String DataIni, DataFi;
 
 	   /** Constructor */
-	  public  CtrlInterface(FinestraContractarViatges ContractarViatgeView, FinestraReservaHabitacio ReservaHabitacioView, FinestraPagament PagamentView) {
+	  public  CtrlInterface(FinestraContractarViatges ContractarViatgeView, FinestraPagament PagamentView, DomainCtrl DC2) {
 	    	
-		  	DC = new DomainCtrl(this.hibernateCfg);
+		  	DC = DC2;
 	    	
 		    ContractarViatgeView2 = ContractarViatgeView;
-	    	ReservaHabitacioView2  = ReservaHabitacioView;
 	    	PagamentView2  = PagamentView;
 	        
 	        //... Add listeners to the view.
 	    	ContractarViatgeView2.addContractar_Listener(new Contractar_Listener());
-	    	
-	    	ReservaHabitacioView2.addSelectionListener(new SelectionListener());
-	    	ReservaHabitacioView2.addConfirmar_RHListener(new Confirmar_RHListener());
-	    	ReservaHabitacioView2.addCancel_2Listener(new Cancel_2Listener());
 	    	
 	    //	PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
 	    	PagamentView2.addCancel_1Listener(new Cancel_1Listener());
@@ -97,6 +94,8 @@ public class CtrlInterface {
 	    class Confirmar_SVListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
 	    		String DNI = SeleccioViatgeView2.get_DNI();
+	    		List<TupleCiutat>  Hotels = DC.mostraHotelsLliures(DNI, Sel, Date dIni, Date dFi);
+	    		String[][] hot  = DC.conversion(Hotels);
 	    		if(DC.exClientNoEx(DNI)){
 	    			SeleccioViatgeView2.setVisible(false);
 	    			AvisView2 = new Avis("clientnoex");
@@ -104,7 +103,9 @@ public class CtrlInterface {
 	    			AvisView2.setResizable(false);
 	    			
 	    			AvisView2.addSurtListener(new Cancel_3Listener());
-	    		}else if(DC.excJaTeViatge(DNI, Date dataIni, Date dataFi, Sel)){
+
+	    		}else if(DC.excJaTeViatge(DNI, dataIni, dataFi,Sel)){
+
 	    			SeleccioViatgeView2.setVisible(false);
 	    			AvisView2 = new Avis("clientviatge");
 	    			AvisView2.setVisible(true);
@@ -112,11 +113,21 @@ public class CtrlInterface {
 	    			
 	    			AvisView2.addSurtListener(new Cancel_3Listener());
 	    		}else{
-	    			if(checklistener) {
-		    			
+	    			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	    		 	String DataIni = sdf.format(dataIni);
+	    		 	String DataFi = sdf.format(dataFi);
+	    			if(true/*checklistener*/) {
+	    				SeleccioViatgeView2.setVisible(false);
+	    				ReservaHabitacioView2 = new FinestraReservaHabitacio(Sel, DataIni, DataFi, hot);
+	    				
+	    				ReservaHabitacioView2.addSelectionListener(new SelectionListener());
+	    		    	ReservaHabitacioView2.addConfirmar_RHListener(new Confirmar_RHListener());
+	    		    	ReservaHabitacioView2.addCancel_2Listener(new Cancel_2Listener());
 		    		}else{
-		    			
+		    			SeleccioViatgeView2.setVisible(false);
 		    		}
+	    			CiutatSel = Sel;
+	    			Sel = null;
 	    		}
 
 	    	  }
