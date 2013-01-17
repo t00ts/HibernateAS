@@ -13,6 +13,7 @@ import javax.swing.event.ListSelectionListener;
 
 import org.hibernate.cfg.Configuration;
 
+import com.as.data.tuples.Tuple;
 import com.as.data.tuples.TupleCiutat;
 
 //import src.PagamentClient;
@@ -36,15 +37,15 @@ public class CtrlInterface {
 	   private  Avis AvisView2;
 	   
 //Variables
-	   private String Sel;
+	   private String Sel, CiutatSel;
 	   private Integer PreuSel;
 	   private String DniClient;
 	   private Integer DataIni, DataFi;
 
 	   /** Constructor */
-	  public  CtrlInterface(FinestraContractarViatges ContractarViatgeView, FinestraReservaHabitacio ReservaHabitacioView, FinestraPagament PagamentView) {
+	  public  CtrlInterface(FinestraContractarViatges ContractarViatgeView, FinestraReservaHabitacio ReservaHabitacioView, FinestraPagament PagamentView, DomainCtrl DC2) {
 	    	
-		  	DC = new DomainCtrl(this.hibernateCfg);
+		  	DC = DC2;
 	    	
 		    ContractarViatgeView2 = ContractarViatgeView;
 	    	ReservaHabitacioView2  = ReservaHabitacioView;
@@ -97,6 +98,7 @@ public class CtrlInterface {
 	    class Confirmar_SVListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
 	    		String DNI = SeleccioViatgeView2.get_DNI();
+	    		List<TupleCiutat>  Hotels = DC.mostraHotelsLliures(DNI, Sel, Date dIni, Date dFi);
 	    		if(DC.exClientNoEx(DNI)){
 	    			SeleccioViatgeView2.setVisible(false);
 	    			AvisView2 = new Avis("clientnoex");
@@ -112,11 +114,13 @@ public class CtrlInterface {
 	    			
 	    			AvisView2.addSurtListener(new Cancel_3Listener());
 	    		}else{
-	    			if(checklistener) {
-		    			
+	    			if(true/*checklistener*/) {
+	    				SeleccioViatgeView2.setVisible(false);
+	    				ReservaHabitacioView2 = new FinestraReservaHabitacio(Sel, Date dataIni, Date dataFi, );
 		    		}else{
-		    			
+		    			SeleccioViatgeView2.setVisible(false);
 		    		}
+	    			CiutatSel = Sel;
 	    		}
 
 	    	  }
