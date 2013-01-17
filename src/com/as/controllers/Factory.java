@@ -13,11 +13,6 @@ public class Factory {
 	private CtrlHabitacio ctrlHabitacio = null;
 	private CtrlCiutat ctrlCiutat;
 	private CtrlHotel ctrlHotel;
-	/*private CtrlData ctrlData;
-    private CtrlHotelLowCost ctrlHotelLowCost;
-    private CtrlHotelSuperior ctrlHotelSuperior;
-    private CtrlViatge ctrlViatge;
-*/
 
 	private Factory (Configuration cfg) {
 		ctrlViatge = new CtrlViatge (cfg);
