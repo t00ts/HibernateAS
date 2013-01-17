@@ -104,7 +104,7 @@ public class CtrlInterface {
 	    			AvisView2.setResizable(false);
 	    			
 	    			AvisView2.addSurtListener(new Cancel_3Listener());
-	    		}else if(DC.excJaTeViatge(DNI, Date dataIni, Date dataFi,Sel)){
+	    		}else if(DC.excJaTeViatge(DNI, Date dataIni, Date dataFi, Sel)){
 	    			SeleccioViatgeView2.setVisible(false);
 	    			AvisView2 = new Avis("clientviatge");
 	    			AvisView2.setVisible(true);
@@ -128,7 +128,9 @@ public class CtrlInterface {
 
 	    class Confirmar_RHListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
-	    		
+	    		ReservaHabitacioView2.setVisible(false);
+	    		PagamentView2 = new PagamentView2(float preuTotal, Date dataIni, Date dataFi, Integer numTarg, Date dataCad, String nomHotel, String dni)
+	    		PagamentView2.setVisible(true);
 	    	}
 	    }// end inner class Confirmar_RHListener
 

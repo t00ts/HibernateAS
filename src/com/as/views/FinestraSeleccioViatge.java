@@ -32,7 +32,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
-import org.jdesktop.swingx.JXDatePicker;
+import java.lang.Object;
 
 
 public class FinestraSeleccioViatge extends JFrame {
@@ -115,17 +115,6 @@ public class FinestraSeleccioViatge extends JFrame {
 		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblNewLabel_2.setBounds(219, 119, 83, 14);
 		contentPane.add(lblNewLabel_2);
-		
-		final JXDatePicker datePicker = new JXDatePicker(System.currentTimeMillis());
-		datePicker.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				label.setText(datePicker.getDate().toString());
-			}
-		});
-		 
-		 
-		frame.getContentPane().add(label, BorderLayout.NORTH);
-		frame.getContentPane().add(datePicker, BorderLayout.CENTER);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Arial", Font.PLAIN, 12));
