@@ -62,7 +62,7 @@ public class TestTodo {
 		//Crear base de datos simple
 		//Query query1 = session.createQuery("delete Ciutat");//borra todo por cascada creo
 		//int result = query1.executeUpdate();
-		Ciutat bcn = new Ciutat ("Barcelona", "La millor ciutat del mon", 80.0f);
+		/*Ciutat bcn = new Ciutat ("Barcelona", "La millor ciutat del mon", 80.0f);
 		Client pep = new Client("436453K", "Pep", "54645456", 0);
 		Client pep2 = new Client("696969X", "Juan", "111111", 0);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -94,7 +94,7 @@ public class TestTodo {
 		Hotel h = (Hotel) results.get(0);
 		System.out.println ("HOTEL: "+h.getNom()+" CIUTAT: "+h.getNomCiutat());
 		/*System.out.println ("Hotel: "+hot.);
-		 * */
+		 * 
 		String var1 = "436453K";
 		Date var2 = dini;
 		ViatgePrimaryKey pk = new ViatgePrimaryKey("436453K", dini);
@@ -114,6 +114,19 @@ public class TestTodo {
 		*/
 		//para borrar el objeto de la DB
 		//session.delete(X);
+		
+		
+		//TESTEAR JATEVIATGE
+		Ciutat bcn = new Ciutat ("Barcelona", "La millor ciutat del mon", 80.0f);
+		Client pep = new Client("436453K", "Pep", "54645456", 0);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		@SuppressWarnings("deprecation")
+		Date dini= sdf.parse("01/01/2013");//dinici
+		Date dfi=sdf.parse("05/01/2013");//dfi
+		Date dini2=sdf.parse("05/01/2013");
+		Date dfi2=sdf.parse("09/01/2013");//dfi
+		Data data = new Data(dini);
+		Data data2 = new Data(dfi);
 		
 		
 		session.getTransaction().commit();

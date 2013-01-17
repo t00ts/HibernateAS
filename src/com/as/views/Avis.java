@@ -63,6 +63,8 @@ public class Avis extends JFrame {
 	}
 	
     public void addSurtListener(ActionListener cal) {
+    	//algunos surts salen, otros vuelven y otros continuan
+    	
     	btnSurt.addActionListener(cal);
     }
     
