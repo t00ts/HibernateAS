@@ -94,7 +94,7 @@ public class Client {
 		int preuVol=0;
 		
 		viatges.add(v);//añadimos el viatge al cliente
-		nombreViatges++;
+		this.nombreViatges++;
 		return v.getCiutat().getPreuVol();
 	}
 	

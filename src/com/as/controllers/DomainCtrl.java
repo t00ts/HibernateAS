@@ -49,14 +49,18 @@ public class DomainCtrl {
 		CtrlHotel chot   = factory.getCtrlHotel();
 		
 		Viatge v = this.viatge;
+		System.out.println("<========no peto====>NOMHOTEL=="+nomHotel+"   NOMCIUTAT=="+nomCiutat);
 		Hotel h = chot.get (nomHotel, nomCiutat);
+		
+		/*
 		numHab = h.numHabLliure(dIni, dFi);
 		Habitacio hab = ch.get (numHab, nomHotel, nomCiutat);
-		
 		preuHab = v.reserva (hab, dIni, dFi);
+		System.out.println("<========he petado====>");
 		preuTotal=preuVol+preuHab;
 		//Guardamos el objeto habitacion ya q lohemos asociado con el objeto viatge
 		this.habitacio=hab;
+		*/
 		return preuTotal;
 		
 	}
@@ -67,7 +71,7 @@ public class DomainCtrl {
 		return PagamentClient.pagament(numTarg, dataCad);
 	}*/
 	
-	public List<TupleCiutat>  obteCiutats() {//devuelve una lista de nomciutat, preuvol
+	public List<TupleCiutat>  obteCiutats() {//devuelve una lista de nomciutat, preuvol de las ciudades del sistema
 		
 		CtrlCiutat cc = factory.getCtrlCiutat(); 
 		
@@ -83,14 +87,14 @@ public class DomainCtrl {
 			t.preuVol = c.getPreuVol();
 			listup.add(t);
 			i++;		
-		}
+		}//funsiona man
 		
 		return listup;//Si es empty activar exc no hi ha ciutats!!!!
 		
 	}
 	
-	public List<TupleCiutat>  mostraHotelsLliures(String dniClient, String nomCiutat, Date dIni, Date dFi) {
-		
+	public List<TupleCiutat>  mostraHotelsLliures(String dniClient, String nomCiutat, Date dIni, Date dFi) {//devuelve (nombreHotel,precioHotel)
+		//de los hoteles libres
 		List<TupleCiutat> preuHotels;
 		CtrlCiutat cc = factory.getCtrlCiutat(); 
 		Ciutat c = cc.get (nomCiutat);//obtenemos la ciudad
@@ -98,7 +102,7 @@ public class DomainCtrl {
 											
 		return preuHotels;//Teneis que comprobar si es empty, si lo es activais la pantalla no hi ha hotels!!
 		
-	}
+	}//funciona 100%
 	
 	public boolean exClientNoEx (String dni){//comprueba si el cliente existe, si retorna false activais la exc.
 		CtrlClient cc = factory.getCtrlClient(); 
@@ -112,7 +116,7 @@ public class DomainCtrl {
 		return c.excJaTeViatge(dniClient, dataIni, dataFi, nomCiutat);//true si solapa, falso si todo OK. Si solapa activa exc.
 		
 	}
-	
+	//funsiona 100%
 	public float enregistraViatge(String dni, Date dataIni, Date dataFi, String nomCiutat) {//creamos el viatge y se lo pasamos a otra funcion
 		float preuVol = 0;
 		//sabemos que el cliente existe no hay solapados                                      //para que lo asocie con el cliente
