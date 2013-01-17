@@ -1,6 +1,7 @@
 package com.as.data;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -143,6 +144,48 @@ public class Viatge {
 	public void setCiutat(Ciutat ciutat) {
 		this.ciutat = ciutat;
 	}
+	public boolean viatgeSolapat(Date dataIniNew, Date dataFiNew){
+		boolean solapa = false;
+		Date dataIni = getdataInici();
+		//tenemos que comprobar que dataIni y dataFi del viatge actual no se solape
+		//con dataIniNew y dataFiNew.(consideramos que datas iguales solaparia)
+		/*---------dIni>-----------<dFi---
+		 * ---dIniNew>------<dFiNew------SOLAPA 1
+		 * -------------dIniNew>------<dFiNew------SOLAPA 2
+		 * ---dIniNew>----------------<dFiNew------SOLAPA 3
+		 * ---------dIniNew>---<dFiNew------SOLAPA 4
+		 */
+		if(dataIni.compareTo(dataIniNew)==0 || dataIni.compareTo(dataFiNew)==0 
+			|| dataFi.compareTo(dataIniNew)==0 || dataFi.compareTo(dataFiNew)==0){//alguna data igual entonces SOLAPA
+			solapa=true;
+		}else if(dataFiNew.before(dataFi) && dataFiNew.after(dataIni)){//caso 1,4
+			solapa=true;
+		}else if(dataIniNew.after(dataIni) && dataIniNew.before(dataFi)){//caso 2,4
+			solapa=true;
+		}else if(dataIniNew.before(dataIni) && dataFiNew.after(dataFi)){//caso 3
+			solapa=true;
+		}
+		
+		
+		return solapa;
+	}
+	public List<Hotel> mostraHotelsLliures(){
+		List<Hotel> hotels;
+		hotels = ciutat.cercaHotels(getdataInici(), dataFi);
+		
+		if(hotels.isEmpty()){
+			//ACTIVAMOS EXC HOTELSNOLLIURES->PANTALLA AVISNOHOTELS
+		}
+		return hotels;
+	}
 	
+	public float reserva(Habitacio hab, Date dIni, Date dFi){
+		float preuHab=0;
+		habitacio=hab;//relacionamos el viatge con la habitacion
+		numHabitacio=hab.getNumero();
+		preuHab=hab.reserva(this);
+		//SAVE VIATGE
+		return preuHab;
+	}
 
 }
