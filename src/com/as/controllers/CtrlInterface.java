@@ -89,10 +89,10 @@ public class CtrlInterface {
 
 	    class Confirmar_SVListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
-	    		String DNI = SeleccioViatgeView2.get_DNI();
-	    		List<TupleCiutat>  Hotels = DC.mostraHotelsLliures(DNI, Sel, Date dIni, Date dFi);
+	    		DniClient = SeleccioViatgeView2.get_DNI();
+	    		List<TupleCiutat>  Hotels = DC.mostraHotelsLliures(DniClient, Sel, Date dIni, Date dFi);
 	    		String[][] hot  = DC.conversion(Hotels);
-	    		if(DC.exClientNoEx(DNI)){
+	    		if(DC.exClientNoEx(DniClient)){
 	    			SeleccioViatgeView2.setVisible(false);
 	    			AvisView2 = new Avis("clientnoex");
 	    			AvisView2.setVisible(true);
@@ -100,7 +100,7 @@ public class CtrlInterface {
 	    			
 	    			AvisView2.addSurtListener(new Cancel_3Listener());
 
-	    		}else if(DC.excJaTeViatge(DNI, dataIni, dataFi,Sel)){
+	    		}else if(DC.excJaTeViatge(DniClient, dataIni, dataFi,Sel)){
 
 	    			SeleccioViatgeView2.setVisible(false);
 	    			AvisView2 = new Avis("clientviatge");
@@ -112,8 +112,8 @@ public class CtrlInterface {
 	    			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	    		 	String DataIni = sdf.format(dataIni);
 	    		 	String DataFi = sdf.format(dataFi);
-	    		 	PreuVol = enregistraViatge(DNI, dataIni, dataFi, CiutatSel);
-	    			if(true/*checklistener*/) {
+	    		 	PreuVol = enregistraViatge(DniClient, dataIni, dataFi, CiutatSel);
+	    			if(SeleccioViatgeView2.get_check()) {
 	    				SeleccioViatgeView2.setVisible(false);
 	    				ReservaHabitacioView2 = new FinestraReservaHabitacio(Sel, DataIni, DataFi, hot);
 	    				
@@ -122,7 +122,7 @@ public class CtrlInterface {
 	    		    	ReservaHabitacioView2.addCancel_2Listener(new Cancel_2Listener());
 		    		}else{
 		    			SeleccioViatgeView2.setVisible(false);
-		    			PagamentView2 = new PagamentView2(float PreuVol, dataIni, dataFi, Sel, DNI)
+		    			PagamentView2 = new FinestraPagament(PreuTotal, DataIni, DataFi, Sel, DniClient);
 			    		PagamentView2.setVisible(true);
 		    			PagamentView2.setResizable(false);
 		    			
