@@ -31,8 +31,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.table.*;
+
+import com.standbysoft.component.date.swing.JDatePicker;
+
+
+
 import java.awt.*;
 import java.lang.Object;
+import java.util.Date;
 
 
 public class FinestraSeleccioViatge extends JFrame {
@@ -44,16 +50,17 @@ public class FinestraSeleccioViatge extends JFrame {
 	final private JTable table;
 	private ListSelectionModel cellSelectionModel;
 	private JCheckBox chckbxNewCheckBox;
-	
+	final private JDatePicker dI, dF;
 	/**
 	 * Launch the application.
-	 */
+*/
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					
-					FinestraSeleccioViatge frame = new FinestraSeleccioViatge();
+					FinestraSeleccioViatge frame = new FinestraSeleccioViatge(null);
 					
 					frame.setResizable(false);
 					frame.setVisible(true);
@@ -66,7 +73,7 @@ public class FinestraSeleccioViatge extends JFrame {
 		});
 	}
 
-	/*
+/*
 	 * Create the frame.
 	 */
 	
@@ -91,7 +98,7 @@ public class FinestraSeleccioViatge extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		chckbxNewCheckBox = new JCheckBox("");
-		chckbxNewCheckBox.setBounds(377, 55, 21, 14);
+		chckbxNewCheckBox.setBounds(433, 55, 21, 14);
 		contentPane.add(chckbxNewCheckBox);
 		
 		//Introduïr DNI
@@ -104,7 +111,7 @@ public class FinestraSeleccioViatge extends JFrame {
 		textField = new JTextField();
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField.setBounds(312, 80, 86, 20);
+		textField.setBounds(312, 80, 142, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
@@ -117,10 +124,13 @@ public class FinestraSeleccioViatge extends JFrame {
 		lblNewLabel_2.setBounds(219, 119, 83, 14);
 		contentPane.add(lblNewLabel_2);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Arial", Font.PLAIN, 12));
-		comboBox.setBounds(312, 116, 86, 20);
-		contentPane.add(comboBox);
+		dI = new JDatePicker();
+		dI.setEditable(true);
+		dI.setEmptySelectionText("Always");
+		dI.setSelectedDate(null);
+		dI.setVisible(true);
+		dI.setBounds(312, 116, 142, 20);
+		contentPane.add(dI);
 		
 		//Sel.lecció de la data de tornada del viatje		
 		
@@ -129,11 +139,15 @@ public class FinestraSeleccioViatge extends JFrame {
 		lblNewLabel_3.setBounds(219, 150, 83, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setFont(new Font("Arial", Font.PLAIN, 12));
-		comboBox_1.setBounds(312, 147, 86, 20);
-		contentPane.add(comboBox_1);
+		dF= new JDatePicker();
+		dF.setEditable(true);
+		dF.setEmptySelectionText("Always");
+		dF.setSelectedDate(null);
+		dF.setVisible(true);
+		dF.setBounds(312, 147, 142, 20);
+		contentPane.add(dF);
+
+
 		
 		//Botó confirmar
 		
@@ -188,5 +202,12 @@ public class FinestraSeleccioViatge extends JFrame {
 	
 	public Boolean get_check(){
 		return chckbxNewCheckBox.isSelected();
+	}
+	
+	public Date[] get_dates() {
+		Date[] dat = new Date [2];
+		dat[0] = dI.getSelectedDate();
+		dat[1] = dF.getSelectedDate();
+		return dat;
 	}
 }
