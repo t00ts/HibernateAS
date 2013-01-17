@@ -25,6 +25,8 @@ public class CtrlHabitacio {
 		String hql = "From Habitacio h";
 		Query query = session.createQuery (hql);
 		ArrayList<Habitacio> results = (ArrayList<Habitacio>) query.list();
+	
+		session.getTransaction().commit();
 		
 		return results;
     	
@@ -43,14 +45,36 @@ public class CtrlHabitacio {
 		Query query = session.createQuery (hql);
 		
 		Habitacio res = (Habitacio) query.uniqueResult();
+		
+		session.getTransaction().commit();
+		
         return res;
         
     }
     
     public boolean exists (int numero, String nomHotel, String nomCiutat) {
-
     	return (get(numero, nomHotel, nomCiutat) != null);
-    
+    }
+
+    public void insert (Habitacio h) {
+    	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
+    	session.beginTransaction ();
+    	session.save (h);
+    	session.getTransaction().commit();
     }
     
+    public void update (Habitacio h) {
+    	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
+    	session.beginTransaction();
+    	session.update(h);
+    	session.getTransaction().commit();
+    }
+    
+    public void delete (Habitacio h) {
+    	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
+    	session.beginTransaction();
+    	session.delete(h);
+    	session.getTransaction().commit();
+    }
+ 
 }
