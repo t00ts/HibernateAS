@@ -119,6 +119,12 @@ public abstract class Hotel {
 			return 0;
 		}
 	}
+	
+	public float calcularPreu(){
+		
+		return this.preu;
+		
+	}
 
 	
 

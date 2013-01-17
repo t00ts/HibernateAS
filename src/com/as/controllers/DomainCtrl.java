@@ -42,11 +42,14 @@ public class DomainCtrl {
 		CtrlViatge cv = f.getCtrlViatge();//falta hacer del abel por eso da error
 		CtrlHabitacio ch=f.getCtrlHabitacio();
 		CtrlHotel chot=f.getCtrlHotel();
+		Viatge v=cv.getViatge(dniClient, dIni);
 		Hotel h=chot.get(nomHotel, nomCiutat);
 		numHab=h.numHabLliure(dIni, dFi);
 		Habitacio hab=ch.get(numHab, nomHotel, nomCiutat);
-		Viatge v=cv.get(dniClient, dIni);
+		
 		preuHab=v.reserva(hab, dIni, dFi);
+		//en reserva los 3 valores nulls que teniamos ya tienen valor
+		 * SAVE de HAB, VIATGE
 		preuTotal=preuVol+preuHab;
 		*/
 		return preuTotal;

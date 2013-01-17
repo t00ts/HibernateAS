@@ -183,9 +183,9 @@ public class Viatge {
 	public float reserva(Habitacio hab, Date dIni, Date dFi){
 		float preuHab=0;
 		habitacio=hab;//relacionamos el viatge con la habitacion
+		nomHotel=hab.getHotel().getNom();
 		numHabitacio=hab.getNumero();
 		preuHab=hab.reserva(this);
-		//SAVE VIATGE
 		return preuHab;
 	}
 
