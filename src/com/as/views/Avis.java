@@ -27,6 +27,7 @@ public class Avis extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	//TODO Quitar main y lanzar desde controlador interfaz
 	public static void main(final String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -65,7 +66,7 @@ public class Avis extends JFrame {
     	btnSurt.addActionListener(cal);
     }
     
-    //tip nociutats, clientnoex, clientviatge, nohotels, pagamentnoau, pagamentnodisp, pagamentok
+    //t = { nociutats, clientnoex, clientviatge, nohotels, pagamentnoau, pagamentnodisp, pagamentok }
 	private void setTipus(String t) {
 		if(t == "nociutats") {
 			avisLogo = "/res/LogoError.PNG";
