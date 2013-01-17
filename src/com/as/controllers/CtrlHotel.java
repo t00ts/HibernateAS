@@ -1,5 +1,6 @@
 package com.as.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,34 +27,59 @@ public class CtrlHotel {
     	hibernateCfg = cfg;
     }
 	
-	public List<Hotel> getAll(){
+	public ArrayList<Hotel> getAll(){
 		Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
+    	
 		String hql = "From Hotel h";
 		Query query = session.createQuery(hql);
-		List results = query.list();
+		
+		ArrayList<Hotel> results = (ArrayList<Hotel>) query.list();
+		
 		session.getTransaction().commit();
+		
 		return results;
 	}
 	
 	
 	@SuppressWarnings("deprecation")
 	public Hotel get(String nomHotel, String nomCiutat){
+		
 		Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
-    	HotelPrimaryKey hpk= new HotelPrimaryKey(nomHotel, nomCiutat);
-		String hql = new StringBuilder("").append("FROM Hotel h WHERE h.HotelPrimaryKey=('").append(hpk.getNomHotel())
-				.append("', '").append(hpk.getNomCiutat()).append("')").toString();
+		String hql = new StringBuilder("").append("FROM Hotel h WHERE h.HotelPrimaryKey=('").append(nomHotel)
+				.append("', '").append(nomCiutat).append("')").toString();
 		Query query = session.createQuery(hql);
 		Hotel res = (Hotel) query.uniqueResult();
 		
 		session.getTransaction().commit();
 		return res;
-		
-		
+	
 	}
 	
 	public boolean exists(String nomHotel, String nomCiutat){
 		return get(nomHotel, nomCiutat)!=null;
 	}
+	
+    public void insert (Hotel h) {
+    	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
+    	session.beginTransaction ();
+    	session.save (h);
+    	session.getTransaction().commit();
+    }
+    
+    public void update (Hotel h) {
+    	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
+    	session.beginTransaction();
+    	session.update(h);
+    	session.getTransaction().commit();
+    }
+    
+    public void delete (Hotel h) {
+    	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
+    	session.beginTransaction();
+    	session.delete(h);
+    	session.getTransaction().commit();
+    }
+ 
 }

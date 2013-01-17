@@ -2,7 +2,9 @@ package com.as.hibernate;
 
 import java.util.ArrayList;
 
+import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.classic.Session;
 
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
@@ -44,20 +46,10 @@ public class MainClass {
 		// TODO: Ver como gestionamos la creacion o no de las tablas
 		//new SchemaExport (cfg).create (true, true);
 		
-		// Construct controller factory
-		Factory ctrlFactory = new Factory (cfg);
+		// Construct factory
+		Factory.setConfiguration (cfg);
+		Factory factory = Factory.getInstance();
 		
-		CtrlClient cClient = ctrlFactory.getCtrlClient();
-		ArrayList<Client> lc = cClient.getAll();
-		for (int i = 0; i < lc.size(); ++i) {
-			System.out.println (lc.get(i).getDni());
-		}
-	
-	    CtrlHabitacio cHab = ctrlFactory.getCtrlHabitacio();
-	    ArrayList<Habitacio> lh = cHab.getAll();
-		for (int i = 0; i < lh.size(); ++i) {
-			System.out.println (lh.get(i).getNumero());
-		}
 	}
 
 }

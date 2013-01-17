@@ -4,46 +4,54 @@ import org.hibernate.cfg.Configuration;
 
 public class Factory {
 
-	private Configuration hibernateCfg;
 	private static Factory Instance = null; 
-	private static CtrlViatge ctrlViatge = null; 
-	private static CtrlClient ctrlClient = null;
-	private static CtrlHabitacio ctrlHabitacio = null;
-/*	private CtrlCiutat ctrlCiutat;
-	private CtrlData ctrlData;
+
+	private static Configuration hibernateCfg = null;
+	
+	private CtrlViatge ctrlViatge = null; 
+	private CtrlClient ctrlClient = null;
+	private CtrlHabitacio ctrlHabitacio = null;
+	private CtrlCiutat ctrlCiutat;
+	/*private CtrlData ctrlData;
     private CtrlHotel ctrlHotel;
     private CtrlHotelLowCost ctrlHotelLowCost;
     private CtrlHotelSuperior ctrlHotelSuperior;
     private CtrlViatge ctrlViatge;
 */
 
-	public Factory (Configuration cfg) {
-		
-		if (this.Instance != null) throw new IllegalStateException ("Already instantiated. Use getInstance() instead.");
-		
-		// Init factory and controllers
-		this.hibernateCfg = cfg;
-	
-		//ctrlViatge = new CtrlViatge (cfg);
+	private Factory (Configuration cfg) {
+		ctrlViatge = new CtrlViatge (cfg);
 		ctrlClient = new CtrlClient (cfg);
 	    ctrlHabitacio = new CtrlHabitacio (cfg);
-	    
+	    ctrlCiutat = new CtrlCiutat (cfg);
 	}
-	
-	public Factory getInstance () {
-		return this.Instance;
-	}
-	
 
-/*	public static CtrlViatge getCtrlViatge () {
+	
+	public static Factory getInstance () {
+		if (Instance == null) {
+			Instance = new Factory (hibernateCfg);
+		}
+		return Instance;
+	}
+	
+	public static void setConfiguration (Configuration cfg) {
+		hibernateCfg = cfg;
+	}
+	
+	public CtrlViatge getCtrlViatge () {
 		return ctrlViatge;
-	}*/
+	}
 
-	public static CtrlClient getCtrlClient () {
+	public CtrlClient getCtrlClient () {
 		return ctrlClient;
 	}
 
-	public static CtrlHabitacio getCtrlHabitacio () {
+	public CtrlHabitacio getCtrlHabitacio () {
 		return ctrlHabitacio;
 	}
+	
+	public CtrlCiutat getCtrlCiutat () {
+		return ctrlCiutat;
+	}
+	
 }

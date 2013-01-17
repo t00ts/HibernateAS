@@ -39,7 +39,7 @@ public class DomainCtrl {
 		float preuTotal=0;
 		int numHab;
 		float preuHab=0;
-		Factory f=new Factory(hibernateCfg);
+		Factory f = Factory.getInstance();
 		/*
 		CtrlViatge cv = f.getCtrlViatge();//falta hacer del abel por eso da error
 		CtrlHabitacio ch=f.getCtrlHabitacio();

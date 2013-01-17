@@ -26,6 +26,8 @@ public class CtrlCiutat {
 		Query query = session.createQuery (hql);
 		ArrayList<Ciutat> results = (ArrayList<Ciutat>) query.list();
 		
+		session.getTransaction().commit();
+		
 		return results;
     	
     }
@@ -39,14 +41,36 @@ public class CtrlCiutat {
 		Query query = session.createQuery (hql);
 		
 		Ciutat res = (Ciutat) query.uniqueResult();
+		
+		session.getTransaction().commit();
+		
         return res;
         
     }
     
-     public boolean exists (String nom) {
-
+    public boolean exists (String nom) {
     	return (get(nom) != null);
-    
+    }
+     
+    public void insert (Ciutat c) {
+    	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
+    	session.beginTransaction ();
+    	session.save (c);
+    	session.getTransaction().commit();
     }
     
+    public void update (Ciutat c) {
+    	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
+    	session.beginTransaction();
+    	session.update(c);
+    	session.getTransaction().commit();
+    }
+    
+    public void delete (Ciutat c) {
+    	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
+    	session.beginTransaction();
+    	session.delete(c);
+    	session.getTransaction().commit();
+    }
+ 
 }
