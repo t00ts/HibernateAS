@@ -13,7 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Id;
 
-import com.as.data.tuples.Tuple;
+
+import com.as.data.tuples.TupleCiutat;
 
 @Entity
 @Table(name="CIUTATS")
@@ -70,8 +71,8 @@ public class Ciutat {
 	public void setHotels (List<Hotel> hotels) {
 		this.hotels = hotels;
 	}
-	public List<Tuple> cercaHotels(Date dIni, Date dFi){//retorna una lista de nomhoteles con su precio
-		List<Tuple> hotelsLliures=new ArrayList<Tuple>();
+	public List<TupleCiutat> cercaHotels(Date dIni, Date dFi){//retorna una lista de nomhoteles con su precio
+		List<TupleCiutat> hotelsLliures=new ArrayList<TupleCiutat>();
 		int i=0;
 		boolean esLliure=false; //hotel amb habs lliures
 		while(i<hotels.size()){
@@ -81,25 +82,10 @@ public class Ciutat {
 															*habitacions lliures)
 															* i numHablliure(retorna el numhab d'una habitacio lliure)->definida a hotel*/
 			if(esLliure){//te habitacions lliures l'hotel
-				Tuple tup=new Tuple();
+				TupleCiutat tup=new TupleCiutat();
 				Hotel hotel = hotels.get(i);
-				tup.nomCiutat=hotel.getNomCiutat();
-				tup.nomHotel=hotel.getNom();
-				tup.preu=hotel.getPreu();//AQUI TENGO Q MIRAR SI ES LOW O SUPERIOR
-				/*posible codigo
-				 * CtrlHotelSuperior chs=new CtrlHotelSuperior();
-				 * CtrlHotelLowCost chl=new CtrlHotelLowCost();
-				 * if(chs.exists(hotel.getNom(), hotel.getNomCiutat())){//es hotel superior=> precio=preciohotel+recarrec
-				 * 		hotelSup HotelSuperior=chs.get(hotel.getNom(), hotel.getNomCiutat());
-				 * 		tup.preu=hotelSup.getPreu() + hotelSup.getRecarrec();
-				 * }else if(chl.exists(hotel.getNom(), hotel.getNomCiutat()){//es hotel low cost => precio = preciohotel-descompte
-				 * 		hotelLow HotelLowCost=chl.get(hotel.getNom(), hotel.getNomCiutat());
-				 * 		tup.preu=hotelLow.getPreu() - hotelLow.getDescompte();
-				 * 
-				 * }else{//es SOLO hotel => precio = preuHotel
-				 * 		tup.preu=hotel.getPreu();
-				 * }
-				 */
+				tup.nomCiutat=hotel.getNom();
+				tup.preuVol=hotel.calcularPreu();//por polimorfismo segun el tipo de hotel q sea hara un calculo u otro				
 				hotelsLliures.add(tup);
 			}
 			i++;
