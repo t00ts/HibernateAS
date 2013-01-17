@@ -27,6 +27,7 @@ public class FinestraReservaHabitacio extends JFrame {
 	private JButton btnNewButton;
 	private JButton btnConfirmar;
 	final private JTable table;
+	private ListSelectionModel cellSelectionModel;
 	/**
 	 * Launch the application.
 	 */
@@ -69,7 +70,7 @@ public class FinestraReservaHabitacio extends JFrame {
 		table = new JTable(data,col);
 		table.setCellSelectionEnabled(true);
 		
-		ListSelectionModel cellSelectionModel = table.getSelectionModel();
+		cellSelectionModel = table.getSelectionModel();
 		cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		JTableHeader header = table.getTableHeader();
@@ -140,6 +141,11 @@ public class FinestraReservaHabitacio extends JFrame {
 	
 	public void addCancel_2Listener(ActionListener cal) {
 		btnNewButton.addActionListener(cal);
+    }
+	
+
+	public void addSelectionListener(ListSelectionListener cal) {
+		cellSelectionModel.addListSelectionListener(cal);
     }
 	
 	public JTable get_table() {

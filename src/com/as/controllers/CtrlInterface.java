@@ -14,22 +14,26 @@ import com.as.views.*;
 
 public class CtrlInterface {
 
-
+//Views
 	   private  FinestraContractarViatges ContractarViatgeView2;
 	   private  FinestraSeleccioViatge SeleccioViatgeView2;
 	   private  FinestraReservaHabitacio ReservaHabitacioView2;
 	   private  FinestraPagament PagamentView2;
-	   private  AvisNoCiutats NoCiutatsView2;
+	   private  Avis AvisView2;
+	   
+//Variables
+	   private String CiutatSel, HotelSel;
+	   private Integer PreuSel;
 	   private String DniClient;
 	   private Integer DataIni, DataFi;
 
 	   /** Constructor */
-	    CtrlInterface(FinestraContractarViatges ContractarViatgeView, FinestraSeleccioViatge SeleccioViatgeView, FinestraReservaHabitacio ReservaHabitacioView, FinestraPagament PagamentView, AvisNoCiutats NoCiutatsView) {
+	    CtrlInterface(FinestraContractarViatges ContractarViatgeView, FinestraSeleccioViatge SeleccioViatgeView, FinestraReservaHabitacio ReservaHabitacioView, FinestraPagament PagamentView, Avis AvisView) {
 	    	ContractarViatgeView2 = ContractarViatgeView;
 	    	SeleccioViatgeView2  = SeleccioViatgeView;
 	    	ReservaHabitacioView2  = ReservaHabitacioView;
 	    	PagamentView2  = PagamentView;
-	    	NoCiutatsView2  = NoCiutatsView;
+	    	AvisView2  = AvisView;
 	        
 	        //... Add listeners to the view.
 	    	ContractarViatgeView2.addContractar_Listener(new Contractar_Listener());
@@ -39,6 +43,7 @@ public class CtrlInterface {
 	    	SeleccioViatgeView2.addCancel_1Listener(new Cancel_1Listener());
 	    	
 	    	
+	    	ReservaHabitacioView2.addSelectionListener(new SelectionListener());
 	    	ReservaHabitacioView2.addConfirmar_RHListener(new Confirmar_RHListener());
 	    	ReservaHabitacioView2.addCancel_2Listener(new Cancel_2Listener());
 	    	
@@ -103,23 +108,23 @@ public class CtrlInterface {
 	    	}
 	    }// end inner class Cancel_2Listener
 	    
-	   class SelectionListener implements ListSelectionListener {
+	    
+	    ////////////////////////////////////////////inner class SelectionListener
+	    /**  Agafa els valors seleccionats de la taula */
+	    class SelectionListener implements ListSelectionListener {
 		      public void valueChanged(ListSelectionEvent e) {
 		    	JTable table = ReservaHabitacioView2.get_table();
-		        String selectedData_1 = null;
-		        String selectedData_2 = null;
 		        int[] selectedRow = table.getSelectedRows();
 		        int[] selectedColumns = table.getSelectedColumns();
 
 		        for (int i = 0; i < selectedRow.length; i++) {
 		          for (int j = 0; j < selectedColumns.length; j++) {
-		            selectedData_1 = (String) table.getValueAt(selectedRow[i], selectedColumns[j]);
-		            selectedData_2 = (String) table.getValueAt(selectedRow[i], selectedColumns[j+1]);
+		        	  HotelSel = (String) table.getValueAt(selectedRow[i], selectedColumns[j]);
+		        	  PreuSel = (Integer) table.getValueAt(selectedRow[i], selectedColumns[j+1]);
 		          }
 		        }
-		        System.out.println("Selected: " + selectedData_1);
 		      }
 
-		    }
+		    }// end inner class SelectionListener
 	 
 }
