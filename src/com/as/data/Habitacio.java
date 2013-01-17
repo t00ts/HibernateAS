@@ -74,9 +74,21 @@ public class Habitacio {
 		this.viatges.add(v);
 	}
 	public boolean habEsLliure(Date dIni, Date dFi){//si no te viatges registrats es lliure
+		int i=0;
+		boolean solapat=false;
 		if(viatges.size()==0){//no te viatges
 			return true;
-		}else return false;
+		}else{
+			while(i<viatges.size() && solapat==false){//buscamos de todos los viatges de esta habitacion si hay alguno q solape
+				Viatge v=viatges.get(i);
+				solapat=v.viatgeSolapat(dIni, dFi);
+				i++;
+			}
+			
+		}
+			
+	
+		return solapat;
 		
 	}
 	public float reserva(Viatge v){
@@ -97,6 +109,7 @@ public class Habitacio {
 		 * 		preuHab=hotel.getPreu();
 		 * }
 		 */
+		
 		//SAVE HABITACION
 		return preuHab;
 	}
