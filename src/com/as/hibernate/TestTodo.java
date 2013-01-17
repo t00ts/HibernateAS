@@ -20,7 +20,6 @@ import com.as.controllers.DomainCtrl;
 import com.as.data.primarykeys.ViatgePrimaryKey;
 import com.as.data.Ciutat;
 import com.as.data.Client;
-import com.as.data.Data;
 import com.as.data.Habitacio;
 import com.as.data.Hotel;
 import com.as.data.HotelLowCost;
@@ -49,7 +48,6 @@ public class TestTodo {
 		cfg.addAnnotatedClass(Habitacio.class);
 		cfg.addAnnotatedClass(Client.class);
 		cfg.addAnnotatedClass(Viatge.class);
-		cfg.addAnnotatedClass(Data.class);
 
 		// Hibernate database configuration
 		cfg.configure ("hibernate.cfg.xml");
@@ -119,8 +117,10 @@ public class TestTodo {
 		//session.delete(X);
 		
 		
-		//TESTEAR JATEVIATGE
-		/*Ciutat bcn = new Ciutat ("Barcelona", "La millor ciutat del mon", 80.0f);
+		//<=========================================TESTEAR JATEVIATGE, CLIENTNOEX
+		/*DomainCtrl dm = new DomainCtrl(cfg);
+		DATA
+		Ciutat bcn = new Ciutat ("Barcelona", "La millor ciutat del mon", 80.0f);
 		Client pep = new Client("436453K", "Pep", "54645456", 0);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		@SuppressWarnings("deprecation")
@@ -129,11 +129,15 @@ public class TestTodo {
 		Date dini2=sdf.parse("05/01/2013");
 		Date dfi2=sdf.parse("09/01/2013");//dfi
 		Data data = new Data(dini);
-		Data data2 = new Data(dfi);*/
+		Data data2 = new Data(dfi);
+		session.save(bcn);
+		session.save(pep);
+		session.save(data);
+		session.save(data2);
 		
+		System.out.println("EXISTE? ===>"+dm.exClientNoEx("436453K"));*/
 		
-		
-		//TESTEAR CONVERSION
+		//<===================================================TESTEAR CONVERSION
 		
 		List<TupleCiutat> tc=new ArrayList<TupleCiutat>();
 		

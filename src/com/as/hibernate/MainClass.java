@@ -11,7 +11,6 @@ import com.as.controllers.CtrlHabitacio;
 import com.as.controllers.Factory;
 import com.as.data.Ciutat;
 import com.as.data.Client;
-import com.as.data.Data;
 import com.as.data.Habitacio;
 import com.as.data.Hotel;
 import com.as.data.HotelLowCost;

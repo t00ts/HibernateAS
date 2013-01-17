@@ -12,7 +12,7 @@ import com.as.controllers.CtrlHotel;
 import com.as.controllers.CtrlViatge;
 import com.as.data.Ciutat;
 import com.as.data.Client;
-import com.as.data.Data;
+
 import com.as.data.Habitacio;
 import com.as.data.Hotel;
 import com.as.data.HotelLowCost;
@@ -36,7 +36,7 @@ public class TestCtrl {
 		cfg.addAnnotatedClass(Habitacio.class);
 		cfg.addAnnotatedClass(Client.class);
 		cfg.addAnnotatedClass(Viatge.class);
-		cfg.addAnnotatedClass(Data.class);
+
 
 		// Hibernate database configuration
 		cfg.configure ("hibernate.cfg.xml");
