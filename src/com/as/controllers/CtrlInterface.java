@@ -1,5 +1,6 @@
 package com.as.controllers;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,9 +10,14 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+
 import org.hibernate.cfg.Configuration;
 
 import com.as.data.tuples.TupleCiutat;
+
+//import src.PagamentClient;
+
+
 import com.as.views.*;
 
 
@@ -30,7 +36,7 @@ public class CtrlInterface {
 	   private  Avis AvisView2;
 	   
 //Variables
-	   private String CiutatSel, HotelSel;
+	   private String Sel;
 	   private Integer PreuSel;
 	   private String DniClient;
 	   private Integer DataIni, DataFi;
@@ -51,7 +57,7 @@ public class CtrlInterface {
 	    	ReservaHabitacioView2.addConfirmar_RHListener(new Confirmar_RHListener());
 	    	ReservaHabitacioView2.addCancel_2Listener(new Cancel_2Listener());
 	    	
-	    	PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
+	    //	PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
 	    	PagamentView2.addCancel_1Listener(new Cancel_1Listener());
 	    	
 	    }
@@ -72,10 +78,12 @@ public class CtrlInterface {
 	    			AvisView2.addSurtListener(new Cancel_1Listener());
 	    		}else{
 	    			ContractarViatgeView2.setVisible(false);
-	    			SeleccioViatgeView2 = new FinestraSeleccioViatge();
+	    			String[][] ciu = DC.conversion(ciutats);
+	    			SeleccioViatgeView2 = new FinestraSeleccioViatge(ciu);
 	    			SeleccioViatgeView2.setVisible(true);
 	    			SeleccioViatgeView2.setResizable(false);
 	    			
+	    			SeleccioViatgeView2.addSelectionListener(new SelectionListener());
 	    			SeleccioViatgeView2.addConfirmar_SVListener(new Confirmar_SVListener());
 	    	    	SeleccioViatgeView2.addCancel_1Listener(new Cancel_1Listener());
 	    		}
@@ -88,9 +96,30 @@ public class CtrlInterface {
 
 	    class Confirmar_SVListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
-	    		if(true) {
+	    		String DNI = SeleccioViatgeView2.get_DNI();
+	    		if(DC.exClientNoEx(DNI)){
+	    			SeleccioViatgeView2.setVisible(false);
+	    			AvisView2 = new Avis("clientnoex");
+	    			AvisView2.setVisible(true);
+	    			AvisView2.setResizable(false);
+	    			
+	    			AvisView2.addSurtListener(new Cancel_3Listener());
+	    		}else if(DC.excJaTeViatge(DNI, Date dataIni, Date dataFi,Sel)){
+	    			SeleccioViatgeView2.setVisible(false);
+	    			AvisView2 = new Avis("clientviatge");
+	    			AvisView2.setVisible(true);
+	    			AvisView2.setResizable(false);
+	    			
+	    			AvisView2.addSurtListener(new Cancel_3Listener());
+	    		}else{
+	    			if(checklistener) {
+		    			
+		    		}else{
+		    			
+		    		}
 	    		}
-	    		}
+
+	    	  }
 	    	}// end inner class Confirmar_SVListener
 	    
 	    
@@ -105,11 +134,34 @@ public class CtrlInterface {
 	    ////////////////////////////////////////////inner class Confirmar_PListener
 	    /**  Confirmar el pagament, si no hi ha cap error */
 
-	    class Confirmar_PListener implements ActionListener {
+	/*    class Confirmar_PListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
-	    		
+	    		try {
+	    			//TODO numTarg y dataCad vienen de la interfaz anterior, ponerlas como privates
+		    		if (tc.pagament(numTarg, dataCad)) {
+		    			AvisView2 = new Avis("pagamentok");
+	                    AvisView2.setVisible(true);
+	                    AvisView2.setResizable(false);
+	                    AvisView2.addSurtListener(new Cancel_1Listener());
+		    		}
+		    		else {
+		    			AvisView2 = new Avis("pagamentnoau");
+	                    AvisView2.setVisible(true);
+	                    AvisView2.setResizable(false);
+	                    AvisView2.addSurtListener(new Cancel_1Listener());
+		    		}
+	    		}
+	    		catch (RemoteException ex) {
+	    			//TODO lanzar ventana error de servicio no disponible
+	    			AvisView2 = new Avis("pagamentnodisp");
+                    AvisView2.setVisible(true);
+                    AvisView2.setResizable(false);
+                    AvisView2.addSurtListener(new Cancel_1Listener());
+	    			ex.printStackTrace();
+	    		}
+
 	    	}
-	    }// end inner class Confirmar_PListener
+	    }// end inner class Confirmar_PListener*/
 	    
 	    ////////////////////////////////////////////inner class Cancel_1Listener
 	    	/**  Surt de l'aplicacio */
@@ -162,16 +214,12 @@ public class CtrlInterface {
 
 		        for (int i = 0; i < selectedRow.length; i++) {
 		        	for (int j = 0; j < selectedColumns.length; j++) {
-		        	  HotelSel = (String) table.getValueAt(selectedRow[i], selectedColumns[j]);
+		        	  Sel = (String) table.getValueAt(selectedRow[i], selectedColumns[j]);
 		        	  PreuSel = (Integer) table.getValueAt(selectedRow[i], selectedColumns[j+1]);
 		        	}
 		        }
 	    	}
 
 	    }// end inner class SelectionListener
-	  
-	    
-
-
 
 }

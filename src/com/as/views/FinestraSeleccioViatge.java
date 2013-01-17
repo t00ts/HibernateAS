@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionListener;
+
 import java.awt.Font;
 import javax.swing.JCheckBoxMenuItem;
 import java.awt.Checkbox;
@@ -21,6 +23,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.JLabel;
@@ -37,10 +40,12 @@ public class FinestraSeleccioViatge extends JFrame {
 	private JTextField textField;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
-
+	final private JTable table;
+	private ListSelectionModel cellSelectionModel;
+	
 	/**
 	 * Launch the application.
-	 */
+	 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -59,10 +64,11 @@ public class FinestraSeleccioViatge extends JFrame {
 		});
 	}
 
-	/**
+	
 	 * Create the frame.
 	 */
-	public FinestraSeleccioViatge() {
+	
+	public FinestraSeleccioViatge(String[][] ciu) {
 		
 		setForeground(new Color(0, 0, 0));
 		setTitle("Sel\u00B7lecci\u00F3 Viatge");
@@ -144,10 +150,14 @@ public class FinestraSeleccioViatge extends JFrame {
 		
 		//Llista de ciutats amb els seus preus
 		
-		String data[][] = {{"Barcelona","30$"}}; //provisional ha de cridar a la funció del controlador
 		String col[] = {"Ciutat","Preu"};
-		JTable table = new JTable(data,col);
+		table = new JTable(ciu,col);
 		JTableHeader header = table.getTableHeader();
+		table.setCellSelectionEnabled(true);
+		
+		cellSelectionModel = table.getSelectionModel();
+		cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
 		header.setBackground(Color.white);
 		JScrollPane pane = new JScrollPane(table);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -164,4 +174,12 @@ public class FinestraSeleccioViatge extends JFrame {
 	public void addCancel_1Listener(ActionListener cal) {
 		btnNewButton_1.addActionListener(cal);
     }
+	
+	public void addSelectionListener(ListSelectionListener cal) {
+		cellSelectionModel.addListSelectionListener(cal);
+    }
+	
+	public String get_DNI(){
+		return textField.getText();
+	}
 }

@@ -3,6 +3,7 @@ package com.as.hibernate;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.sql.Select;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
+import com.as.controllers.DomainCtrl;
 import com.as.data.primarykeys.ViatgePrimaryKey;
 import com.as.data.Ciutat;
 import com.as.data.Client;
@@ -27,6 +29,7 @@ import com.as.data.Viatge;
 import com.as.data.primarykeys.HabitacioPrimaryKey;
 import com.as.data.primarykeys.HotelPrimaryKey;
 import com.as.data.primarykeys.ViatgePrimaryKey;
+import com.as.data.tuples.TupleCiutat;
 
 public class TestTodo {
 
@@ -62,7 +65,7 @@ public class TestTodo {
 		//Crear base de datos simple
 		//Query query1 = session.createQuery("delete Ciutat");//borra todo por cascada creo
 		//int result = query1.executeUpdate();
-		Ciutat bcn = new Ciutat ("Barcelona", "La millor ciutat del mon", 80.0f);
+		/*Ciutat bcn = new Ciutat ("Barcelona", "La millor ciutat del mon", 80.0f);
 		Client pep = new Client("436453K", "Pep", "54645456", 0);
 		Client pep2 = new Client("696969X", "Juan", "111111", 0);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -94,7 +97,7 @@ public class TestTodo {
 		Hotel h = (Hotel) results.get(0);
 		System.out.println ("HOTEL: "+h.getNom()+" CIUTAT: "+h.getNomCiutat());
 		/*System.out.println ("Hotel: "+hot.);
-		 * */
+		 * 
 		String var1 = "436453K";
 		Date var2 = dini;
 		ViatgePrimaryKey pk = new ViatgePrimaryKey("436453K", dini);
@@ -114,6 +117,36 @@ public class TestTodo {
 		*/
 		//para borrar el objeto de la DB
 		//session.delete(X);
+		
+		
+		//TESTEAR JATEVIATGE
+		/*Ciutat bcn = new Ciutat ("Barcelona", "La millor ciutat del mon", 80.0f);
+		Client pep = new Client("436453K", "Pep", "54645456", 0);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		@SuppressWarnings("deprecation")
+		Date dini= sdf.parse("01/01/2013");//dinici
+		Date dfi=sdf.parse("05/01/2013");//dfi
+		Date dini2=sdf.parse("05/01/2013");
+		Date dfi2=sdf.parse("09/01/2013");//dfi
+		Data data = new Data(dini);
+		Data data2 = new Data(dfi);*/
+		
+		
+		
+		//TESTEAR CONVERSION
+		
+		List<TupleCiutat> tc=new ArrayList<TupleCiutat>();
+		
+		TupleCiutat t1 = new TupleCiutat("Barcelona", 100f);
+		TupleCiutat t2 = new TupleCiutat("Madrid", 150f);
+		TupleCiutat t3 = new TupleCiutat("Sevilla", 30f);
+		
+		tc.add(t1);
+		tc.add(t2);
+		tc.add(t3);
+		DomainCtrl dm = new DomainCtrl(cfg);
+		String[][] s = dm.conversion(tc);
+		System.out.println ("t1: "+s[0][0]+"  "+s[0][1]+"  "+s[1][0]+"  "+s[0][1]+"  "+s[2][0]+"  "+s[2][1]+"  ");
 		
 		
 		session.getTransaction().commit();

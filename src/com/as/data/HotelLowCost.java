@@ -40,6 +40,10 @@ public class HotelLowCost extends Hotel {
 		this.descompte = descompte;
 	}
 	
+	public float calcularPreu(){
+		
+		return this.preu - this.descompte;
+	}
 
 
 }
