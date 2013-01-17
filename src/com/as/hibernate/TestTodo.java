@@ -16,7 +16,10 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.sql.Select;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
+import com.as.controllers.CtrlClient;
+import com.as.controllers.CtrlViatge;
 import com.as.controllers.DomainCtrl;
+import com.as.controllers.Factory;
 import com.as.data.primarykeys.ViatgePrimaryKey;
 import com.as.data.Ciutat;
 import com.as.data.Client;
@@ -125,15 +128,30 @@ public class TestTodo {
 		Client pep = new Client("436453K", "Pep", "54645456", 0);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		@SuppressWarnings("deprecation")
-		Date dini= sdf.parse("01/01/2013");//dinici
-		Date dfi=sdf.parse("05/01/2013");//dfi
-		Date dini2=sdf.parse("05/01/2013");
-		Date dfi2=sdf.parse("09/01/2013");//dfi
+		Date dIni= sdf.parse("01/01/2013");//dinici
+		Date dFi=sdf.parse("05/01/2013");//dfi
+		Date dIni2=sdf.parse("01/01/2012");
+		Date dFi2=sdf.parse("09/01/2013");//dfi
 		//session.save(bcn);
 		//session.save(pep);
+		Factory.setConfiguration (cfg);
+		Factory f = Factory.getInstance();
+		DomainCtrl dm = new DomainCtrl(f);
+		CtrlClient ccl   = f.getCtrlClient();
+		Client c=ccl.get(pep.getDni());
 		
-		Viatge v = new Viatge(new ViatgePrimaryKey(pep.getDni(), dini), pep, bcn, null, dfi, null, null  );
-
+		CtrlViatge cv = f.getCtrlViatge();
+		//Viatge v = cv.get(pep.getDni(), dIni); //ERROR COMENTAR AL ABEL
+		Viatge v = new Viatge(new ViatgePrimaryKey(pep.getDni(), dIni), pep, bcn, null, dFi, null, null  );
+		List<Viatge> list = new ArrayList<Viatge>();
+		list.add(v);
+		c.setViatges(list);
+		//ccl.update(c);
+		//session.save(v);
+		
+		
+		
+		//System.out.println("EXJATEVIATGE====>"+dm.excJaTeViatge(pep.getDni(), dIni2, dFi2, bcn.getNom()));
 		
 		//System.out.println("EXISTE? ===>"+dm.exClientNoEx("436453K"));
 		
@@ -153,6 +171,7 @@ public class TestTodo {
 		System.out.println ("t1: "+s[0][0]+"  "+s[0][1]+"  "+s[1][0]+"  "+s[0][1]+"  "+s[2][0]+"  "+s[2][1]+"  ");
 		*/
 		session.getTransaction().commit();
+		
 	}
 
 }

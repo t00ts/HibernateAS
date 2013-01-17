@@ -12,7 +12,6 @@ import com.as.data.Habitacio;
 import com.as.data.Hotel;
 import com.as.data.Viatge;
 import com.as.data.primarykeys.ViatgePrimaryKey;
-
 import com.as.data.tuples.TupleCiutat;
 
 //import src.PagamentClient;
@@ -106,11 +105,12 @@ public class DomainCtrl {
 		return cc.exists(dni);
 	}
 
-	public boolean excJaTeViatge(String dniClient, Date dataIni, Date dataFi, String nomCiutat){//detecta si tiene viatges solapados
+	public boolean excJaTeViatge(String dniClient, Date dataIni, Date dataFi, String nomCiutat){//detecta si tiene viatges solapados(funciona)
 		//llamar a esta funcion antes que enregistraViatge
 		CtrlClient cc = factory.getCtrlClient();
 		Client c = cc.get(dniClient);
 		return c.excJaTeViatge(dniClient, dataIni, dataFi, nomCiutat);//true si solapa, falso si todo OK. Si solapa activa exc.
+		
 	}
 	
 	public float enregistraViatge(String dni, Date dataIni, Date dataFi, String nomCiutat) {//creamos el viatge y se lo pasamos a otra funcion

@@ -13,6 +13,9 @@ import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 
 import com.as.data.tuples.TupleCiutat;
 
@@ -63,8 +66,8 @@ public class Ciutat {
 	public void setPreuVol(float preuVol) {
 		this.preuVol = preuVol;
 	}
-	
-	@OneToMany(targetEntity=Hotel.class, mappedBy="ciutat", cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch=FetchType.LAZY)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(targetEntity=Hotel.class, mappedBy="ciutat", cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	public List<Hotel> getHotels() {
 		return hotels;
 	}
