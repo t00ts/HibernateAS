@@ -28,19 +28,13 @@ public class CtrlInterface {
 	   private Integer DataIni, DataFi;
 
 	   /** Constructor */
-	  public  CtrlInterface(FinestraContractarViatges ContractarViatgeView, FinestraSeleccioViatge SeleccioViatgeView, FinestraReservaHabitacio ReservaHabitacioView, FinestraPagament PagamentView) {
+	  public  CtrlInterface(FinestraContractarViatges ContractarViatgeView, FinestraReservaHabitacio ReservaHabitacioView, FinestraPagament PagamentView) {
 	    	ContractarViatgeView2 = ContractarViatgeView;
-	    	SeleccioViatgeView2  = SeleccioViatgeView;
 	    	ReservaHabitacioView2  = ReservaHabitacioView;
 	    	PagamentView2  = PagamentView;
 	        
 	        //... Add listeners to the view.
 	    	ContractarViatgeView2.addContractar_Listener(new Contractar_Listener());
-	    	
-	    	
-	    	SeleccioViatgeView2.addConfirmar_SVListener(new Confirmar_SVListener());
-	    	SeleccioViatgeView2.addCancel_1Listener(new Cancel_1Listener());
-	    	
 	    	
 	    	ReservaHabitacioView2.addSelectionListener(new SelectionListener());
 	    	ReservaHabitacioView2.addConfirmar_RHListener(new Confirmar_RHListener());
@@ -57,9 +51,22 @@ public class CtrlInterface {
 
 	    class Contractar_Listener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
-	    		ContractarViatgeView2.setVisible(false);
-	    		SeleccioViatgeView2.setVisible(true);
-	    		SeleccioViatgeView2.setResizable(false);
+	    		if(false) { //función del dominio
+	    			ContractarViatgeView2.setVisible(false);
+	    			AvisView2 = new Avis("nociutats");
+	    			AvisView2.setVisible(true);
+	    			AvisView2.setResizable(false);
+	    			
+	    			AvisView2.addSurtListener(new Cancel_1Listener());
+	    		}else{
+	    			ContractarViatgeView2.setVisible(false);
+	    			SeleccioViatgeView2 = new FinestraSeleccioViatge();
+	    			SeleccioViatgeView2.setVisible(true);
+	    			SeleccioViatgeView2.setResizable(false);
+	    			
+	    			SeleccioViatgeView2.addConfirmar_SVListener(new Confirmar_SVListener());
+	    	    	SeleccioViatgeView2.addCancel_1Listener(new Cancel_1Listener());
+	    		}
 	    	}
 	    }// end inner class Contractar_Listener
 	    

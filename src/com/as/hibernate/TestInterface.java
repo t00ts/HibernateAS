@@ -20,11 +20,10 @@ public class TestInterface {
 	public static void main(String[] args) {
 	
 		FinestraContractarViatges ContractarViatgeView2 = new FinestraContractarViatges();
-		FinestraSeleccioViatge SeleccioViatgeView2 = new FinestraSeleccioViatge();
 		FinestraReservaHabitacio ReservaHabitacioView2 = new FinestraReservaHabitacio ();
 		FinestraPagament PagamentView2 = new FinestraPagament ();
 
-		CtrlInterface CI = new CtrlInterface(ContractarViatgeView2, SeleccioViatgeView2, ReservaHabitacioView2, PagamentView2);
+		CtrlInterface CI = new CtrlInterface(ContractarViatgeView2, ReservaHabitacioView2, PagamentView2);
 		
 		ContractarViatgeView2.setVisible(true);
 		ContractarViatgeView2.setResizable(false);
