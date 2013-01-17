@@ -32,7 +32,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
-import java.lang.Object;
 
 
 public class FinestraSeleccioViatge extends JFrame {
