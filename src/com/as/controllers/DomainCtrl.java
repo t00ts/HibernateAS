@@ -1,9 +1,11 @@
 package com.as.controllers;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.axis2.AxisFault;
 import org.hibernate.cfg.Configuration;
 
 import com.as.controllers.CtrlCiutat;
@@ -53,19 +55,12 @@ public class DomainCtrl {
 		
 	}
 	
-	
+	/**PagamentClient es una clase del cliente que tiene el stub (adaptador) para conectar al Sv **/
 	public boolean pagament(Integer numTarg, Date dataCad) {
-		try {
-			//TODO hacer la funcion de pagament en vez de main
-			PagamentClient.pagament(numTarg, dataCad);
-		}
-		catch {
-			
-		}
-		return false;
+		//TODO ver que los campos sean correctos creo
+		return PagamentClient.pagament(numTarg, dataCad);
 	}
 	
-	//No tengo muy fresco como se hacian los sets y tuplas xD
 	public List<TupleCiutat>  obteCiutats() {//devuelve una lista de nomciutat, preuvol
 		CtrlCiutat cc=new CtrlCiutat(hibernateCfg);
 		int i=0;

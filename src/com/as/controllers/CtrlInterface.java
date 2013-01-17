@@ -1,5 +1,6 @@
 package com.as.controllers;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,6 +9,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import src.PagamentClient;
 
 import com.as.views.*;
 
@@ -86,7 +89,30 @@ public class CtrlInterface {
 
 	    class Confirmar_PListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
-	    		
+	    		try {
+	    			//TODO numTarg y dataCad vienen de la interfaz anterior, ponerlas como privates
+		    		if (tc.pagament(numTarg, dataCad)) {
+		    			AvisView2 = new Avis("pagamentok");
+	                    AvisView2.setVisible(true);
+	                    AvisView2.setResizable(false);
+	                    AvisView2.addSurtListener(new Cancel_1Listener());
+		    		}
+		    		else {
+		    			AvisView2 = new Avis("pagamentnoau");
+	                    AvisView2.setVisible(true);
+	                    AvisView2.setResizable(false);
+	                    AvisView2.addSurtListener(new Cancel_1Listener());
+		    		}
+	    		}
+	    		catch (RemoteException ex) {
+	    			//TODO lanzar ventana error de servicio no disponible
+	    			AvisView2 = new Avis("pagamentnodisp");
+                    AvisView2.setVisible(true);
+                    AvisView2.setResizable(false);
+                    AvisView2.addSurtListener(new Cancel_1Listener());
+	    			ex.printStackTrace();
+	    		}
+
 	    	}
 	    }// end inner class Confirmar_PListener
 	    
