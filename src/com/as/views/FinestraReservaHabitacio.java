@@ -30,7 +30,7 @@ public class FinestraReservaHabitacio extends JFrame {
 	private ListSelectionModel cellSelectionModel;
 	/**
 	 * Launch the application.
-	 */
+	 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -45,7 +45,7 @@ public class FinestraReservaHabitacio extends JFrame {
 		});
 	}
 
-	/**
+	
 	 * Create the frame.
 	 */
 	public FinestraReservaHabitacio(String Sel, String dataIni, String dataFi, String[][] hot) {
