@@ -42,6 +42,8 @@ public class CtrlInterface {
 	   private Integer PreuSel, PreuVol;
 	   private String DniClient;
 	   private String DataIni, DataFi;
+	   private Date dIni, dFi;
+	   private float PreuTotal;
 
 	   /** Constructor */
 	  public  CtrlInterface(FinestraContractarViatges ContractarViatgeView, FinestraPagament PagamentView, DomainCtrl DC2) {
@@ -134,14 +136,15 @@ public class CtrlInterface {
 	    	  }
 	    	}// end inner class Confirmar_SVListener
 	    
-	    
 	    ////////////////////////////////////////////inner class Confirmar_RHListener
 	    /**  Confirmar i enregistra el viatge, si el checkbox está activat aleshores va reservar hotel, si no a pagament */
 
 	    class Confirmar_RHListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
+	    		PreuTotal = DC.reservaHabitacio(DniClient, Sel, CiutatSel, dIni, dFi, PreuSel);
 	    		ReservaHabitacioView2.setVisible(false);
-	    		PagamentView2 = new PagamentView2(float preuTotal, Date dataIni, Date dataFi, Integer numTarg, Date dataCad, String nomHotel, String dni)
+	    		PagamentView2 = new FinestraPagament(PreuTotal, DataIni, DataFi, Sel, DniClient);
+	    		PagamentView2.setResizable(false);
 	    		PagamentView2.setVisible(true);
 	    	}
 	    }// end inner class Confirmar_RHListener
