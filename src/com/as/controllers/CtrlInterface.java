@@ -39,14 +39,15 @@ public class CtrlInterface {
 	   
 //Variables
 	   private String Sel, CiutatSel;
-	   private Integer PreuSel, PreuVol;
+	   private Integer PreuSel;
+	   private float PreuVol;
 	   private String DniClient;
 	   private String DataIni, DataFi;
 	   private Date dIni, dFi;
 	   private float PreuTotal;
 
 	   /** Constructor */
-	  public  CtrlInterface(FinestraContractarViatges ContractarViatgeView, FinestraPagament PagamentView, DomainCtrl DC2) {
+	  public  CtrlInterface(FinestraContractarViatges ContractarViatgeView, DomainCtrl DC2) {
 	    	
 		  	DC = DC2;
 		    ContractarViatgeView2 = ContractarViatgeView;
@@ -90,7 +91,7 @@ public class CtrlInterface {
 	    class Confirmar_SVListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
 	    		DniClient = SeleccioViatgeView2.get_DNI();
-	    		List<TupleCiutat>  Hotels = DC.mostraHotelsLliures(DniClient, Sel, Date dIni, Date dFi);
+	    		List<TupleCiutat>  Hotels = DC.mostraHotelsLliures(DniClient, Sel, dIni, dFi);
 	    		String[][] hot  = DC.conversion(Hotels);
 	    		if(DC.exClientNoEx(DniClient)){
 	    			SeleccioViatgeView2.setVisible(false);
@@ -100,7 +101,7 @@ public class CtrlInterface {
 	    			
 	    			AvisView2.addSurtListener(new Cancel_3Listener());
 
-	    		}else if(DC.excJaTeViatge(DniClient, dataIni, dataFi,Sel)){
+	    		}else if(DC.excJaTeViatge(DniClient, dIni, dFi,Sel)){
 
 	    			SeleccioViatgeView2.setVisible(false);
 	    			AvisView2 = new Avis("clientviatge");
@@ -109,10 +110,13 @@ public class CtrlInterface {
 	    			
 	    			AvisView2.addSurtListener(new Cancel_3Listener());
 	    		}else{
+	    			Date[] dates = SeleccioViatgeView2.get_dates();
+	    			dIni = dates[0];
+	    			dFi = dates[1];
 	    			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	    		 	String DataIni = sdf.format(dataIni);
-	    		 	String DataFi = sdf.format(dataFi);
-	    		 	PreuVol = enregistraViatge(DniClient, dataIni, dataFi, CiutatSel);
+	    		 	String DataIni = sdf.format(dIni);
+	    		 	String DataFi = sdf.format(dFi);
+	    		 	PreuVol = DC.enregistraViatge(DniClient, dIni, dFi, CiutatSel);
 	    			if(SeleccioViatgeView2.get_check()) {
 	    				SeleccioViatgeView2.setVisible(false);
 	    				ReservaHabitacioView2 = new FinestraReservaHabitacio(Sel, DataIni, DataFi, hot);
