@@ -128,6 +128,7 @@ public class CtrlInterface {
 
 	    class Confirmar_RHListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
+	    		
 	    	}
 	    }// end inner class Confirmar_RHListener
 

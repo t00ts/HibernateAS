@@ -32,6 +32,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
+import org.jdesktop.swingx.JXDatePicker;
 
 
 public class FinestraSeleccioViatge extends JFrame {
@@ -45,7 +46,7 @@ public class FinestraSeleccioViatge extends JFrame {
 	
 	/**
 	 * Launch the application.
-	 
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -64,7 +65,7 @@ public class FinestraSeleccioViatge extends JFrame {
 		});
 	}
 
-	
+	/*
 	 * Create the frame.
 	 */
 	
@@ -115,6 +116,17 @@ public class FinestraSeleccioViatge extends JFrame {
 		lblNewLabel_2.setBounds(219, 119, 83, 14);
 		contentPane.add(lblNewLabel_2);
 		
+		final JXDatePicker datePicker = new JXDatePicker(System.currentTimeMillis());
+		datePicker.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				label.setText(datePicker.getDate().toString());
+			}
+		});
+		 
+		 
+		frame.getContentPane().add(label, BorderLayout.NORTH);
+		frame.getContentPane().add(datePicker, BorderLayout.CENTER);
+		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Arial", Font.PLAIN, 12));
 		comboBox.setBounds(312, 116, 86, 20);
@@ -151,7 +163,8 @@ public class FinestraSeleccioViatge extends JFrame {
 		//Llista de ciutats amb els seus preus
 		
 		String col[] = {"Ciutat","Preu"};
-		table = new JTable(ciu,col);
+		//TODO Descomentar esto!
+		table = new JTable(/*ciu,col*/);
 		JTableHeader header = table.getTableHeader();
 		table.setCellSelectionEnabled(true);
 		
