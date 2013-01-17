@@ -1,5 +1,6 @@
 package com.as.controllers;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -36,11 +37,17 @@ public class CtrlViatge {
 		
 		Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
+    
+    	/*Query query = session.createQuery("FROM Viatge v WHERE v.primaryKey = ( ?1 , ?2 )");
+    	query.setParameter(1, dniClient);
+    	query.setParameter(2, dataIni);*/
     	
-		String hql = new StringBuilder("").append("FROM Viatge v WHERE v.viatgePrimaryKey=('").append(dniClient)
-				  .append("', ").append(dataIni).append(")").toString();
-		Query query = session.createQuery(hql);
-		Viatge res = (Viatge) query.uniqueResult();
+    	String hql = new StringBuilder("").append("FROM Viatge v WHERE v.primaryKey = ('").append(new Timestamp(dataIni.getTime())).append("', '").append(dniClient).append("')").toString();
+    
+    	System.out.println (hql);
+	
+    	Query query = session.createQuery (hql);
+    	Viatge res = (Viatge) query.uniqueResult();
 		
 		session.getTransaction().commit();
 		
