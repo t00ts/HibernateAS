@@ -51,6 +51,7 @@ public class CtrlClient {
     }
 
     public void insert (Client c) {
+    	if (c == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction ();
     	session.save (c);
@@ -58,6 +59,7 @@ public class CtrlClient {
     }
     
     public void update (Client c) {
+    	if (c == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
     	session.update(c);
@@ -65,6 +67,7 @@ public class CtrlClient {
     }
     
     public void delete (Client c) {
+    	if (c == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
     	session.delete(c);
