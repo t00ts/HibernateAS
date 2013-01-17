@@ -169,14 +169,14 @@ public class Viatge {
 		
 		return solapa;
 	}
-	public List<Hotel> mostraHotelsLliures(){
-		List<Hotel> hotels;
-		hotels = ciutat.cercaHotels(getdataInici(), dataFi);
+	public List<Tuple> mostraHotelsLliures(){//canviar a lista tuplas
+		List<Tuple> preuHotels;
+		preuHotels = ciutat.cercaHotels(getdataInici(), dataFi);
 		
-		if(hotels.isEmpty()){
+		if(preuHotels.isEmpty()){
 			//ACTIVAMOS EXC HOTELSNOLLIURES->PANTALLA AVISNOHOTELS
 		}
-		return hotels;
+		return preuHotels;
 	}
 	
 	public float reserva(Habitacio hab, Date dIni, Date dFi){

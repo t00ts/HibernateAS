@@ -68,8 +68,8 @@ public class Ciutat {
 	public void setHotels (List<Hotel> hotels) {
 		this.hotels = hotels;
 	}
-	public List<Hotel> cercaHotels(Date dIni, Date dFi){//nota comentar sobre hoteles como hacer la inheritance o ctrl
-		List<Hotel> hotelsLliures=new ArrayList<Hotel>();
+	public List<Tuple> cercaHotels(Date dIni, Date dFi){//nota comentar sobre hoteles como hacer la inheritance o ctrl
+		List<Tuple> hotelsLliures=new ArrayList<Tuple>();
 		int i=0;
 		boolean esLliure=false; //hotel amb habs lliures
 		while(i<hotels.size()){
@@ -79,7 +79,26 @@ public class Ciutat {
 															*habitacions lliures)
 															* i numHablliure(retorna el numhab d'una habitacio lliure)->definida a hotel*/
 			if(esLliure){//te habitacions lliures l'hotel
-				hotelsLliures.add(hotels.get(i));
+				Tuple tup=new Tuple();
+				Hotel hotel = hotels.get(i);
+				tup.nomCiutat=hotel.getNomCiutat();
+				tup.nomHotel=hotel.getNom();
+				tup.preu=hotel.getPreu();//AQUI TENGO Q MIRAR SI ES LOW O SUPERIOR
+				/*posible codigo
+				 * CtrlHotelSuperior chs=new CtrlHotelSuperior();
+				 * CtrlHotelLowCost chl=new CtrlHotelLowCost();
+				 * if(chs.exists(hotel.getNom(), hotel.getNomCiutat())){//es hotel superior=> precio=preciohotel+recarrec
+				 * 		hotelSup HotelSuperior=chs.get(hotel.getNom(), hotel.getNomCiutat());
+				 * 		tup.preu=hotelSup.getPreu() + hotelSup.getRecarrec();
+				 * }else if(chl.exists(hotel.getNom(), hotel.getNomCiutat()){//es hotel low cost => precio = preciohotel-descompte
+				 * 		hotelLow HotelLowCost=chl.get(hotel.getNom(), hotel.getNomCiutat());
+				 * 		tup.preu=hotelLow.getPreu() - hotelLow.getDescompte();
+				 * 
+				 * }else{//es SOLO hotel => precio = preuHotel
+				 * 		tup.preu=hotel.getPreu();
+				 * }
+				 */
+				hotelsLliures.add(tup);
 			}
 			i++;
 		}

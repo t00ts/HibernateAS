@@ -3,6 +3,7 @@
 	<name>AS2012</name>
 	<comment></comment>
 	<projects>
+		<project>Client</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

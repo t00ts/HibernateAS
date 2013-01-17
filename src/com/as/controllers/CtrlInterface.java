@@ -134,19 +134,37 @@ public class CtrlInterface {
 	    ////////////////////////////////////////////inner class SelectionListener
 	    /**  Agafa els valors seleccionats de la taula */
 	    class SelectionListener implements ListSelectionListener {
-		      public void valueChanged(ListSelectionEvent e) {
+	    	public void valueChanged(ListSelectionEvent e) {
 		    	JTable table = ReservaHabitacioView2.get_table();
 		        int[] selectedRow = table.getSelectedRows();
 		        int[] selectedColumns = table.getSelectedColumns();
 
 		        for (int i = 0; i < selectedRow.length; i++) {
-		          for (int j = 0; j < selectedColumns.length; j++) {
+		        	for (int j = 0; j < selectedColumns.length; j++) {
 		        	  HotelSel = (String) table.getValueAt(selectedRow[i], selectedColumns[j]);
 		        	  PreuSel = (Integer) table.getValueAt(selectedRow[i], selectedColumns[j+1]);
-		          }
+		        	}
 		        }
-		      }
+	    	}
 
-		    }// end inner class SelectionListener
+	    }// end inner class SelectionListener
+	    
+	    /** Confirma el pagament amb el servei corresponent */
+	    
+	    class SelectionListener implements ListSelectionListener {
+	    	public void valueChanged(ListSelectionEvent e) {
+		    	JTable table = ReservaHabitacioView2.get_table();
+		        int[] selectedRow = table.getSelectedRows();
+		        int[] selectedColumns = table.getSelectedColumns();
+
+		        for (int i = 0; i < selectedRow.length; i++) {
+		        	for (int j = 0; j < selectedColumns.length; j++) {
+		        	  HotelSel = (String) table.getValueAt(selectedRow[i], selectedColumns[j]);
+		        	  PreuSel = (Integer) table.getValueAt(selectedRow[i], selectedColumns[j+1]);
+		        	}
+		        }
+	    	}
+
+	    }
 	 
 }

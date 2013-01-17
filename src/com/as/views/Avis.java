@@ -32,7 +32,7 @@ public class Avis extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Avis frame = new Avis(args[0]);
+					Avis frame = new Avis("nociutats");
 					frame.setVisible(true);
 					frame.setResizable(false);
 				} catch (Exception e) {
