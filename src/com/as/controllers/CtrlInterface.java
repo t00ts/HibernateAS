@@ -17,7 +17,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.as.data.tuples.TupleCiutat;
 
-//import src.PagamentClient;
+import src.PagamentClient;
 
 
 import com.as.views.*;
@@ -39,7 +39,7 @@ public class CtrlInterface {
 	   
 //Variables
 	   private String Sel, CiutatSel;
-	   private Integer PreuSel;
+	   private Integer PreuSel, PreuVol;
 	   private String DniClient;
 	   private String DataIni, DataFi;
 
@@ -47,16 +47,10 @@ public class CtrlInterface {
 	  public  CtrlInterface(FinestraContractarViatges ContractarViatgeView, FinestraPagament PagamentView, DomainCtrl DC2) {
 	    	
 		  	DC = DC2;
-	    	
 		    ContractarViatgeView2 = ContractarViatgeView;
-	    	PagamentView2  = PagamentView;
 	        
 	        //... Add listeners to the view.
 	    	ContractarViatgeView2.addContractar_Listener(new Contractar_Listener());
-	    	
-	    //	PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
-	    	PagamentView2.addCancel_1Listener(new Cancel_1Listener());
-	    	
 	    }
 	    
 	    
@@ -116,6 +110,7 @@ public class CtrlInterface {
 	    			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	    		 	String DataIni = sdf.format(dataIni);
 	    		 	String DataFi = sdf.format(dataFi);
+	    		 	PreuVol = enregistraViatge(DNI, dataIni, dataFi, CiutatSel);
 	    			if(true/*checklistener*/) {
 	    				SeleccioViatgeView2.setVisible(false);
 	    				ReservaHabitacioView2 = new FinestraReservaHabitacio(Sel, DataIni, DataFi, hot);
@@ -125,6 +120,12 @@ public class CtrlInterface {
 	    		    	ReservaHabitacioView2.addCancel_2Listener(new Cancel_2Listener());
 		    		}else{
 		    			SeleccioViatgeView2.setVisible(false);
+		    			PagamentView2 = new PagamentView2(float PreuVol, dataIni, dataFi, Sel, DNI)
+			    		PagamentView2.setVisible(true);
+		    			PagamentView2.setResizable(false);
+		    			
+		    			PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
+		    	    	PagamentView2.addCancel_1Listener(new Cancel_1Listener());
 		    		}
 	    			CiutatSel = Sel;
 	    			Sel = null;
@@ -148,11 +149,11 @@ public class CtrlInterface {
 	    ////////////////////////////////////////////inner class Confirmar_PListener
 	    /**  Confirmar el pagament, si no hi ha cap error */
 
-	/*    class Confirmar_PListener implements ActionListener {
+	    class Confirmar_PListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
 	    		try {
 	    			//TODO numTarg y dataCad vienen de la interfaz anterior, ponerlas como privates
-		    		if (tc.pagament(numTarg, dataCad)) {
+		    		if (DC.pagament(numTarg, dataCad)) {
 		    			AvisView2 = new Avis("pagamentok");
 	                    AvisView2.setVisible(true);
 	                    AvisView2.setResizable(false);
