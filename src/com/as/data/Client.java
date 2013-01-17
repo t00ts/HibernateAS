@@ -1,5 +1,6 @@
 package com.as.data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.as.data.primarykeys.ViatgePrimaryKey;
 
@@ -34,6 +38,7 @@ public class Client {
 		this.nom = nom;
 		this.tlfn =telf;
 		this.nombreViatges = nombreViatges;
+		this.viatges = new ArrayList<Viatge>();
 	}
 	@Id
 	public String getDni() {
@@ -66,7 +71,8 @@ public class Client {
 	public void setNombreViatges(Integer nombreViatges) {
 		this.nombreViatges = nombreViatges;
 	}
-	@OneToMany(targetEntity=Viatge.class, mappedBy="client", cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch=FetchType.LAZY)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(targetEntity=Viatge.class, mappedBy="client", cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	public List<Viatge> getViatges() {
 		return viatges;
 	}
@@ -76,7 +82,6 @@ public class Client {
 	public boolean excJaTeViatge(String dniClient, Date dataIni, Date dataFi, String nomCiutat){//detecta si tiene viatges solapados
 		int i=0;
 		boolean solapat = false;
-		
 		while(i<viatges.size() && solapat==false){//miramos los viatges del client a ver si solapa alguno con el nuevo
 			solapat = viatges.get(i).viatgeSolapat(dataIni, dataFi);
 			i++;

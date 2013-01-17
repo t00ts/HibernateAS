@@ -15,6 +15,9 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @Table(name="HABITACIONS")
 public class Habitacio {
@@ -62,7 +65,8 @@ public class Habitacio {
 	public void setHotel (Hotel hotel) {
 		this.hotel = hotel;  
 	}
-	@OneToMany(targetEntity=Viatge.class, mappedBy="habitacio", cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch=FetchType.LAZY)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(targetEntity=Viatge.class, mappedBy="habitacio", cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	public List<Viatge> getViatges() {
 		return viatges;
 	}
