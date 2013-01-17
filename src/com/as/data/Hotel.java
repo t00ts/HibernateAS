@@ -18,6 +18,8 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.ForeignKey;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.as.data.primarykeys.HotelPrimaryKey;
 
@@ -84,7 +86,8 @@ public abstract class Hotel {
 	public void setPreu(float preu) {
 		this.preu = preu;
 	}
-	@OneToMany(targetEntity=Habitacio.class, mappedBy="hotel", cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch=FetchType.LAZY)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(targetEntity=Habitacio.class, mappedBy="hotel", cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	public List<Habitacio> getHabitacions() {
 		return habitacions;
 	}
