@@ -2,14 +2,12 @@ package com.as.controllers;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
 import com.as.data.Viatge;
-import com.as.data.primarykeys.ViatgePrimaryKey;
 
 public class CtrlViatge {
 
@@ -19,7 +17,7 @@ public class CtrlViatge {
     	hibernateCfg = cfg;
     }
 	
-	public List<Viatge> getAll(){
+	public ArrayList<Viatge> getAll(){
 	
 		Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
@@ -27,7 +25,9 @@ public class CtrlViatge {
     	String hql = "From Viatge v";
 		Query query = session.createQuery(hql);
 		ArrayList<Viatge> results = (ArrayList<Viatge>) query.list();
-	
+
+		session.getTransaction().commit();
+		
 		return results;
 	}
 	
@@ -42,6 +42,8 @@ public class CtrlViatge {
 		Query query = session.createQuery(hql);
 		Viatge res = (Viatge) query.uniqueResult();
 		
+		session.getTransaction().commit();
+		
 		return res;
 		
 	}
@@ -50,4 +52,24 @@ public class CtrlViatge {
 		return get(dniClient,dataIni)!=null;
 	}
 	
+    public void insert (Viatge v) {
+    	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
+    	session.beginTransaction ();
+    	session.save (v);
+    	session.getTransaction().commit();
+    }
+    
+    public void update (Viatge v) {
+    	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
+    	session.beginTransaction();
+    	session.update(v);
+    	session.getTransaction().commit();
+    }
+    
+    public void delete (Viatge v) {
+    	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
+    	session.beginTransaction();
+    	session.delete(v);
+    	session.getTransaction().commit();
+    }
 }

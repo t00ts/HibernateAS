@@ -12,6 +12,8 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.SwingConstants;
 
@@ -32,7 +34,7 @@ public class FinestraPagament extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FinestraPagament frame = new FinestraPagament();
+					FinestraPagament frame = new FinestraPagament((float) 732.40, new Date(), new Date(), 12345, new Date(), "Hotel Yuanyo", "47865234Z");
 					frame.setResizable(false);
 					frame.setVisible(true);
 					
@@ -46,7 +48,13 @@ public class FinestraPagament extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FinestraPagament() {
+	public FinestraPagament(float preuTotal, Date dataIni, Date dataFi, Integer numTarg, Date dataCad, String nomHotel, String dni) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String fechaIni = sdf.format(dataIni);
+		String fechaFi = sdf.format(dataFi);
+		String fechaCad = sdf.format(dataCad);
+		
+		
 		setTitle("Pagament");
 		setFont(new Font("Arial", Font.BOLD, 12));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,6 +84,7 @@ public class FinestraPagament extends JFrame {
 		tfcad.setFont(new Font("Arial", Font.PLAIN, 12));
 		tfcad.setHorizontalAlignment(SwingConstants.CENTER);
 		tfcad.setBounds(336, 155, 121, 22);
+		tfcad.setText(fechaCad); 
 		contentPane.add(tfcad);
 		tfcad.setColumns(10);
 		
@@ -85,6 +94,7 @@ public class FinestraPagament extends JFrame {
 		tfnumtarg.setFont(new Font("Arial", Font.PLAIN, 12));
 		tfnumtarg.setHorizontalAlignment(SwingConstants.CENTER);
 		tfnumtarg.setBounds(336, 131, 121, 22);
+		tfnumtarg.setText(numTarg.toString());
 		contentPane.add(tfnumtarg);
 		tfnumtarg.setColumns(10);
 		
@@ -94,11 +104,10 @@ public class FinestraPagament extends JFrame {
 		tfdni = new JTextField();
 		tfdni.setHorizontalAlignment(SwingConstants.CENTER);
 		tfdni.setBackground(new Color(192, 192, 192));
-		tfdni.setText("XXXXXXXX");
 		tfdni.setFont(new Font("Arial", Font.PLAIN, 12));
 		tfdni.setBounds(336, 107, 121, 22);
+		tfdni.setText(dni);
 		tfdni.setEditable(false);
-		
 		contentPane.add(tfdni);
 		tfdni.setColumns(10);
 		
@@ -116,7 +125,8 @@ public class FinestraPagament extends JFrame {
 		
 		//Label con el precio
 		
-		JLabel label_4 = new JLabel("XXX\u20AC");
+		String preut = String.valueOf(preuTotal) + " €";
+		JLabel label_4 = new JLabel(preut);
 		label_4.setFont(new Font("Arial", Font.BOLD, 12));
 		label_4.setBounds(184, 27, 46, 14);
 		contentPane.add(label_4);
@@ -128,14 +138,14 @@ public class FinestraPagament extends JFrame {
 		
 		//Label con las fechas
 		
-		JLabel label_6 = new JLabel("XX/XX/XXXX - XX/XX/XXXX");
+		JLabel label_6 = new JLabel(fechaIni + " - " + fechaFi);
 		label_6.setFont(new Font("Arial", Font.BOLD, 12));
 		label_6.setBounds(31, 110, 150, 14);
 		contentPane.add(label_6);
 		
 		//Label con el hotel
 		
-		JLabel label_7 = new JLabel("Hotel XXXXXX");
+		JLabel label_7 = new JLabel(nomHotel);
 		label_7.setFont(new Font("Arial", Font.BOLD, 12));
 		label_7.setBounds(31, 134, 150, 14);
 		contentPane.add(label_7);

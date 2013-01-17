@@ -33,10 +33,10 @@ public class Ciutat {
 	
 	public Ciutat () {}
 	
-	public Ciutat (String nom, String descripcio, float preuVol) {
+	public Ciutat (String nom, String descripcio, float d) {
 		this.nom = nom;
 		this.descripcio = descripcio;
-		this.preuVol = preuVol;
+		this.preuVol = d;
 	}
 
 	@Id

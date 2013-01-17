@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 
-import com.as.data.Data;
 
 @Embeddable
 public class ViatgePrimaryKey implements Serializable {
