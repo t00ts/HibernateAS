@@ -12,8 +12,8 @@ public class Factory {
 	private CtrlClient ctrlClient = null;
 	private CtrlHabitacio ctrlHabitacio = null;
 	private CtrlCiutat ctrlCiutat;
+	private CtrlHotel ctrlHotel;
 	/*private CtrlData ctrlData;
-    private CtrlHotel ctrlHotel;
     private CtrlHotelLowCost ctrlHotelLowCost;
     private CtrlHotelSuperior ctrlHotelSuperior;
     private CtrlViatge ctrlViatge;
@@ -29,6 +29,7 @@ public class Factory {
 	
 	public static Factory getInstance () {
 		if (Instance == null) {
+			System.out.println ("FACTORY IS NULL");
 			Instance = new Factory (hibernateCfg);
 		}
 		return Instance;
@@ -54,4 +55,7 @@ public class Factory {
 		return ctrlCiutat;
 	}
 	
+	public CtrlHotel getCtrlHotel () {
+		return ctrlHotel;
+	}
 }

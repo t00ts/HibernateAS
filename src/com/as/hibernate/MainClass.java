@@ -10,6 +10,7 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import com.as.controllers.CtrlClient;
 import com.as.controllers.CtrlHabitacio;
+import com.as.controllers.DomainCtrl;
 import com.as.controllers.Factory;
 import com.as.data.Ciutat;
 import com.as.data.Client;
@@ -48,6 +49,9 @@ public class MainClass {
 		// Construct factory
 		Factory.setConfiguration (cfg);
 		Factory factory = Factory.getInstance();
+		
+		// Call Domain controller
+		DomainCtrl domainController = new DomainCtrl (factory);
 		
 	}
 

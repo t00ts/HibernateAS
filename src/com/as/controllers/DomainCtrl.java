@@ -21,33 +21,32 @@ import com.as.data.tuples.TupleCiutat;
 //import src.PagamentClient;
 
 public class DomainCtrl {
+
+	private Factory factory = null;
 	
-	private Configuration hibernateCfg;
-	
-	public DomainCtrl(Configuration cfg){
-		this.hibernateCfg = cfg;
-		
+	public DomainCtrl (Factory f){
+		factory = f;
 	}
 	
 	public float reservaHabitacio(String dniClient, String nomHotel, String nomCiutat, Date dIni, Date dFi, float preuVol){
 		//buscamos el viatge previamente creado que tenia campos con null y se los configuramos con los parametros recibidos
 		//le calculamos una habitacion lliure y lo reservamos
-		float preuTotal=0;
-		int numHab;
-		float preuHab=0;
-		Factory f = Factory.getInstance();
-		/*
-		CtrlViatge cv = f.getCtrlViatge();//falta hacer del abel por eso da error
-		CtrlHabitacio ch=f.getCtrlHabitacio();
-		CtrlHotel chot=f.getCtrlHotel();
-		Viatge v=cv.getViatge(dniClient, dIni);
-		Hotel h=chot.get(nomHotel, nomCiutat);
-		numHab=h.numHabLliure(dIni, dFi);
-		Habitacio hab=ch.get(numHab, nomHotel, nomCiutat);
 		
-		preuHab=v.reserva(hab, dIni, dFi);
-		//en reserva los 3 valores nulls que teniamos ya tienen valor
-		 * SAVE de HAB, VIATGE
+		float preuTotal, preuHab;
+		preuTotal = preuHab =0;
+		int numHab;
+		
+		CtrlViatge cv    = factory.getCtrlViatge();
+		CtrlHabitacio ch = factory.getCtrlHabitacio();
+		CtrlHotel chot   = factory.getCtrlHotel();
+		
+		Viatge v = cv.get (dniClient, dIni);
+		Hotel h = chot.get (nomHotel, nomCiutat);
+		numHab = h.numHabLliure(dIni, dFi);
+		Habitacio hab = ch.get (numHab, nomHotel, nomCiutat);
+		
+		preuHab = v.reserva (hab, dIni, dFi);
+		/* SAVE de HAB, VIATGE
 		preuTotal=preuVol+preuHab;
 		*/
 		return preuTotal;
@@ -61,16 +60,19 @@ public class DomainCtrl {
 	}*/
 	
 	public List<TupleCiutat>  obteCiutats() {//devuelve una lista de nomciutat, preuvol
-		CtrlCiutat cc=new CtrlCiutat(hibernateCfg);
-		int i=0;
+		
+		CtrlCiutat cc = factory.getCtrlCiutat(); 
+		
+		int i = 0;
 		List<TupleCiutat> listup = new ArrayList<TupleCiutat>();
 		List<Ciutat> listCiu = cc.getAll();
 		Ciutat c;
-		while(i<listCiu.size()){//añadimos a la tupla cada ciudad de la lista
-			c=listCiu.get(i);
-			TupleCiutat t=new TupleCiutat();
-			t.nomCiutat=c.getNom();
-			t.preuVol=c.getPreuVol();
+		
+		while (i < listCiu.size()){
+			c = listCiu.get(i);
+			TupleCiutat t = new TupleCiutat();
+			t.nomCiutat = c.getNom();
+			t.preuVol = c.getPreuVol();
 			listup.add(t);
 			i++;		
 		}
@@ -82,32 +84,33 @@ public class DomainCtrl {
 	public List<Tuple>  mostraHotelsLliures(String dniClient, String nomHotel, String nomCiutat, Date dIni, Date dFi) {
 		
 		List<Tuple> preuHotels;
-		CtrlCiutat cc = new CtrlCiutat(hibernateCfg);
-		Ciutat c = cc.get(nomCiutat);//obtenemos la ciudad
-		preuHotels = c.cercaHotels(dIni, dFi);//retorna una lista de (nomhotel,precio) libres de esa ciudad.
+		CtrlCiutat cc = factory.getCtrlCiutat(); 
+		Ciutat c = cc.get (nomCiutat);//obtenemos la ciudad
+		preuHotels = c.cercaHotels (dIni, dFi);//retorna una lista de (nomhotel,precio) libres de esa ciudad.
 											
 		return preuHotels;//Teneis que comprobar si es empty, si lo es activais la pantalla no hi ha hotels!!
 		
 	}
-	public boolean exClientNoEx(String dni){//comprueba si el cliente existe, si retorna false activais la exc.
-		CtrlClient cc = new CtrlClient(hibernateCfg);
-			
+	
+	public boolean exClientNoEx (String dni){//comprueba si el cliente existe, si retorna false activais la exc.
+		CtrlClient cc = factory.getCtrlClient(); 
 		return cc.exists(dni);
 	}
+
 	public boolean excJaTeViatge(String dniClient, Date dataIni, Date dataFi, String nomCiutat){//detecta si tiene viatges solapados
 		//llamar a esta funcion antes que enregistraViatge
-		CtrlClient cc = new CtrlClient(hibernateCfg);
+		CtrlClient cc = factory.getCtrlClient();
 		Client c = cc.get(dniClient);
-		
 		return c.excJaTeViatge(dniClient, dataIni, dataFi, nomCiutat);//true si solapa, falso si todo OK. Si solapa activa exc.
 	}
+	
 	/*public float enregistraViatge(String dni, Date dataIni, Date dataFi, String nomCiutat) {//creamos el viatge y se lo pasamos a otra funcion
 		float preuVol = 0;
 		//sabemos que el cliente existe no hay solapados                                      //para que lo asocie con el cliente
-		CtrlClient ccl = new CtrlClient(hibernateCfg);
-		CtrlCiutat cc = new CtrlCiutat(hibernateCfg);
-		CtrlData cd = new CtrlData(hibernateCfg);//falta que el abel cree este ctrl
-		Data d = cd.get(dataIni);//cogemos el objeto data
+		CtrlClient ccl = factory.getCtrlClient();
+		CtrlCiutat cc = factory.getCtrlCiutat();
+		
+		// OJO! Data d = cd.get(dataIni);//cogemos el objeto data
 		Client cl = ccl.get(dni);//suponemos que el cliente existe seguro ya que antes hemos ejecutado clientNoEx
 		Ciutat c = cc.get(nomCiutat);//cogemos la ciudad
 		
@@ -120,12 +123,12 @@ public class DomainCtrl {
 	
 	public String[][] conversion( List<TupleCiutat> listuple){
 		
-		String[][] datos=new String[listuple.size()][2];
+		String[][] datos = new String[listuple.size()][2];
 		int i=0;
 		
-		while(i<listuple.size()){
-			datos[i][0]= new String(listuple.get(i).nomCiutat);
-			datos[i][1]= new String(""+listuple.get(i).preuVol);
+		while(i < listuple.size()){
+			datos[i][0] = new String(listuple.get(i).nomCiutat);
+			datos[i][1] = new String(""+listuple.get(i).preuVol);
 			
 			i++;
 		}

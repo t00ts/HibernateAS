@@ -1,23 +1,12 @@
 package com.as.controllers;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.as.data.Ciutat;
-import com.as.data.Client;
-import com.as.data.Habitacio;
 import com.as.data.Hotel;
-import com.as.data.HotelLowCost;
-import com.as.data.HotelSuperior;
-import com.as.data.Viatge;
-import com.as.data.primarykeys.HotelPrimaryKey;
-import com.as.data.primarykeys.ViatgePrimaryKey;
 
 public class CtrlHotel {
 	private Configuration hibernateCfg = null;
@@ -41,7 +30,6 @@ public class CtrlHotel {
 	}
 	
 	
-	@SuppressWarnings("deprecation")
 	public Hotel get(String nomHotel, String nomCiutat){
 		
 		Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
