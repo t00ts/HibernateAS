@@ -16,7 +16,9 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.sql.Select;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
+import com.as.controllers.CtrlCiutat;
 import com.as.controllers.CtrlClient;
+import com.as.controllers.CtrlHotel;
 import com.as.controllers.CtrlViatge;
 import com.as.controllers.DomainCtrl;
 import com.as.controllers.Factory;
@@ -130,7 +132,7 @@ public class TestTodo {
 		@SuppressWarnings("deprecation")
 		Date dIni= sdf.parse("01/01/2013");//dinici
 		Date dFi=sdf.parse("05/01/2013");//dfi
-		Date dIni2=sdf.parse("01/01/2012");
+		Date dIni2=sdf.parse("07/01/2013");
 		Date dFi2=sdf.parse("09/01/2013");//dfi
 		//session.save(bcn);
 		//session.save(pep);
@@ -138,18 +140,39 @@ public class TestTodo {
 		Factory f = Factory.getInstance();
 		DomainCtrl dm = new DomainCtrl(f);
 		CtrlClient ccl   = f.getCtrlClient();
+		CtrlHotel chot = f.getCtrlHotel();
+		CtrlCiutat cciu = f.getCtrlCiutat();
 		Client c=ccl.get(pep.getDni());
-		
-		CtrlViatge cv = f.getCtrlViatge();
-		//Viatge v = cv.get(pep.getDni(), dIni); //ERROR COMENTAR AL ABEL
-		Viatge v = new Viatge(new ViatgePrimaryKey(pep.getDni(), dIni), pep, bcn, null, dFi, null, null  );
-		List<Viatge> list = new ArrayList<Viatge>();
-		list.add(v);
-		c.setViatges(list);
+		Ciutat ci= cciu.get(bcn.getNom());
+		//Hotel h = new HotelSuperior(new HotelPrimaryKey("NH Hotel", "Barcelona"), ci, 50f, 15f );//Integer numero, String nomHotel, String nomCiutat
+		//Habitacio hab = new Habitacio (new HabitacioPrimaryKey(1, h.getNom(), h.getNomCiutat()),h);
+		//session.save(h);
+		//session.save(hab);
+		//CtrlViatge cv = f.getCtrlViatge();
+		//Hotel h=chot.get("NH Hotel", "Barcelona");
+		System.out.println("existe?===>"+chot.exists("NH Hotel", "Barcelona"));
+		//System.out.println("<========no peto====>NOMHOTEL=="+h.getNom()+"   NOMCIUTAT=="+h.getNomCiutat());
+		//System.out.println("ENREGISTRAVIATGE====>"+dm.enregistraViatge(pep.getDni(), dIni, dFi, "Barcelona"));
+		//System.out.println("Reserva Habitacio ====> "+dm.reservaHabitacio(pep.getDni(), "NH Hotel", "Barcelona", dIni, dFi, 80));
+		//System.out.println("obteciutats====> "+dm.obteCiutats().get(0).nomCiutat+" preu: "+dm.obteCiutats().get(0).preuVol);
+		//System.out.println(" mostrahotelslliures==> "+dm.mostraHotelsLliures(pep.getDni(), bcn.getNom(), dIni, dFi).get(0).preuVol);
+		//Viatge v = cv.get(pep.getDni(), dIni); //ERROR COMENTAR AL ABEL!!
+		//Viatge v = new Viatge(new ViatgePrimaryKey(pep.getDni(), dIni), pep, bcn, null, dFi, null, null  );
+		//List<Viatge> list = c.getViatges();
+		//list.add(v);
+		//c.setViatges(list);
+		//int i=0;
+		/*while (i<list.size()){
+			System.out.println("dniclient "+list.get(0).getDniClient()+" dataini: "+list.get(i).getdataInici());
+			i++;
+		}*/
 		//ccl.update(c);
 		//session.save(v);
+		//System.out.println("ENREGISTRAVIATGE====>"+dm.enregistraViatge(pep.getDni(), dIni, dFi, "Barcelona"));
+		//System.out.println("ENREGISTRAVIATGE====>"+dm.enregistraViatge(pep.getDni(), dIni2, dFi2, "Barcelona"));
+		dm.guardarCambios();
 		
-		
+		//System.out.println("viatges client  ====> "+c.getViatges().size()+"  nombreviatges:  "+c.getNombreViatges());
 		
 		//System.out.println("EXJATEVIATGE====>"+dm.excJaTeViatge(pep.getDni(), dIni2, dFi2, bcn.getNom()));
 		
@@ -171,7 +194,6 @@ public class TestTodo {
 		System.out.println ("t1: "+s[0][0]+"  "+s[0][1]+"  "+s[1][0]+"  "+s[0][1]+"  "+s[2][0]+"  "+s[2][1]+"  ");
 		*/
 		session.getTransaction().commit();
-		
 	}
 
 }

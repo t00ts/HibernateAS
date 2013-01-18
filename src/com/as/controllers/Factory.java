@@ -11,20 +11,20 @@ public class Factory {
 	private CtrlViatge ctrlViatge = null; 
 	private CtrlClient ctrlClient = null;
 	private CtrlHabitacio ctrlHabitacio = null;
-	private CtrlCiutat ctrlCiutat;
-	private CtrlHotel ctrlHotel;
+	private CtrlCiutat ctrlCiutat = null;
+	private CtrlHotel ctrlHotel = null;
 
 	private Factory (Configuration cfg) {
 		ctrlViatge = new CtrlViatge (cfg);
 		ctrlClient = new CtrlClient (cfg);
 	    ctrlHabitacio = new CtrlHabitacio (cfg);
 	    ctrlCiutat = new CtrlCiutat (cfg);
+	    ctrlHotel = new CtrlHotel (cfg);
 	}
 
 	
 	public static Factory getInstance () {
 		if (Instance == null) {
-			System.out.println ("FACTORY IS NULL");
 			Instance = new Factory (hibernateCfg);
 		}
 		return Instance;

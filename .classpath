@@ -4,6 +4,7 @@
 	<classpathentry excluding="src/" kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>
+<<<<<<< HEAD
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate3"/>
 	<classpathentry kind="lib" path="C:/Users/Ivan/Documents/GitHub/jdatepicker/lib/binding.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Ivan/Documents/GitHub/jdatepicker/lib/jdatepicker.jar"/>
@@ -18,5 +19,7 @@
 	<classpathentry kind="lib" path="C:/Users/Ivan/Documents/GitHub/jdatepicker/lib/quaqua.jar"/>
 	<classpathentry kind="lib" path="swingx-0.9.2.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Client"/>
+=======
+>>>>>>> cf048a785d56bbda98ef8048075da0d81e8b79d1
 	<classpathentry kind="output" path="bin"/>
 </classpath>
