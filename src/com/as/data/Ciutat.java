@@ -41,6 +41,7 @@ public class Ciutat {
 		this.nom = nom;
 		this.descripcio = descripcio;
 		this.preuVol = d;
+		this.hotels=new ArrayList<Hotel>();
 	}
 
 	@Id
@@ -95,6 +96,10 @@ public class Ciutat {
 		}
 		
 		return hotelsLliures;		
+	}
+	public void addHotel(Hotel h){//relaciona el hotel con la ciudad
+		
+		this.hotels.add(h);
 	}
 
 }
