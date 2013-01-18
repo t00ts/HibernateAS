@@ -106,7 +106,7 @@ public class CtrlInterface {
 	    		}else{
 	    			Date[] dates = SeleccioViatgeView2.get_dates();
 	    			
-	    			if ((dates[0] == null && dates[1] == null) || (!DC.dataOk(dates[0], dates[1]))){ // si la data no s'ha introduit o es invalida
+	    			if ((dates[0] == null || dates[1] == null) || (!DC.dataOk(dates[0], dates[1]))){ // si la data no s'ha introduit o es invalida
 	    				SeleccioViatgeView2.setVisible(false);
 		    			SeleccioViatgeView2 = new FinestraSeleccioViatge(ciu);
 		    			SeleccioViatgeView2.setVisible(true);
