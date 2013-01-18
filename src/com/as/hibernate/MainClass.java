@@ -57,7 +57,7 @@ public class MainClass {
 		// Construct factory
 		Factory.setConfiguration (cfg);
 		Factory factory = Factory.getInstance();
-	/*
+/*	
 		//CREACION DATOS COMENTAR TODO CUANDO YA ESTE INSERTADO!!!!
 		//crear clientes
 		Client pep = new Client("436453K", "Pep", "69696969", 0);
