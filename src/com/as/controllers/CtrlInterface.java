@@ -105,8 +105,8 @@ public class CtrlInterface {
 	    			AvisView2.addSurtListener(new Cancel_3Listener());
 	    		}else{
 	    			Date[] dates = SeleccioViatgeView2.get_dates();
-	    			if (dates[0] == null && dates[1] == null){
-		    			
+	    			if ((dates[0] == null && dates[1] == null) || (!DC.dataOk(dates[0], dates[1]))){
+	    				SeleccioViatgeView2.setVisible(false);
 		    			SeleccioViatgeView2 = new FinestraSeleccioViatge(ciu);
 		    			SeleccioViatgeView2.setVisible(true);
 		    			SeleccioViatgeView2.setResizable(false);
@@ -176,7 +176,7 @@ public class CtrlInterface {
 
 	    ////////////////////////////////////////////inner class Confirmar_PListener
 	    /**  Confirmar el pagament, si no hi ha cap error */
-
+/*
     class Confirmar_PListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
 	    		Integer numTarg = Integer.parseInt(PagamentView2.get_numTarg());
@@ -184,7 +184,7 @@ public class CtrlInterface {
 	    		SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
 	    		Date ddataCad = null;
 	    		try { ddataCad= sdf.parse(sdataCad); } catch (Exception exc){} 
-	    		System.out.println("NUUUMMMTARGGG " + numTarg);
+
     			String aut = DC.pagament(numTarg, ddataCad);
 	    		if (aut.equals("Autoritzat")) {
 	    			AvisView2 = new Avis("pagamentok");
@@ -204,7 +204,7 @@ public class CtrlInterface {
                     AvisView2.setResizable(false);
                     AvisView2.addSurtListener(new Cancel_1Listener());
 	    		}
-	    		System.out.println("XXXXXXXXXXXXXX" + aut);
+
 
 	    	}
 	    }// end inner class Confirmar_PListener
