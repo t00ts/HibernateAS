@@ -11,15 +11,8 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-
 import org.hibernate.cfg.Configuration;
-
-
 import com.as.data.tuples.TupleCiutat;
-
-//import src.PagamentClient;
-
-
 import com.as.views.*;
 
 
@@ -157,10 +150,12 @@ public class CtrlInterface {
 		    				PagamentView2.setVisible(true);
 		    				PagamentView2.setResizable(false);
 		    			
+
 		    				//	PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
 		    				PagamentView2.addCancel_1Listener(new Cancel_1Listener());
 		    			}
 	    			}
+
 	    		}
 	    		Sel = null;
 	    	  }
@@ -182,38 +177,37 @@ public class CtrlInterface {
 	    ////////////////////////////////////////////inner class Confirmar_PListener
 	    /**  Confirmar el pagament, si no hi ha cap error */
 
-/*    class Confirmar_PListener implements ActionListener {
+    class Confirmar_PListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
 	    		Integer numTarg = Integer.parseInt(PagamentView2.get_numTarg());
 	    		String sdataCad = PagamentView2.get_dataCad();
 	    		SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
 	    		Date ddataCad = null;
-	    		try { ddataCad= sdf.parse(sdataCad); } catch (Exception exc){}
-	    		try {	    			
-		    		if (DC.pagament(numTarg, ddataCad)) {
-		    			AvisView2 = new Avis("pagamentok");
-	                    AvisView2.setVisible(true);
-	                    AvisView2.setResizable(false);
-	                    AvisView2.addSurtListener(new Cancel_1Listener());
-		    		}
-		    		else {
-		    			AvisView2 = new Avis("pagamentnoau");
-	                    AvisView2.setVisible(true);
-	                    AvisView2.setResizable(false);
-	                    AvisView2.addSurtListener(new Cancel_1Listener());
-		    		}
+	    		try { ddataCad= sdf.parse(sdataCad); } catch (Exception exc){} 
+	    		System.out.println("NUUUMMMTARGGG " + numTarg);
+    			String aut = DC.pagament(numTarg, ddataCad);
+	    		if (aut.equals("Autoritzat")) {
+	    			AvisView2 = new Avis("pagamentok");
+                    AvisView2.setVisible(true);
+                    AvisView2.setResizable(false);
+                    AvisView2.addSurtListener(new Cancel_1Listener());
 	    		}
-	    		catch (Exception ex) {
-	    			//TODO lanzar ventana error de servicio no disponible
+	    		else if (aut.equals("NoAutoritzat")){
+	    			AvisView2 = new Avis("pagamentnoau");
+                    AvisView2.setVisible(true);
+                    AvisView2.setResizable(false);
+                    AvisView2.addSurtListener(new Cancel_1Listener());
+	    		}
+	    		else {
 	    			AvisView2 = new Avis("pagamentnodisp");
                     AvisView2.setVisible(true);
                     AvisView2.setResizable(false);
                     AvisView2.addSurtListener(new Cancel_1Listener());
-	    			ex.printStackTrace();
 	    		}
+	    		System.out.println("XXXXXXXXXXXXXX" + aut);
 
 	    	}
-	    }// end inner class Confirmar_PListener*/
+	    }// end inner class Confirmar_PListener
 	    
 	    ////////////////////////////////////////////inner class Cancel_1Listener
 	    	/**  Surt de l'aplicacio */
