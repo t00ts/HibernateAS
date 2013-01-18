@@ -73,6 +73,7 @@ public class CtrlInterface {
 	    		}else{
 	    			ContractarViatgeView2.setVisible(false);
 	    			String[][] ciu = DC.conversion(ciutats);
+	    			System.out.println("XXXXXXXXXXX" + ciu[0][0] + ciu[0][1] + "XXXXXXX");
 	    			SeleccioViatgeView2 = new FinestraSeleccioViatge(ciu);
 	    			SeleccioViatgeView2.setVisible(true);
 	    			SeleccioViatgeView2.setResizable(false);
@@ -91,7 +92,7 @@ public class CtrlInterface {
 	    class Confirmar_SVListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
 	    		DniClient = SeleccioViatgeView2.get_DNI();
-	    		List<TupleCiutat>  Hotels = DC.mostraHotelsLliures(DniClient, Sel, dIni, dFi);
+	    		
 	    		String[][] hot  = DC.conversion(Hotels);
 	    		if(DC.exClientNoEx(DniClient)){
 	    			SeleccioViatgeView2.setVisible(false);
@@ -118,6 +119,7 @@ public class CtrlInterface {
 	    		 	String DataFi = sdf.format(dFi);
 	    		 	PreuVol = DC.enregistraViatge(DniClient, dIni, dFi, CiutatSel);
 	    			if(SeleccioViatgeView2.get_check()) {
+	    				List<TupleCiutat>  Hotels = DC.mostraHotelsLliures(DniClient, Sel, dIni, dFi);
 	    				SeleccioViatgeView2.setVisible(false);
 	    				ReservaHabitacioView2 = new FinestraReservaHabitacio(Sel, DataIni, DataFi, hot);
 	    				

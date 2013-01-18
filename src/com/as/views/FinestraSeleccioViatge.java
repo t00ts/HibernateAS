@@ -116,10 +116,7 @@ public class FinestraSeleccioViatge extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		//final JXDatePicker dp = new JXDatePicker();
-		//dp.setBounds(336, 155, 121, 22);
-		//contentPane.add(dp);
-		
+
 		//Sel.lecció de la data d'anada del viatje			
 
 		JLabel lblNewLabel_2 = new JLabel("Data Anada:");
@@ -167,7 +164,7 @@ public class FinestraSeleccioViatge extends JFrame {
 		
 		String col[] = {"Ciutat","Preu"};
 		//TODO Descomentar esto!
-		table = new JTable(/*ciu,col*/);
+		table = new JTable(ciu,col);
 		JTableHeader header = table.getTableHeader();
 		table.setCellSelectionEnabled(true);
 		
