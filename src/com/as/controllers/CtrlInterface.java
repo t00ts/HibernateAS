@@ -154,9 +154,14 @@ public class CtrlInterface {
 
 	    class Confirmar_PListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
+	    		Integer numTarg = Integer.parseInt(PagamentView2.get_numTarg());
+	    		String sdataCad = PagamentView2.get_dataCad();
+	    		SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
+	    		Date ddataCad= sdf.parse(sdataCard);
 	    		try {
 	    			//TODO numTarg y dataCad vienen de la interfaz anterior, ponerlas como privates
-		    		if (DC.pagament(numTarg, dataCad)) {
+	    			
+		    		if (DC.pagament(numTarg, ddataCad)) {
 		    			AvisView2 = new Avis("pagamentok");
 	                    AvisView2.setVisible(true);
 	                    AvisView2.setResizable(false);

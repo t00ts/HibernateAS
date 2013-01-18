@@ -5,5 +5,18 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate3"/>
+	<classpathentry kind="lib" path="C:/Users/Ivan/Documents/GitHub/jdatepicker/lib/binding.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ivan/Documents/GitHub/jdatepicker/lib/jdatepicker.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ivan/Documents/GitHub/jdatepicker/lib/jdatepicker-beans.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ivan/Documents/GitHub/jdatepicker/lib/jdatepicker-binding.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ivan/Documents/GitHub/jdatepicker/lib/jdatepicker-dbswing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ivan/Documents/GitHub/jdatepicker/lib/jdatepicker-demo.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ivan/Documents/GitHub/jdatepicker/lib/jdatepicker-i18n.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ivan/Documents/GitHub/jdatepicker/lib/jdatepicker-jclient.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ivan/Documents/GitHub/jdatepicker/lib/jlfgr-1_0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ivan/Documents/GitHub/jdatepicker/lib/looks-2.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ivan/Documents/GitHub/jdatepicker/lib/quaqua.jar"/>
+	<classpathentry kind="lib" path="swingx-0.9.2.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Client"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

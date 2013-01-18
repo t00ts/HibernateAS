@@ -14,7 +14,7 @@ import com.as.data.Viatge;
 import com.as.data.primarykeys.ViatgePrimaryKey;
 import com.as.data.tuples.TupleCiutat;
 
-//import src.PagamentClient;
+import src.PagamentClient;
 
 public class DomainCtrl {
 
@@ -62,10 +62,11 @@ public class DomainCtrl {
 	}
 	
 	/**PagamentClient es una clase del cliente que tiene el stub (adaptador) para conectar al Sv **/
-/*	public boolean pagament(Integer numTarg, Date dataCad) {
-		//TODO ver que los campos sean correctos creo
-		return PagamentClient.pagament(numTarg, dataCad);
-	}*/
+	public boolean pagament(Integer numTarg, Date dataCad) {
+		boolean autoritzat = PagamentClient.pagament(numTarg, dataCad);
+		if (autoritzat) guardarCambios();
+		return autoritzat;
+	}
 	
 	public List<TupleCiutat>  obteCiutats() {//devuelve una lista de nomciutat, preuvol
 		
