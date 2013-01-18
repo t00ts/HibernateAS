@@ -57,7 +57,9 @@ public class FinestraSeleccioViatge extends JFrame {
 	/**
 	 * Launch the application.
 */
-	/**/
+
+	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -118,12 +120,8 @@ public class FinestraSeleccioViatge extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		//final JXDatePicker dp = new JXDatePicker();
-		//dp.setBounds(336, 155, 121, 22);
-		//contentPane.add(dp);
-		
-		//Sel.lecció de la data d'anada del viatje			
 
+<<<<<<< HEAD
 		JLabel lblNewLabel_2 = new JLabel("Data Anada:");
 		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblNewLabel_2.setBounds(219, 119, 83, 14);
@@ -153,10 +151,43 @@ public class FinestraSeleccioViatge extends JFrame {
 		dF.setVisible(true);
 		dF.setBounds(312, 147, 142, 20);
 		contentPane.add(dF);
+=======
+		//Sel.lecció de la data d'anada del viatje	  
+>>>>>>> da0977bf62894e58acec32c908d14382e2556af2
+
+	 	JLabel lblNewLabel_2 = new JLabel("Data Anada:");
+	 	lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 12));
+	 	lblNewLabel_2.setBounds(219, 119, 83, 14);
+	 	contentPane.add(lblNewLabel_2);
+
+	 	dI = new JXDatePicker();
+	 	Calendar calendar = dI.getMonthView().getCalendar();
+	 	calendar.setTime(new Date());
+	 	dI.getMonthView().setLowerBound(calendar.getTime());
+	 	dI.setFormats("dd/MM/yyyy");
+	 	dI.setEditable(true);
+	 	dI.setVisible(true);
+	 	dI.setBounds(312, 116, 142, 20);
+	 	contentPane.add(dI);
+	 	 
+	 	 //Sel.lecció de la data de tornada del viatje	 
+	 	 
+	 	 
+	 	JLabel lblNewLabel_3 = new JLabel("Data Tornada:");
+	 	lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 12));
+	 	lblNewLabel_3.setBounds(219, 150, 83, 14);
+	 	contentPane.add(lblNewLabel_3);
+	 	dF = new JXDatePicker();
+	 	dF.getMonthView().setLowerBound(calendar.getTime());
+	 	dF.setFormats("dd/MM/yyyy");
+	 	dF.setEditable(true);
+	 	dF.setVisible(true);
+	 	dF.setBounds(312, 147, 142, 20);
+	 	contentPane.add(dF);
 
 
-		
-		//Botó confirmar
+	 	 
+	 	//Botó confirma
 		
 		btnNewButton = new JButton("Confirmar");
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -175,12 +206,12 @@ public class FinestraSeleccioViatge extends JFrame {
 		
 		String col[] = {"Ciutat","Preu"};
 		//TODO Descomentar esto!
-		table = new JTable(/*ciu,col*/);
+		table = new JTable(ciu,col);
 		JTableHeader header = table.getTableHeader();
 		table.setCellSelectionEnabled(true);
 		
 		cellSelectionModel = table.getSelectionModel();
-		cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		
 		header.setBackground(Color.white);
 		JScrollPane pane = new JScrollPane(table);
@@ -216,5 +247,9 @@ public class FinestraSeleccioViatge extends JFrame {
 		dat[0] = dI.getDate();
 		dat[1] = dF.getDate();
 		return dat;
+	}
+	
+	public JTable get_table() {
+		return this.table; 
 	}
 }
