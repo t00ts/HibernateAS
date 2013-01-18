@@ -87,7 +87,7 @@ public class CtrlInterface {
 	    	public void actionPerformed(ActionEvent e) {
 	    		DniClient = SeleccioViatgeView2.get_DNI();
 	    	
-	    		if(!DC.exClientNoEx(DniClient)){
+	    		if(!DC.exClientNoEx(DniClient)){ //si no hi ha clients
 	    			SeleccioViatgeView2.setVisible(false);
 	    			AvisView2 = new Avis("clientnoex");
 	    			AvisView2.setVisible(true);
@@ -95,7 +95,7 @@ public class CtrlInterface {
 	    			
 	    			AvisView2.addSurtListener(new Cancel_3Listener());
 
-	    		}else if(DC.excJaTeViatge(DniClient, dIni, dFi,Sel)){
+	    		}else if(DC.excJaTeViatge(DniClient, dIni, dFi,Sel)){ // si ja existeix el viatge
 
 	    			SeleccioViatgeView2.setVisible(false);
 	    			AvisView2 = new Avis("clientviatge");
@@ -105,7 +105,8 @@ public class CtrlInterface {
 	    			AvisView2.addSurtListener(new Cancel_3Listener());
 	    		}else{
 	    			Date[] dates = SeleccioViatgeView2.get_dates();
-	    			if ((dates[0] == null && dates[1] == null) || (!DC.dataOk(dates[0], dates[1]))){
+	    			
+	    			if ((dates[0] == null && dates[1] == null) || (!DC.dataOk(dates[0], dates[1]))){ // si la data no s'ha introduit o es invalida
 	    				SeleccioViatgeView2.setVisible(false);
 		    			SeleccioViatgeView2 = new FinestraSeleccioViatge(ciu);
 		    			SeleccioViatgeView2.setVisible(true);
@@ -124,10 +125,12 @@ public class CtrlInterface {
 	    				CiutatSel = Sel;
 
 	    				PreuVol = DC.enregistraViatge(DniClient, dIni, dFi, CiutatSel);
-	    		 		if(SeleccioViatgeView2.get_check()) {
+	    				
+	    		 		if(SeleccioViatgeView2.get_check()) { //si s'ha premut el check del checkbox
 	    		 			List<TupleCiutat>  Hotels = DC.mostraHotelsLliures(DniClient, Sel, dIni, dFi);
 	    		 			String[][] hot  = DC.conversion(Hotels);
-	    		 			if(Hotels.isEmpty()) {
+	    		 			
+	    		 			if(Hotels.isEmpty()) { // si no hi ha hotels
 	    		 				SeleccioViatgeView2.setVisible(false);
 	    						AvisView2 = new Avis("nohotels");
 	    	    				AvisView2.setVisible(true);
@@ -151,7 +154,7 @@ public class CtrlInterface {
 		    				PagamentView2.setResizable(false);
 		    			
 
-		    				//	PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
+		    				PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
 		    				PagamentView2.addCancel_1Listener(new Cancel_1Listener());
 		    			}
 	    			}
@@ -176,7 +179,7 @@ public class CtrlInterface {
 
 	    ////////////////////////////////////////////inner class Confirmar_PListener
 	    /**  Confirmar el pagament, si no hi ha cap error */
-/*
+
     class Confirmar_PListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
 	    		Integer numTarg = Integer.parseInt(PagamentView2.get_numTarg());
@@ -228,7 +231,7 @@ public class CtrlInterface {
 	    		PagamentView2.setVisible(true);
 	    		PagamentView2.setResizable(false);
 	    		
-//	    		PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
+	    		PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
     	    	PagamentView2.addCancel_1Listener(new Cancel_1Listener());
 	    	}
 	    }// end inner class Cancel_2Listener
@@ -243,7 +246,7 @@ public class CtrlInterface {
 	    		PagamentView2.setVisible(true);
 	    		PagamentView2.setResizable(false);
 	    		
-//	    		PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
+	    		PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
     	    	PagamentView2.addCancel_1Listener(new Cancel_1Listener());
 	    	}
 	    }// end inner class Cancel_2Listener_v2
