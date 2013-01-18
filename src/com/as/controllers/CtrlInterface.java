@@ -169,7 +169,6 @@ public class CtrlInterface {
 	    		SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
 	    		Date ddataCad = null;
 	    		try { ddataCad= sdf.parse(sdataCad); } catch (Exception exc){} 
-	    		System.out.println("NUUUMMMTARGGG " + numTarg);
     			String aut = DC.pagament(numTarg, ddataCad);
 	    		if (aut.equals("Autoritzat")) {
 	    			AvisView2 = new Avis("pagamentok");
@@ -189,7 +188,6 @@ public class CtrlInterface {
                     AvisView2.setResizable(false);
                     AvisView2.addSurtListener(new Cancel_1Listener());
 	    		}
-	    		System.out.println("XXXXXXXXXXXXXX" + aut);
 
 	    	}
 	    }// end inner class Confirmar_PListener
