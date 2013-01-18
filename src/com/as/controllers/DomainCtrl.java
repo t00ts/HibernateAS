@@ -2,6 +2,9 @@ package com.as.controllers;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import ws.PagamentClient;
+
 import com.as.controllers.CtrlCiutat;
 import com.as.controllers.CtrlClient;
 import com.as.controllers.CtrlHotel;
@@ -13,8 +16,6 @@ import com.as.data.Hotel;
 import com.as.data.Viatge;
 import com.as.data.primarykeys.ViatgePrimaryKey;
 import com.as.data.tuples.TupleCiutat;
-
-import src.PagamentClient;
 
 public class DomainCtrl {
 
