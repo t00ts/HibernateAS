@@ -37,6 +37,7 @@ public class FinestraContractarViatges extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -70,10 +71,7 @@ public class FinestraContractarViatges extends JFrame {
 		
 		btnNewButton = new JButton("Contractar viatge");
 		btnNewButton.setActionCommand("Contractar");
-		btnNewButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            }
-        });
+
 
 		btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.setBounds(175, 222, 154, 35);
