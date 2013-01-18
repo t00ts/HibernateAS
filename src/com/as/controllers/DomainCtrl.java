@@ -14,7 +14,7 @@ import com.as.data.Viatge;
 import com.as.data.primarykeys.ViatgePrimaryKey;
 import com.as.data.tuples.TupleCiutat;
 
-import src.PagamentClient;
+//import src.PagamentClient;
 
 public class DomainCtrl {
 
@@ -50,10 +50,7 @@ public class DomainCtrl {
 		
 		Viatge v = this.viatge;
 		Hotel h = chot.get (nomHotel, nomCiutat);
-		System.out.println("<========no peto====>NOMHOTEL=="+h.getNom()+"   NOMCIUTAT=="+h.getNomCiutat()+" PREU: "+h.calcularPreu());
-		
 		numHab = h.numHabLliure(dIni, dFi);
-		System.out.println("<========he petado!!====>  NUMHAB: "+numHab+" NOMHOTEL: "+nomHotel+" NOMCIUTAT: "+nomCiutat);
 		Habitacio hab = ch.get (numHab, nomHotel, nomCiutat);
 		preuHab = v.reserva (hab, dIni, dFi);
 		preuTotal=preuVol+preuHab;
@@ -65,11 +62,11 @@ public class DomainCtrl {
 	}
 	
 	/**PagamentClient es una clase del cliente que tiene el stub (adaptador) para conectar al Sv **/
-	public boolean pagament(Integer numTarg, Date dataCad) {
+	/*public boolean pagament(Integer numTarg, Date dataCad) {
 		boolean autoritzat = PagamentClient.pagament(numTarg, dataCad);
 		if (autoritzat) guardarCambios();
 		return autoritzat;
-	}
+	}*/
 	
 	public List<TupleCiutat>  obteCiutats() {//devuelve una lista de nomciutat, preuvol de las ciudades del sistema
 		

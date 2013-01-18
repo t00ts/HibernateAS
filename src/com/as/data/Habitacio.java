@@ -97,7 +97,7 @@ public class Habitacio {
 		if(viatges.size()==0){//no te viatges
 			return true;
 		}else{
-			while(i<viatges.size() && solapat==false){//buscamos de todos los viatges de esta habitacion si hay alguno q solape
+			while(i<viatges.size() && solapat==false){//buscamos de todos los viatges de esta habitacion q ninguno solape entonces estara libre
 				Viatge v=viatges.get(i);
 				solapat=v.viatgeSolapat(dIni, dFi);
 				i++;
@@ -105,8 +105,7 @@ public class Habitacio {
 			
 		}
 			
-	
-		return solapat;
+		return solapat==false;//si solapat==false significa que todos los viatges para esta habitacion ninguno SOLAPA con el nuevo
 		
 	}
 	public float reserva(Viatge v){

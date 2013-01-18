@@ -33,13 +33,11 @@ import javax.swing.*;
 import javax.swing.table.*;
 
 import org.jdesktop.swingx.JXDatePicker;
-import org.jdesktop.swingx.JXMonthView;
 
 
 import java.awt.*;
 
 import java.lang.Object;
-import java.util.Calendar;
 import java.util.Date;
 
 
@@ -130,12 +128,9 @@ public class FinestraSeleccioViatge extends JFrame {
 		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblNewLabel_2.setBounds(219, 119, 83, 14);
 		contentPane.add(lblNewLabel_2);
-			
+		
 		dI = new JXDatePicker();
-		Calendar calendar = dI.getMonthView().getCalendar();
-		calendar.setTime(new Date());
-		dI.getMonthView().setLowerBound(calendar.getTime());
-		dI.setFormats("dd/MM/yyy");
+		
 		dI.setEditable(true);
 		dI.setVisible(true);
 		dI.setBounds(312, 116, 142, 20);
