@@ -63,7 +63,6 @@ public class DomainCtrl {
 	
 	/**PagamentClient es una clase del cliente que tiene el stub (adaptador) para conectar al Sv */
 	public String pagament(Integer numTarg, Date dataCad) {
-		System.out.println("XXXXXXXXXXX" + dataCad);
 		String autoritzat = PagamentClient.pagament(numTarg, dataCad);
 		if (autoritzat == "Autoritzat") guardarCambios();
 		return autoritzat;
