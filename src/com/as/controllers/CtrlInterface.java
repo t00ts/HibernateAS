@@ -174,6 +174,9 @@ public class CtrlInterface {
 	    		PagamentView2 = new FinestraPagament(PreuTotal, DataIni, DataFi, Sel, DniClient);
 	    		PagamentView2.setResizable(false);
 	    		PagamentView2.setVisible(true);
+	    		
+				PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
+				PagamentView2.addCancel_1Listener(new Cancel_1Listener());
 	    	}
 	    }// end inner class Confirmar_RHListener
 
