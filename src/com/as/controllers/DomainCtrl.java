@@ -150,7 +150,7 @@ public class DomainCtrl {
 	public boolean dataOk(Date dIni, Date dFi){
 		
 		
-		return dIni.before(dFi);//true si dini anterior a dfi
+		return dIni.before(dFi) || (dIni.compareTo(dFi)==0);//true si dini anterior a dfi o dini==dfi
 	}
 	
 	//Faltan algunas funciones de error, pero ya se pondran.
