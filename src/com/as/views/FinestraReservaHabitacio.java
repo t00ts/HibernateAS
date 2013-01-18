@@ -113,7 +113,7 @@ public class FinestraReservaHabitacio extends JFrame {
 		label_2.setBounds(36, 125, 72, 23);
 		contentPane.add(label_2);
 		
-		JLabel label_4 = new JLabel("dataIni"); //crida a funció del controlador
+		JLabel label_4 = new JLabel(dataIni); //crida a funció del controlador
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
 		label_4.setFont(new Font("Arial", Font.BOLD, 12));
 		label_4.setBounds(159, 125, 89, 23);
@@ -127,7 +127,7 @@ public class FinestraReservaHabitacio extends JFrame {
 		contentPane.add(label_3);
 		
 		
-		JLabel label_5 = new JLabel("dataFi"); //crida a funció del controlador
+		JLabel label_5 = new JLabel(dataFi); //crida a funció del controlador
 		label_5.setHorizontalAlignment(SwingConstants.CENTER);
 		label_5.setFont(new Font("Arial", Font.BOLD, 12));
 		label_5.setBounds(159, 147, 89, 23);
