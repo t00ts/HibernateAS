@@ -33,6 +33,7 @@ import javax.swing.*;
 import javax.swing.table.*;
 
 import org.jdesktop.swingx.JXDatePicker;
+import org.jdesktop.swingx.JXMonthView;
 
 
 import java.awt.*;
@@ -120,7 +121,39 @@ public class FinestraSeleccioViatge extends JFrame {
 		textField.setColumns(10);
 		
 
+<<<<<<< HEAD
+		JLabel lblNewLabel_2 = new JLabel("Data Anada:");
+		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblNewLabel_2.setBounds(219, 119, 83, 14);
+		contentPane.add(lblNewLabel_2);
+
+		dI = new JXDatePicker();
+		Calendar calendar = dI.getMonthView().getCalendar();
+		calendar.setTime(new Date());
+		dI.getMonthView().setLowerBound(calendar.getTime());
+		dI.setFormats("dd/MM/yyyy");
+		dI.setEditable(true);
+		dI.setVisible(true);
+		dI.setBounds(312, 116, 142, 20);
+		contentPane.add(dI);
+		
+		//Sel.lecció de la data de tornada del viatje		
+		
+		
+		JLabel lblNewLabel_3 = new JLabel("Data Tornada:");
+		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblNewLabel_3.setBounds(219, 150, 83, 14);
+		contentPane.add(lblNewLabel_3);
+		dF = new JXDatePicker();
+		dF.getMonthView().setLowerBound(calendar.getTime());
+		dF.setFormats("dd/MM/yyyy");
+		dF.setEditable(true);
+		dF.setVisible(true);
+		dF.setBounds(312, 147, 142, 20);
+		contentPane.add(dF);
+=======
 		//Sel.lecció de la data d'anada del viatje	  
+>>>>>>> da0977bf62894e58acec32c908d14382e2556af2
 
 	 	JLabel lblNewLabel_2 = new JLabel("Data Anada:");
 	 	lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 12));

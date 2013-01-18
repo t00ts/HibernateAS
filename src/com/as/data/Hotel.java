@@ -1,5 +1,6 @@
 package com.as.data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,6 +46,7 @@ public abstract class Hotel {
 		this.hotelPrimaryKey = primaryKey;
 	    this.preu = preu;
 	    this.ciutat=c;
+	    this.habitacions=new ArrayList<Habitacio>();
 	}
 	
 	

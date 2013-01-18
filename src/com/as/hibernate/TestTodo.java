@@ -127,7 +127,7 @@ public class TestTodo {
 		//DomainCtrl dm = new DomainCtrl(cfg);
 		//DATA
 		
-		Ciutat bcn = new Ciutat ("Barcelona", "La millor ciutat del mon", 80.0f);
+		
 		Client pep = new Client("436453K", "Pep", "54645456", 0);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		@SuppressWarnings("deprecation")
@@ -143,10 +143,11 @@ public class TestTodo {
 		CtrlClient ccl   = f.getCtrlClient();
 		CtrlHotel chot = f.getCtrlHotel();
 		CtrlCiutat cciu = f.getCtrlCiutat();
+		//cciu.insert(bcn);
 		CtrlHabitacio ch = f.getCtrlHabitacio();
 		Habitacio hab = ch.get (1, "NH Hotel", "Barcelona");
 		Client c=ccl.get(pep.getDni());
-		Ciutat ci= cciu.get(bcn.getNom());
+		//Ciutat ci= cciu.get(bcn.getNom());
 		//System.out.println("<========ES LLIURE?: "+hab.habEsLliure(dIni, dFi)+" SIZE: "+hab.getViatges().get(0).viatgeSolapat(dIni, dFi));
 		//System.out.println("<========he petado!!====>  NUMHAB: "+hab.getNumero()+" NOMHOTEL: "+hab.getNomHotel()+" NOMCIUTAT: "+hab.getNomCiutat());
 		//Hotel h = new HotelSuperior(new HotelPrimaryKey("NH Hotel", "Barcelona"), ci, 50f, 15f );//Integer numero, String nomHotel, String nomCiutat
@@ -159,7 +160,7 @@ public class TestTodo {
 		//System.out.println("<========no peto====>NOMHOTEL=="+h.getNom()+"   NOMCIUTAT=="+h.getNomCiutat());
 		//System.out.println("ENREGISTRAVIATGE====>"+dm.enregistraViatge(pep.getDni(), dIni, dIni, "Barcelona"));
 		//System.out.println("Reserva Habitacio ====> "+dm.reservaHabitacio(pep.getDni(), "NH Hotel", "Barcelona", dIni, dFi, 80));
-		//System.out.println("obteciutats====> "+dm.obteCiutats().get(0).nomCiutat+" preu: "+dm.obteCiutats().get(0).preuVol);
+		System.out.println("obteciutats====> "+dm.obteCiutats().get(0).nomCiutat+" preu: "+dm.obteCiutats().get(0).preuVol);
 		//System.out.println(" mostrahotelslliures==> VACIA? "+dm.mostraHotelsLliures(pep.getDni(), bcn.getNom(), dIni, dFi).isEmpty());
 		//Viatge v = cv.get("436453K", dIni); 
 		//System.out.println("existe?===>"+cv.exists("436453K", dIni));
@@ -177,7 +178,7 @@ public class TestTodo {
 		//session.save(v);
 		//System.out.println("ENREGISTRAVIATGE====>"+dm.enregistraViatge(pep.getDni(), dIni, dFi, "Barcelona"));
 		//System.out.println("ENREGISTRAVIATGE====>"+dm.enregistraViatge(pep.getDni(), dIni2, dFi2, "Barcelona"));
-		dm.guardarCambios();
+		//dm.guardarCambios();
 		
 		//System.out.println("viatges client  ====> "+c.getViatges().size()+"  nombreviatges:  "+c.getNombreViatges());
 		
