@@ -46,7 +46,6 @@ public class MainClass {
 		// Create tables
 		// TODO: Ver como gestionamos la creacion o no de las tablas
 		//new SchemaExport (cfg).create (true, true);
-		
 		// Construct factory
 		Factory.setConfiguration (cfg);
 		Factory factory = Factory.getInstance();

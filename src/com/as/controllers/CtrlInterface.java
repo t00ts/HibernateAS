@@ -17,7 +17,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.as.data.tuples.TupleCiutat;
 
-import src.PagamentClient;
+//import src.PagamentClient;
 
 
 import com.as.views.*;
@@ -92,9 +92,8 @@ public class CtrlInterface {
 	    class Confirmar_SVListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
 	    		DniClient = SeleccioViatgeView2.get_DNI();
-	    		
-	    		String[][] hot  = DC.conversion(Hotels);
-	    		if(DC.exClientNoEx(DniClient)){
+	    	
+	    		if(!DC.exClientNoEx(DniClient)){
 	    			SeleccioViatgeView2.setVisible(false);
 	    			AvisView2 = new Avis("clientnoex");
 	    			AvisView2.setVisible(true);
@@ -117,13 +116,16 @@ public class CtrlInterface {
 	    			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	    		 	String DataIni = sdf.format(dIni);
 	    		 	String DataFi = sdf.format(dFi);
+	    		 	CiutatSel = Sel;
+	    		 	System.out.println("<===========" + " pene " + DniClient + dIni + dFi + Sel);
 	    		 	PreuVol = DC.enregistraViatge(DniClient, dIni, dFi, CiutatSel);
 	    			if(SeleccioViatgeView2.get_check()) {
 	    				List<TupleCiutat>  Hotels = DC.mostraHotelsLliures(DniClient, Sel, dIni, dFi);
+	    				String[][] hot  = DC.conversion(Hotels);
 	    				SeleccioViatgeView2.setVisible(false);
 	    				ReservaHabitacioView2 = new FinestraReservaHabitacio(Sel, DataIni, DataFi, hot);
 	    				
-	    				ReservaHabitacioView2.addSelectionListener(new SelectionListener());
+	    				ReservaHabitacioView2.addSelectionListener(new SelectionListenerRH());
 	    		    	ReservaHabitacioView2.addConfirmar_RHListener(new Confirmar_RHListener());
 	    		    	ReservaHabitacioView2.addCancel_2Listener(new Cancel_2Listener());
 		    		}else{
@@ -132,13 +134,11 @@ public class CtrlInterface {
 			    		PagamentView2.setVisible(true);
 		    			PagamentView2.setResizable(false);
 		    			
-		    			PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
+		    		//	PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
 		    	    	PagamentView2.addCancel_1Listener(new Cancel_1Listener());
 		    		}
-	    			CiutatSel = Sel;
-	    			Sel = null;
 	    		}
-
+	    		Sel = null;
 	    	  }
 	    	}// end inner class Confirmar_SVListener
 	    
@@ -158,7 +158,7 @@ public class CtrlInterface {
 	    ////////////////////////////////////////////inner class Confirmar_PListener
 	    /**  Confirmar el pagament, si no hi ha cap error */
 
-	    class Confirmar_PListener implements ActionListener {
+/*    class Confirmar_PListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
 	    		Integer numTarg = Integer.parseInt(PagamentView2.get_numTarg());
 	    		String sdataCad = PagamentView2.get_dataCad();
@@ -216,6 +216,7 @@ public class CtrlInterface {
 	    /**  Va la finestra de Sel.leccioviatge desde avis */
 	    class Cancel_3Listener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
+	    		AvisView2.setVisible(false);
 	    		SeleccioViatgeView2.setVisible(true);
 	    		SeleccioViatgeView2.setResizable(false);
 	    	}
@@ -227,6 +228,7 @@ public class CtrlInterface {
 
 	    class Cancel_4Listener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
+	    		AvisView2.setVisible(false);
 	    		PagamentView2.setVisible(true);
 	    		PagamentView2.setResizable(false);
 	    	}
@@ -236,18 +238,36 @@ public class CtrlInterface {
 	    /**  Agafa els valors seleccionats de la taula */
 	    class SelectionListener implements ListSelectionListener {
 	    	public void valueChanged(ListSelectionEvent e) {
+		    	JTable table = SeleccioViatgeView2.get_table();
+		        int[] selectedRow = table.getSelectedRows();
+
+		        for (int i = 0; i < selectedRow.length; i++) {
+
+		        	  Sel = (String) table.getValueAt(selectedRow[i], 0);
+		        	  PreuSel = (Integer) table.getValueAt(selectedRow[i], table.getSelectedRows().length + 1);
+System.out.println("<============== pene" + PreuSel);
+		        }
+	    	}
+
+	    }// end inner class SelectionListener
+	    
+	    
+	    ////////////////////////////////////////////inner class SelectionListenerRH
+	    /**  Agafa els valors seleccionats de la taula */
+	    class SelectionListenerRH implements ListSelectionListener {
+	    	public void valueChanged(ListSelectionEvent e) {
 		    	JTable table = ReservaHabitacioView2.get_table();
 		        int[] selectedRow = table.getSelectedRows();
 		        int[] selectedColumns = table.getSelectedColumns();
 
 		        for (int i = 0; i < selectedRow.length; i++) {
-		        	for (int j = 0; j < selectedColumns.length; j++) {
-		        	  Sel = (String) table.getValueAt(selectedRow[i], selectedColumns[j]);
-		        	  PreuSel = (Integer) table.getValueAt(selectedRow[i], selectedColumns[j+1]);
-		        	}
+
+		        	  Sel = (String) table.getValueAt(selectedRow[i], selectedColumns[0]);
+		        	  PreuSel = (Integer) table.getValueAt(selectedRow[i], selectedColumns[1]);
+
 		        }
 	    	}
 
-	    }// end inner class SelectionListener
+	    }// end inner class SelectionListenerRH
 
 }
