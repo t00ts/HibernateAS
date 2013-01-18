@@ -79,25 +79,14 @@ public class FinestraPagament extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		//Data de caducitat de la targeta del client
-		final JXDatePicker dp = new JXDatePicker();
-		dp.setBounds(336, 155, 121, 22);
-		contentPane.add(dp);
-		/*
-		final JDatePicker DatePicker = new JDatePicker();
-		  DatePicker.setEmptySelectionText("Always");
-		  DatePicker.setEditable(true);
-		  DatePicker.setSelectedDate(null);
-		  DatePicker.setVisible(true);
-		  DatePicker.setBounds(336, 155, 121, 22);
-		  contentPane.add(DatePicker);
-		*//*
+
 		tfcad = new JTextField();
 		tfcad.setFont(new Font("Arial", Font.PLAIN, 12));
 		tfcad.setHorizontalAlignment(SwingConstants.CENTER);
 		tfcad.setBounds(336, 155, 121, 22);
 		contentPane.add(tfcad);
 		tfcad.setColumns(10);
-		*/
+
 		//Numero de la targeta del client
 		
 		tfnumtarg = new JTextField();
