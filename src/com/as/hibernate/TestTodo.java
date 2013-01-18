@@ -147,7 +147,8 @@ public class TestTodo {
 		Habitacio hab = ch.get (1, "NH Hotel", "Barcelona");
 		Client c=ccl.get(pep.getDni());
 		Ciutat ci= cciu.get(bcn.getNom());
-		System.out.println("<========he petado!!====>  NUMHAB: "+hab.getNumero()+" NOMHOTEL: "+hab.getNomHotel()+" NOMCIUTAT: "+hab.getNomCiutat());
+		//System.out.println("<========ES LLIURE?: "+hab.habEsLliure(dIni, dFi)+" SIZE: "+hab.getViatges().get(0).viatgeSolapat(dIni, dFi));
+		//System.out.println("<========he petado!!====>  NUMHAB: "+hab.getNumero()+" NOMHOTEL: "+hab.getNomHotel()+" NOMCIUTAT: "+hab.getNomCiutat());
 		//Hotel h = new HotelSuperior(new HotelPrimaryKey("NH Hotel", "Barcelona"), ci, 50f, 15f );//Integer numero, String nomHotel, String nomCiutat
 		//Habitacio hab = new Habitacio (new HabitacioPrimaryKey(1, h.getNom(), h.getNomCiutat()),h);
 		//session.save(h);
@@ -156,10 +157,10 @@ public class TestTodo {
 		//Hotel h=chot.get("NH Hotel", "Barcelona");
 		//System.out.println("existe?===>"+chot.exists("NH Hotel", "Barcelona"));
 		//System.out.println("<========no peto====>NOMHOTEL=="+h.getNom()+"   NOMCIUTAT=="+h.getNomCiutat());
-		//System.out.println("ENREGISTRAVIATGE====>"+dm.enregistraViatge(pep.getDni(), dIni, dFi, "Barcelona"));
+		//System.out.println("ENREGISTRAVIATGE====>"+dm.enregistraViatge(pep.getDni(), dIni, dIni, "Barcelona"));
 		//System.out.println("Reserva Habitacio ====> "+dm.reservaHabitacio(pep.getDni(), "NH Hotel", "Barcelona", dIni, dFi, 80));
 		//System.out.println("obteciutats====> "+dm.obteCiutats().get(0).nomCiutat+" preu: "+dm.obteCiutats().get(0).preuVol);
-		//System.out.println(" mostrahotelslliures==> "+dm.mostraHotelsLliures(pep.getDni(), bcn.getNom(), dIni, dFi).get(0).preuVol);
+		//System.out.println(" mostrahotelslliures==> VACIA? "+dm.mostraHotelsLliures(pep.getDni(), bcn.getNom(), dIni, dFi).isEmpty());
 		//Viatge v = cv.get("436453K", dIni); 
 		//System.out.println("existe?===>"+cv.exists("436453K", dIni));
 		//System.out.println("VIATGE ===> "+v.getDniClient()+ " CIUTAT: "+v.getNomCiutat()+" DATAINI: "+v.getdataInici()+" DATAFI: "+v.getDataFi());
