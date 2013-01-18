@@ -3,8 +3,13 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry excluding="src/" kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< HEAD
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Client"/>
 	<classpathentry kind="lib" path="swingx-0.9.2.jar"/>
+=======
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate3"/>
+>>>>>>> 6d712dc22104954b19e8906621a5866b1a0df538
 	<classpathentry kind="output" path="bin"/>
 </classpath>
