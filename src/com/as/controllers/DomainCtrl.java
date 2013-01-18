@@ -20,15 +20,18 @@ import com.as.data.tuples.TupleCiutat;
 public class DomainCtrl {
 
 	private Factory factory = null;
-	private Client client = null;
-	private Habitacio habitacio = null;
-	private Viatge viatge = null;
+	//Parametros necesarios para poder guardar los cambios cuando recibamos confirmacion de pagament
+	//ya que necesitamos tener los objetos modificados en algun lugar para poder hacer su insert/update
+	private Client client = null; 
+	private Habitacio habitacio = null; 
+	private Viatge viatge = null; 
 	
 	public DomainCtrl (Factory f){
 		factory = f;
 	}
 	
-	public void guardarCambios(){//guarda cambios en la db
+	public void guardarCambios(){//guarda cambios permanentemente en la db(inserts/updates) se llamara
+		//cuando se haya confirmado el pagament
 		CtrlClient ccl   = factory.getCtrlClient();
 		CtrlHabitacio chab   = factory.getCtrlHabitacio();
 		CtrlViatge cv   = factory.getCtrlViatge();
@@ -51,14 +54,15 @@ public class DomainCtrl {
 		
 		Viatge v = this.viatge;
 		Hotel h = chot.get (nomHotel, nomCiutat);
-		numHab = h.numHabLliure(dIni, dFi);
+		numHab = h.numHabLliure(dIni, dFi);//nos da una habitacion libre (sabemos que habra pq la llamada de esta funcion es posterior
+		//a la comprobacion de hi ha habitacions lliures
 		Habitacio hab = ch.get (numHab, nomHotel, nomCiutat);
-		preuHab = v.reserva (hab, dIni, dFi);
-		preuTotal=preuVol+preuHab;
-		//Guardamos el objeto habitacion ya q lohemos asociado con el objeto viatge
-		this.habitacio=hab;
+		preuHab = v.reserva (hab, dIni, dFi);//aqui relacionaremos viatge con habitacio
+		preuTotal=preuVol+preuHab;//por el patron plantilla preuhab valdra correctamente segun sea hotellowcost, superior o solo hotel
+		//Guardamos el objeto habitacion ya q lo hemos asociado con el objeto viatge
+		this.habitacio=hab;//y necesitaremos hacer un update de sus cambios(relaciones basicamente)
 		
-		return preuTotal;
+		return preuTotal;//
 		
 	}
 	
@@ -71,7 +75,7 @@ public class DomainCtrl {
 	
 	
 	
-	public List<TupleCiutat>  obteCiutats() {//devuelve una lista de nomciutat, preuvol de las ciudades del sistema
+	public List<TupleCiutat>  obteCiutats() {//devuelve una lista de <nomciutat, preuvol> de las ciudades del sistema
 		
 		CtrlCiutat cc = factory.getCtrlCiutat(); 
 		
@@ -80,31 +84,31 @@ public class DomainCtrl {
 		List<Ciutat> listCiu = cc.getAll();
 		Ciutat c;
 		
-		while (i < listCiu.size()){
+		while (i < listCiu.size()){//rellenamos la lista con ciudades
 			c = listCiu.get(i);
 			TupleCiutat t = new TupleCiutat();
 			t.nomCiutat = c.getNom();
 			t.preuVol = c.getPreuVol();
 			listup.add(t);
 			i++;		
-		}//funsiona man
+		}
 		
-		return listup;//Si es empty activar exc no hi ha ciutats!!!!
+		return listup;//si listup esta vacia el llamador de esta funcion se encargara de saltar la exc no hi ha ciutats
 		
 	}
 	
-	public List<TupleCiutat>  mostraHotelsLliures(String dniClient, String nomCiutat, Date dIni, Date dFi) {//devuelve (nombreHotel,precioHotel)
-		//de los hoteles libres
+	public List<TupleCiutat>  mostraHotelsLliures(String dniClient, String nomCiutat, Date dIni, Date dFi) {
+		//devuelve lista(nombreHotel,precioHotel) de los hoteles libres de esa ciudad
 		List<TupleCiutat> preuHotels;
 		CtrlCiutat cc = factory.getCtrlCiutat(); 
 		Ciutat c = cc.get (nomCiutat);//obtenemos la ciudad
 		preuHotels = c.cercaHotels (dIni, dFi);//retorna una lista de (nomhotel,precio) libres de esa ciudad.
 											
-		return preuHotels;//Teneis que comprobar si es empty, si lo es activais la pantalla no hi ha hotels!!
+		return preuHotels;//Si preuHotels esta vacia el llamador de esta funcion activara la exc no hi ha hotels lliures.
 		
 	}//funciona 100%
 	
-	public boolean exClientNoEx (String dni){//comprueba si el cliente existe, si retorna false activais la exc.
+	public boolean exClientNoEx (String dni){//comprueba si el cliente existe, si retorna false el llamador activa la exc
 		CtrlClient cc = factory.getCtrlClient(); 
 		return cc.exists(dni);
 	}
@@ -113,7 +117,7 @@ public class DomainCtrl {
 		//llamar a esta funcion antes que enregistraViatge
 		CtrlClient cc = factory.getCtrlClient();
 		Client c = cc.get(dniClient);
-		return c.excJaTeViatge(dniClient, dataIni, dataFi, nomCiutat);//true si solapa, falso si todo OK. Si solapa activa exc.
+		return c.excJaTeViatge(dniClient, dataIni, dataFi, nomCiutat);//true si solapa, falso si todo OK. Si solapa el llamador activa exc.
 		
 	}
 	//funsiona 100%
@@ -137,7 +141,7 @@ public class DomainCtrl {
 		return preuVol;
 	}
 	
-	public String[][] conversion( List<TupleCiutat> listuple){
+	public String[][] conversion( List<TupleCiutat> listuple){//funcion especifica que necesitaba el interfaz para ponerle valor a los jtable
 		
 		String[][] datos = new String[listuple.size()][2];
 		int i=0;
@@ -150,13 +154,12 @@ public class DomainCtrl {
 		}
 		return datos;
 	}
-	public boolean dataOk(Date dIni, Date dFi){
+	public boolean dataOk(Date dIni, Date dFi){//comprueba q la data ini sea anterior o igual a la dfi
 		
 		
 		return dIni.before(dFi) || (dIni.compareTo(dFi)==0);//true si dini anterior a dfi o dini==dfi
 	}
 	
-	//Faltan algunas funciones de error, pero ya se pondran.
 }
 
 
