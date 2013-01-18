@@ -119,7 +119,7 @@ public class Avis extends JFrame {
 		if (tipus == "pagamentok") lblmissGran.setForeground(new Color(50, 205, 50));
 		else lblmissGran.setForeground(new Color(255, 0, 0));
 		lblmissGran.setFont(new Font("Arial", Font.BOLD, 20));
-		lblmissGran.setBounds(180, 25, 245, 40);
+		lblmissGran.setBounds(180, 25, 265, 40);
 		contentPane.add(lblmissGran);
 	}
 	
