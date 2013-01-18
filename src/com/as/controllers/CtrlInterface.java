@@ -134,6 +134,7 @@ public class CtrlInterface {
 	    					ReservaHabitacioView2 = new FinestraReservaHabitacio(Sel, DataIni, DataFi, hot);
 	    				
 	    					ReservaHabitacioView2.setVisible(true);
+	    					ReservaHabitacioView2.setResizable(false);
 	    					ReservaHabitacioView2.addSelectionListener(new SelectionListenerRH());
 	    					ReservaHabitacioView2.addConfirmar_RHListener(new Confirmar_RHListener());
 	    					ReservaHabitacioView2.addCancel_2Listener(new Cancel_2Listener());
