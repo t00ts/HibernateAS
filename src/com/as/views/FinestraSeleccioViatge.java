@@ -59,7 +59,7 @@ public class FinestraSeleccioViatge extends JFrame {
 */
 
 	
-
+/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -177,7 +177,6 @@ public class FinestraSeleccioViatge extends JFrame {
 		table = new JTable(ciu,col);
 		JTableHeader header = table.getTableHeader();
 		table.setCellSelectionEnabled(true);
-		
 		cellSelectionModel = table.getSelectionModel();
 		cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		

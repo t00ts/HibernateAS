@@ -148,6 +148,11 @@ public class DomainCtrl {
 		}
 		return datos;
 	}
+	public boolean dataOk(Date dIni, Date dFi){
+		
+		
+		return dIni.before(dFi);//true si dini anterior a dfi
+	}
 	
 	//Faltan algunas funciones de error, pero ya se pondran.
 }
