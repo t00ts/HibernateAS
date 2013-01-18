@@ -112,7 +112,7 @@ public class MainClass {
 		h4.addHabitacio(hab4);
 		
 		
-		/*
+		
 		// Init Domain controller
 		DomainCtrl domainController = new DomainCtrl (factory);
 
@@ -122,7 +122,7 @@ public class MainClass {
 		
 		contractarViatgeView.setVisible(true);
 	 	contractarViatgeView.setResizable(false);
-	 	*/
+	 	
 		
 	}
 
