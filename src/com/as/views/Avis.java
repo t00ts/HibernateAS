@@ -71,37 +71,37 @@ public class Avis extends JFrame {
     //t = { nociutats, clientnoex, clientviatge, nohotels, pagamentnoau, pagamentnodisp, pagamentok }
 	private void setTipus(String t) {
 		if(t == "nociutats") {
-			avisLogo = "/res/LogoError.PNG";
+			avisLogo = "com/as/resources/LogoError.PNG";
 			missGran = "<html>No hi ha ciutats.</html>";
 			missPetit = "<html>No existeixen ciutats disponibles per fer viatges.</html>";
 		}
 		else if(t == "clientnoex") {
-			avisLogo = "/res/LogoError.PNG";
+			avisLogo = "com/as/resources/LogoError.PNG";
 			missGran = "<html>El client no existeix.</html>";
 			missPetit = "<html>No existeix un client amb aquest dni.</html>";
 		}
 		else if(t == "clientviatge") {
-			avisLogo = "/res/LogoError.PNG";
+			avisLogo = "com/as/resources/LogoError.PNG";
 			missGran = "<html>El client ja t\u00E9 un viatge.</html>";
 			missPetit = "<html>El client ja t\u00E9 un viatge contractat per <br>a un per\u00EDode solapat amb les dates <br>introdu\u00EFdes.</html>";
 		}
 		else if(t == "nohotels") {
-			avisLogo = "/res/LogoError.PNG";
+			avisLogo = "com/as/resources/LogoError.PNG";
 			missGran = "<html>No hi ha hotels lliures.</html>";
 			missPetit = "<html>No hi ha hotels disponibles per aquest viatge.</html>";
 		}
 		else if(t == "pagamentnoau") {
-			avisLogo = "/res/LogoError.PNG";
+			avisLogo = "com/as/resources/LogoError.PNG";
 			missGran = "<html>El pagament no est\u00E0 <br>autoritzat.</html>";
 			missPetit = "<html>Contacti amb el seu administrador.</html>";
 		}
 		else if(t == "pagamentnodisp") {
-			avisLogo = "/res/LogoError.PNG";
+			avisLogo = "com/as/resources/LogoError.PNG";
 			missGran = "<html>Servei de pagament <br>no disponible.</html>";
 			missPetit = "<html>Contacti amb el seu administrador.</html>";
 		}
 		else if(t == "pagamentok") {
-			avisLogo = "/res/LogoOk.PNG";
+			avisLogo = "com/as/resources/LogoOk.PNG";
 			missGran = "<html>El pagament s'ha realitzat <br>correctament.</html>";
 			missPetit = "<html>Que gaudexi del viatge!</html>";
 		}
@@ -109,7 +109,7 @@ public class Avis extends JFrame {
 		
 	private void setLogo() {
 		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(Avis.class.getResource(avisLogo)));
+		lblLogo.setIcon(new ImageIcon(ClassLoader.getSystemResource (avisLogo)));
 		lblLogo.setBounds(10, 24, 145, 94);
 		contentPane.add(lblLogo);
 	}

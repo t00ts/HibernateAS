@@ -27,6 +27,7 @@ import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.net.URL;
 
 
 public class FinestraContractarViatges extends JFrame {
@@ -83,7 +84,7 @@ public class FinestraContractarViatges extends JFrame {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(155, 14, 181, 99);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon(FinestraContractarViatges.class.getResource("/res/Logo.PNG")));
+		lblNewLabel.setIcon(new ImageIcon(ClassLoader.getSystemResource ("com/as/resources/Logo.PNG")));
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("<html>Benvinguts a <font color='green'>Traveling!</font><br>Per realitzar la contractaci\u00F3 d'un viatje,<br> \r\nprem el bot\u00F3 seg\u00FCent.</html>");
