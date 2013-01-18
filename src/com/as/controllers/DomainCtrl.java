@@ -147,6 +147,11 @@ public class DomainCtrl {
 		}
 		return datos;
 	}
+	public boolean falloDates(Date dIni, Date dFi){
+		
+		
+		return dIni.before(dFi);
+	}
 	
 	//Faltan algunas funciones de error, pero ya se pondran.
 }
