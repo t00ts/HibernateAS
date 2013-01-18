@@ -70,37 +70,37 @@ public class Avis extends JFrame {
     
     //t = { nociutats, clientnoex, clientviatge, nohotels, pagamentnoau, pagamentnodisp, pagamentok }
 	private void setTipus(String t) {
-		if(t == "nociutats") {
+		if(t.equals("nociutats")) {
 			avisLogo = "com/as/resources/LogoError.PNG";
 			missGran = "<html>No hi ha ciutats.</html>";
 			missPetit = "<html>No existeixen ciutats disponibles per fer viatges.</html>";
 		}
-		else if(t == "clientnoex") {
+		else if(t.equals("clientnoex")) {
 			avisLogo = "com/as/resources/LogoError.PNG";
 			missGran = "<html>El client no existeix.</html>";
 			missPetit = "<html>No existeix un client amb aquest dni.</html>";
 		}
-		else if(t == "clientviatge") {
+		else if(t.equals("clientviatge")) {
 			avisLogo = "com/as/resources/LogoError.PNG";
 			missGran = "<html>El client ja t\u00E9 un viatge.</html>";
 			missPetit = "<html>El client ja t\u00E9 un viatge contractat per <br>a un per\u00EDode solapat amb les dates <br>introdu\u00EFdes.</html>";
 		}
-		else if(t == "nohotels") {
+		else if(t.equals("nohotels")) {
 			avisLogo = "com/as/resources/LogoError.PNG";
 			missGran = "<html>No hi ha hotels lliures.</html>";
 			missPetit = "<html>No hi ha hotels disponibles per aquest viatge.</html>";
 		}
-		else if(t == "pagamentnoau") {
+		else if(t.equals("pagamentnoau")) {
 			avisLogo = "com/as/resources/LogoError.PNG";
 			missGran = "<html>El pagament no est\u00E0 <br>autoritzat.</html>";
 			missPetit = "<html>Contacti amb el seu administrador.</html>";
 		}
-		else if(t == "pagamentnodisp") {
+		else if(t.equals("pagamentnodisp")) {
 			avisLogo = "com/as/resources/LogoError.PNG";
 			missGran = "<html>Servei de pagament <br>no disponible.</html>";
 			missPetit = "<html>Contacti amb el seu administrador.</html>";
 		}
-		else if(t == "pagamentok") {
+		else if(t.equals("pagamentok")) {
 			avisLogo = "com/as/resources/LogoOk.PNG";
 			missGran = "<html>El pagament s'ha realitzat <br>correctament.</html>";
 			missPetit = "<html>Que gaudexi del viatge!</html>";

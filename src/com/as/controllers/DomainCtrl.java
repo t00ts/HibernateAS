@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import ws.PagamentClient;
+import src.PagamentClient;
 
 import com.as.controllers.CtrlCiutat;
 import com.as.controllers.CtrlClient;
@@ -65,7 +65,7 @@ public class DomainCtrl {
 	/**PagamentClient es una clase del cliente que tiene el stub (adaptador) para conectar al Sv */
 	public String pagament(Integer numTarg, Date dataCad) {
 		String autoritzat = PagamentClient.pagament(numTarg, dataCad);
-		if (autoritzat == "Autoritzat") guardarCambios();
+		if (autoritzat.equals("Autoritzat")) guardarCambios();
 		return autoritzat;
 	}
 	
