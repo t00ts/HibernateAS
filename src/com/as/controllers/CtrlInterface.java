@@ -86,7 +86,11 @@ public class CtrlInterface {
 	    class Confirmar_SVListener implements ActionListener {
 	    	public void actionPerformed(ActionEvent e) {
 	    		DniClient = SeleccioViatgeView2.get_DNI();
+	    		Date[] dates = SeleccioViatgeView2.get_dates();
 	    	
+	    		dIni = dates[0];
+	    		dFi = dates[1];
+	    		
 	    		if(!DC.exClientNoEx(DniClient)){ //si no hi ha clients
 	    			SeleccioViatgeView2.setVisible(false);
 	    			AvisView2 = new Avis("clientnoex");
@@ -104,7 +108,6 @@ public class CtrlInterface {
 	    			
 	    			AvisView2.addSurtListener(new Cancel_3Listener());
 	    		}else{
-	    			Date[] dates = SeleccioViatgeView2.get_dates();
 	    			
 	    			if ((dates[0] == null || dates[1] == null) || (!DC.dataOk(dates[0], dates[1]))){ // si la data no s'ha introduit o es invalida
 	    				SeleccioViatgeView2.setVisible(false);
@@ -117,12 +120,16 @@ public class CtrlInterface {
 		    	    	SeleccioViatgeView2.addCancel_1Listener(new Cancel_1Listener());
 	    			}else{
 
-	    				dIni = dates[0];
-	    				dFi = dates[1];
+	    				System.out.println (DniClient);
+	    				System.out.println (dIni);
+	    				System.out.println (dFi);
+
 	    				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	    				DataIni = sdf.format(dIni);
 	    				DataFi = sdf.format(dFi);
 	    				CiutatSel = Sel;
+
+	    				System.out.println (CiutatSel);
 
 	    				PreuVol = DC.enregistraViatge(DniClient, dIni, dFi, CiutatSel);
 	    				
@@ -184,7 +191,9 @@ public class CtrlInterface {
 	    /**  Confirmar el pagament, si no hi ha cap error */
 
     class Confirmar_PListener implements ActionListener {
+    	
 	    	public void actionPerformed(ActionEvent e) {
+	    		System.out.println ("aaaaaaaaa");
 	    		Integer numTarg = Integer.parseInt(PagamentView2.get_numTarg());
 	    		String sdataCad = PagamentView2.get_dataCad();
 	    		SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");

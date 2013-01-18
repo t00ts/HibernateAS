@@ -52,7 +52,7 @@ public class MainClass {
 
 		// TODO: Ver como gestionamos la creacion o no de las tablas
 		//DESCOMENTAR ESTA LINEA PARA BORRAR TODO!!
-		new SchemaExport (cfg).create (true, true);
+		//new SchemaExport (cfg).create (true, true);
 
 		// Construct factory
 		Factory.setConfiguration (cfg);
@@ -61,7 +61,7 @@ public class MainClass {
 
 		//CREACION DATOS COMENTAR TODO CUANDO YA ESTE INSERTADO!!!!
 		//crear clientes
-		Client pep = new Client("436453K", "Pep", "69696969", 0);
+		/*Client pep = new Client("436453K", "Pep", "69696969", 0);
 		Client ivan = new Client("666666K", "Ivan", "12312132", 0);
 		Client abel = new Client("777777K", "Abel", "74576345", 0);
 		CtrlClient ccl   = factory.getCtrlClient();
@@ -112,7 +112,7 @@ public class MainClass {
 		h2.addHabitacio(hab6);
 		h3.addHabitacio(hab3);
 		h4.addHabitacio(hab4);
-		
+	*/	
 		
 		// Init Domain controller
 		DomainCtrl domainController = new DomainCtrl (factory);
