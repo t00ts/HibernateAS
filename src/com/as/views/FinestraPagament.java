@@ -3,6 +3,7 @@ package com.as.views;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,12 +12,16 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.SwingConstants;
 
+import org.jdesktop.swingx.JXDatePicker;
 
 public class FinestraPagament extends JFrame {
 
@@ -26,6 +31,7 @@ public class FinestraPagament extends JFrame {
 	private JTextField tfdni;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
+	
 
 	/**
 	 * Launch the application.
@@ -73,14 +79,14 @@ public class FinestraPagament extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		//Data de caducitat de la targeta del client
-		
+
 		tfcad = new JTextField();
 		tfcad.setFont(new Font("Arial", Font.PLAIN, 12));
 		tfcad.setHorizontalAlignment(SwingConstants.CENTER);
 		tfcad.setBounds(336, 155, 121, 22);
 		contentPane.add(tfcad);
 		tfcad.setColumns(10);
-		
+
 		//Numero de la targeta del client
 		
 		tfnumtarg = new JTextField();
@@ -152,9 +158,9 @@ public class FinestraPagament extends JFrame {
 		label.setBounds(237, 130, 89, 22);
 		contentPane.add(label);
 		
-		JLabel label_1 = new JLabel("Caducitat:");
+		JLabel label_1 = new JLabel("<html>Caducitat:<br/>(mm/yy)<html>");
 		label_1.setFont(new Font("Arial", Font.BOLD, 13));
-		label_1.setBounds(238, 154, 89, 22);
+		label_1.setBounds(238, 154, 89, 44);
 		contentPane.add(label_1);
 	}
 	
@@ -165,4 +171,12 @@ public class FinestraPagament extends JFrame {
 	public void addCancel_1Listener(ActionListener cal) {
 		btnNewButton.addActionListener(cal);
     }
+	
+	public String get_numTarg(){
+		return tfnumtarg.getText();
+	}
+	
+	public String get_dataCad(){
+		return tfcad.getText();
+	}
 }
