@@ -49,18 +49,17 @@ public class DomainCtrl {
 		CtrlHotel chot   = factory.getCtrlHotel();
 		
 		Viatge v = this.viatge;
-		System.out.println("<========no peto====>NOMHOTEL=="+nomHotel+"   NOMCIUTAT=="+nomCiutat);
 		Hotel h = chot.get (nomHotel, nomCiutat);
+		System.out.println("<========no peto====>NOMHOTEL=="+h.getNom()+"   NOMCIUTAT=="+h.getNomCiutat()+" PREU: "+h.calcularPreu());
 		
-		/*
 		numHab = h.numHabLliure(dIni, dFi);
+		System.out.println("<========he petado!!====>  NUMHAB: "+numHab+" NOMHOTEL: "+nomHotel+" NOMCIUTAT: "+nomCiutat);
 		Habitacio hab = ch.get (numHab, nomHotel, nomCiutat);
 		preuHab = v.reserva (hab, dIni, dFi);
-		System.out.println("<========he petado====>");
 		preuTotal=preuVol+preuHab;
 		//Guardamos el objeto habitacion ya q lohemos asociado con el objeto viatge
 		this.habitacio=hab;
-		*/
+		
 		return preuTotal;
 		
 	}
