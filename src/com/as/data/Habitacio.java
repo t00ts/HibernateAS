@@ -53,6 +53,20 @@ public class Habitacio {
 	public void setNumero (Integer num) {
 		this.habitacioPrimaryKey.setNumero (num);
 	}
+	@Transient
+	public String getNomHotel() {
+		return this.habitacioPrimaryKey.getNomHotel();
+	}
+	public void setNomHotel (String nom) {
+		this.habitacioPrimaryKey.setNomHotel (nom);
+	}
+	@Transient
+	public String getNomCiutat() {
+		return this.habitacioPrimaryKey.getNomCiutat();
+	}
+	public void setNomCiutat (String nomCiutat) {
+		this.habitacioPrimaryKey.setNomCiutat(nomCiutat);
+	}
 	//fk (nomHotel, nomCiutat) referencia Hotel(nom, nomCiutat)
 	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch=FetchType.EAGER)
 	@JoinColumns({

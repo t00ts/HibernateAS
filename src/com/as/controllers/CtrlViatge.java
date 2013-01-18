@@ -33,7 +33,7 @@ public class CtrlViatge {
 	}
 	
 	
-	public Viatge get (String dniClient, Date dataIni){
+	public Viatge get (String dniClient, Date dataIni) {
 		
 		Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();

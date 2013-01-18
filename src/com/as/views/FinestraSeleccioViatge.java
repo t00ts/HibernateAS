@@ -32,12 +32,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.table.*;
 
-import com.standbysoft.component.date.swing.JDatePicker;
-
+import org.jdesktop.swingx.JXDatePicker;
+import org.jdesktop.swingx.JXMonthView;
 
 
 import java.awt.*;
+
 import java.lang.Object;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -50,11 +52,14 @@ public class FinestraSeleccioViatge extends JFrame {
 	final private JTable table;
 	private ListSelectionModel cellSelectionModel;
 	private JCheckBox chckbxNewCheckBox;
-	final private JDatePicker dI, dF;
+	final JXDatePicker dF;
+	final JXDatePicker dI;
 	/**
 	 * Launch the application.
 */
+
 	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -115,19 +120,23 @@ public class FinestraSeleccioViatge extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		
+		//final JXDatePicker dp = new JXDatePicker();
+		//dp.setBounds(336, 155, 121, 22);
+		//contentPane.add(dp);
 		
 		//Sel.lecció de la data d'anada del viatje			
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Data Anada:");
 		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblNewLabel_2.setBounds(219, 119, 83, 14);
 		contentPane.add(lblNewLabel_2);
-		
-		dI = new JDatePicker();
+			
+		dI = new JXDatePicker();
+		Calendar calendar = dI.getMonthView().getCalendar();
+		calendar.setTime(new Date());
+		dI.getMonthView().setLowerBound(calendar.getTime());
+		dI.setFormats("dd/MM/yyy");
 		dI.setEditable(true);
-		dI.setEmptySelectionText("Always");
-		dI.setSelectedDate(null);
 		dI.setVisible(true);
 		dI.setBounds(312, 116, 142, 20);
 		contentPane.add(dI);
@@ -138,11 +147,8 @@ public class FinestraSeleccioViatge extends JFrame {
 		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblNewLabel_3.setBounds(219, 150, 83, 14);
 		contentPane.add(lblNewLabel_3);
-		
-		dF= new JDatePicker();
+		dF = new JXDatePicker();
 		dF.setEditable(true);
-		dF.setEmptySelectionText("Always");
-		dF.setSelectedDate(null);
 		dF.setVisible(true);
 		dF.setBounds(312, 147, 142, 20);
 		contentPane.add(dF);
@@ -206,8 +212,8 @@ public class FinestraSeleccioViatge extends JFrame {
 	
 	public Date[] get_dates() {
 		Date[] dat = new Date [2];
-		dat[0] = dI.getSelectedDate();
-		dat[1] = dF.getSelectedDate();
+		dat[0] = dI.getDate();
+		dat[1] = dF.getDate();
 		return dat;
 	}
 }

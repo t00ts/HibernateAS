@@ -34,8 +34,11 @@ public class CtrlHotel {
 		
 		Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
-		String hql = new StringBuilder("").append("FROM Hotel h WHERE h.HotelPrimaryKey=('").append(nomHotel)
-				.append("', '").append(nomCiutat).append("')").toString();
+		String hql = new StringBuilder("").append("FROM Hotel h WHERE h.primaryKey=('").append(nomCiutat)
+				.append("', '").append(nomHotel).append("')").toString();
+		
+		System.out.println (hql);
+		
 		Query query = session.createQuery(hql);
 		Hotel res = (Hotel) query.uniqueResult();
 		

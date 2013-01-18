@@ -1,7 +1,11 @@
 package com.as.hibernate;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.hibernate.cfg.Configuration;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 
 import com.as.controllers.CtrlInterface;
@@ -14,6 +18,8 @@ import com.as.data.Hotel;
 import com.as.data.HotelLowCost;
 import com.as.data.HotelSuperior;
 import com.as.data.Viatge;
+import com.as.data.primarykeys.HotelPrimaryKey;
+import com.as.data.primarykeys.ViatgePrimaryKey;
 import com.as.views.FinestraContractarViatges;
 
 public class MainClass {
@@ -47,7 +53,7 @@ public class MainClass {
 		
 		// Init Domain controller
 		DomainCtrl domainController = new DomainCtrl (factory);
-	
+
 		// Init views
 		FinestraContractarViatges contractarViatgeView = new FinestraContractarViatges ();
 		CtrlInterface viewController = new CtrlInterface (contractarViatgeView, domainController);

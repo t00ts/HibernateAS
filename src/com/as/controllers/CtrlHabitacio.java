@@ -37,11 +37,12 @@ public class CtrlHabitacio {
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
 
-    	String hql = new StringBuilder("").append("FROM Habitacio h WHERE h.habitacioPrimaryKey=('").append(numero)
+    	String hql = new StringBuilder("").append("FROM Habitacio h WHERE h.primaryKey=('").append(nomCiutat)
     									  .append("', '").append(nomHotel)
-    									  .append("', '").append(nomCiutat).append("')")
+    									  .append("', ").append(numero).append(")")
     									  .toString();
-    	
+    
+    	System.out.println (hql);
 		Query query = session.createQuery (hql);
 		
 		Habitacio res = (Habitacio) query.uniqueResult();
