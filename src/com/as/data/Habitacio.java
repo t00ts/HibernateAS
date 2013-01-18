@@ -91,10 +91,10 @@ public class Habitacio {
 	public void addViatge (Viatge v){
 		this.viatges.add(v);
 	}
-	public boolean habEsLliure(Date dIni, Date dFi){//si no te viatges registrats es lliure
+	public boolean habEsLliure(Date dIni, Date dFi){//true si la habitacio es lliure
 		int i=0;
 		boolean solapat=false;
-		if(viatges.size()==0){//no te viatges
+		if(viatges.size()==0){//no te viatges llavors es lliure
 			return true;
 		}else{
 			while(i<viatges.size() && solapat==false){//buscamos de todos los viatges de esta habitacion q ninguno solape entonces estara libre
@@ -105,14 +105,14 @@ public class Habitacio {
 			
 		}
 			
-		return solapat==false;//si solapat==false significa que todos los viatges para esta habitacion ninguno SOLAPA con el nuevo
+		return solapat==false;//si solapat==false significa que de todos los viatges para esta habitacion ninguno SOLAPA con el nuevo
 		
 	}
-	public float reserva(Viatge v){
+	public float reserva(Viatge v){//retorna el precio de la habitacion y guarda relacion con el viatge
 		float preuHab=0;
 		addViatge(v);//reservamos habitacion
 		Hotel h = this.hotel;
-		preuHab=h.calcularPreu();//por polimorfismo segun el tipo del hotel se ejecutara una u otra
+		preuHab=h.calcularPreu();//por patro plantilla segun el tipo del hotel se ejecutara una u otra
 		return preuHab;
 	}
 

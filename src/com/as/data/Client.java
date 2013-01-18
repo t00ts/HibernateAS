@@ -29,7 +29,7 @@ public class Client {
 	private String nom;
 	private String tlfn;
 	private Integer nombreViatges;
-	
+	//relacions
 	private List<Viatge> viatges;
 	
 	public Client () {}

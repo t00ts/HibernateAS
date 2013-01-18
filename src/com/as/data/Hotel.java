@@ -106,7 +106,7 @@ public abstract class Hotel {
 			algunaLliure = habitacions.get(i).habEsLliure(dIni, dFi);//retorna true si hab es lliure
 			i++;
 		}
-		return algunaLliure;//si numhab>0 llavors hi han habitacions lliures.
+		return algunaLliure;//true si tiene alguna habitacion libre el hotel
 	}
 	
 	public int numHabLliure(Date dIni, Date dFi) {//retorna un numero d'habitacio lliure de l'hotel
@@ -121,11 +121,11 @@ public abstract class Hotel {
 		if(algunaLliure){
 			return h.getNumero();//agafem el numero de l'habitacio lliure
 		}else{
-			return 0;
+			return 0;//nunca deberia pasar ya que antes habriamos comprobado la exc correspondiente
 		}
 	}
 	
-	public float calcularPreu(){
+	public float calcularPreu(){//precio de una habitacion en un hotel
 		
 		return this.preu;
 		

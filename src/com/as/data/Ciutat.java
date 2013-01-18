@@ -78,18 +78,19 @@ public class Ciutat {
 	public List<TupleCiutat> cercaHotels(Date dIni, Date dFi){//retorna una lista de nomhoteles con su precio
 		List<TupleCiutat> hotelsLliures=new ArrayList<TupleCiutat>();
 		int i=0;
-		boolean esLliure=false; //hotel amb habs lliures
+		boolean esLliure=false; //true = hotel amb habs lliures
 		while(i<hotels.size()){
 			esLliure = hotels.get(i).habEsLliure(dIni, dFi);/*canvia una mica respecte al diagrama de sequencia
-															*habEslliure no la teniem definida pero la necessitem
-															*habLliure la hem dividit en 2, habEslliure(true si l'hotel conte 
-															*habitacions lliures)
-															* i numHablliure(retorna el numhab d'una habitacio lliure)->definida a hotel*/
+															*habEslliure no la teniem definida pero la necessitem per saber si un hotel te
+															*habitacions lliures. 
+															*habLliure del diagrama entrega 1 la hem dividit en 2, habEslliure(true si l'hotel 
+															*conte habitacions lliures)
+															*i numHablliure(retorna el numhab d'una habitacio lliure)->definida a hotel*/
 			if(esLliure){//te habitacions lliures l'hotel
 				TupleCiutat tup=new TupleCiutat();
 				Hotel hotel = hotels.get(i);
-				tup.nomCiutat=hotel.getNom();
-				tup.preuVol=hotel.calcularPreu();//por polimorfismo segun el tipo de hotel q sea hara un calculo u otro				
+				tup.nomCiutat=hotel.getNom();//agafem nomhotel(no fer cas del nom dels atributs de la clase tupleCiutat)
+				tup.preuVol=hotel.calcularPreu();//pel patro plantilla el preudel hotel sera el correcte ya que la tenim definida a les 3 clases
 				hotelsLliures.add(tup);
 			}
 			i++;
@@ -97,7 +98,7 @@ public class Ciutat {
 		
 		return hotelsLliures;		
 	}
-	public void addHotel(Hotel h){//relaciona el hotel con la ciudad
+	public void addHotel(Hotel h){//relaciona l'hotel con la ciudad
 		
 		this.hotels.add(h);
 	}

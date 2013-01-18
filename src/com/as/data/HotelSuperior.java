@@ -39,7 +39,7 @@ public class HotelSuperior extends Hotel {
 	public void setRecarrec(float recarrec) {
 		this.recarrec = recarrec;
 	}
-	public float calcularPreu(){
+	public float calcularPreu(){//precio de una habitacion en un hotelsuperior
 		
 		return this.preu + this.recarrec;
 	}

@@ -138,11 +138,12 @@ public class Viatge {
 	public void setCiutat(Ciutat ciutat) {
 		this.ciutat = ciutat;
 	}
-	public boolean viatgeSolapat(Date dataIniNew, Date dataFiNew){
+	public boolean viatgeSolapat(Date dataIniNew, Date dataFiNew){//comprueba si el nuevo viatge definido por dataininew datafinew solapa
 		boolean solapa = false;
 		Date dataIni = getdataInici();
 		//tenemos que comprobar que dataIni y dataFi del viatge actual no se solape
 		//con dataIniNew y dataFiNew.(consideramos que datas iguales solaparia)
+		//POSIBLES CASOS DE SOLAPAMIENTO
 		/*---------dIni>-----------<dFi---
 		 * ---dIniNew>------<dFiNew------SOLAPA 1
 		 * -------------dIniNew>------<dFiNew------SOLAPA 2
@@ -161,17 +162,17 @@ public class Viatge {
 		}
 		
 		
-		return solapa;
+		return solapa;//solapa=true entonces hay solapamiento
 	}
 
 	
-	public float reserva(Habitacio hab, Date dIni, Date dFi){
+	public float reserva(Habitacio hab, Date dIni, Date dFi){//relacionamos el viatge con la habitacion y retornamos el precio de esta
 		float preuHab=0;
 		habitacio=hab;//relacionamos el viatge con la habitacion
 		nomHotel=hab.getHotel().getNom();
 		numHabitacio=hab.getNumero();
-		preuHab=hab.reserva(this);
-		return preuHab;
+		preuHab=hab.reserva(this);//pasamos el viatge por parametro para relacionar a su vez en esta funcion la habitacion con el viatge
+		return preuHab;//precio correcto de la habitacion segun sea de un hotel normal, low o sup por patron plantilla
 	}
 
 }
