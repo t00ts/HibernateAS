@@ -18,6 +18,7 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import com.as.controllers.CtrlCiutat;
 import com.as.controllers.CtrlClient;
+import com.as.controllers.CtrlHabitacio;
 import com.as.controllers.CtrlHotel;
 import com.as.controllers.CtrlViatge;
 import com.as.controllers.DomainCtrl;
@@ -142,21 +143,26 @@ public class TestTodo {
 		CtrlClient ccl   = f.getCtrlClient();
 		CtrlHotel chot = f.getCtrlHotel();
 		CtrlCiutat cciu = f.getCtrlCiutat();
+		CtrlHabitacio ch = f.getCtrlHabitacio();
+		Habitacio hab = ch.get (1, "NH Hotel", "Barcelona");
 		Client c=ccl.get(pep.getDni());
 		Ciutat ci= cciu.get(bcn.getNom());
+		System.out.println("<========he petado!!====>  NUMHAB: "+hab.getNumero()+" NOMHOTEL: "+hab.getNomHotel()+" NOMCIUTAT: "+hab.getNomCiutat());
 		//Hotel h = new HotelSuperior(new HotelPrimaryKey("NH Hotel", "Barcelona"), ci, 50f, 15f );//Integer numero, String nomHotel, String nomCiutat
 		//Habitacio hab = new Habitacio (new HabitacioPrimaryKey(1, h.getNom(), h.getNomCiutat()),h);
 		//session.save(h);
 		//session.save(hab);
 		//CtrlViatge cv = f.getCtrlViatge();
 		//Hotel h=chot.get("NH Hotel", "Barcelona");
-		System.out.println("existe?===>"+chot.exists("NH Hotel", "Barcelona"));
+		//System.out.println("existe?===>"+chot.exists("NH Hotel", "Barcelona"));
 		//System.out.println("<========no peto====>NOMHOTEL=="+h.getNom()+"   NOMCIUTAT=="+h.getNomCiutat());
 		//System.out.println("ENREGISTRAVIATGE====>"+dm.enregistraViatge(pep.getDni(), dIni, dFi, "Barcelona"));
 		//System.out.println("Reserva Habitacio ====> "+dm.reservaHabitacio(pep.getDni(), "NH Hotel", "Barcelona", dIni, dFi, 80));
 		//System.out.println("obteciutats====> "+dm.obteCiutats().get(0).nomCiutat+" preu: "+dm.obteCiutats().get(0).preuVol);
 		//System.out.println(" mostrahotelslliures==> "+dm.mostraHotelsLliures(pep.getDni(), bcn.getNom(), dIni, dFi).get(0).preuVol);
-		//Viatge v = cv.get(pep.getDni(), dIni); //ERROR COMENTAR AL ABEL!!
+		//Viatge v = cv.get("436453K", dIni); 
+		//System.out.println("existe?===>"+cv.exists("436453K", dIni));
+		//System.out.println("VIATGE ===> "+v.getDniClient()+ " CIUTAT: "+v.getNomCiutat()+" DATAINI: "+v.getdataInici()+" DATAFI: "+v.getDataFi());
 		//Viatge v = new Viatge(new ViatgePrimaryKey(pep.getDni(), dIni), pep, bcn, null, dFi, null, null  );
 		//List<Viatge> list = c.getViatges();
 		//list.add(v);
