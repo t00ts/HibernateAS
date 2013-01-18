@@ -161,10 +161,9 @@ public class CtrlInterface {
 	    		Integer numTarg = Integer.parseInt(PagamentView2.get_numTarg());
 	    		String sdataCad = PagamentView2.get_dataCad();
 	    		SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
-	    		try { Date ddataCad= sdf.parse(sdataCad); } catch (Exception exc){}
-	    		try {
-	    			//TODO numTarg y dataCad vienen de la interfaz anterior, ponerlas como privates
-	    			
+	    		Date ddataCad = null;
+	    		try { ddataCad= sdf.parse(sdataCad); } catch (Exception exc){}
+	    		try {	    			
 		    		if (DC.pagament(numTarg, ddataCad)) {
 		    			AvisView2 = new Avis("pagamentok");
 	                    AvisView2.setVisible(true);
@@ -178,7 +177,7 @@ public class CtrlInterface {
 	                    AvisView2.addSurtListener(new Cancel_1Listener());
 		    		}
 	    		}
-	    		catch (RemoteException ex) {
+	    		catch (Exception ex) {
 	    			//TODO lanzar ventana error de servicio no disponible
 	    			AvisView2 = new Avis("pagamentnodisp");
                     AvisView2.setVisible(true);
