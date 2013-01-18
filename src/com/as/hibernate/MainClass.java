@@ -49,15 +49,11 @@ public class MainClass {
 		cfg.configure ("hibernate.cfg.xml");
 
 		// Create tables
-<<<<<<< HEAD
+
 		// TODO: Ver como gestionamos la creacion o no de las tablas
 		//DESCOMENTAR ESTA LINEA PARA BORRAR TODO!!
 		new SchemaExport (cfg).create (true, true);
-		
-=======
-		// TODO: Ver como gestionamos la creacion o no de las tablas
-		//new SchemaExport (cfg).create (true, true);
->>>>>>> da0977bf62894e58acec32c908d14382e2556af2
+
 		// Construct factory
 		Factory.setConfiguration (cfg);
 		Factory factory = Factory.getInstance();
