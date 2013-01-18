@@ -15,6 +15,7 @@ public class CtrlClient {
     	hibernateCfg = cfg;
     }
     
+    // getAll () - Returns all clients stored in the system
     public ArrayList<Client> getAll () {
     	
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -30,6 +31,7 @@ public class CtrlClient {
     	
     }
     
+    // get () - Returns client object by primary key
     public Client get (String dni) {
     
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -46,10 +48,12 @@ public class CtrlClient {
         
     }
     
+    // exists () - Returns true if client identified by primary key given exists in the ddbb
     public boolean exists (String dni) {
     	return (get(dni) != null);
     }
 
+    // insert () - Inserts a client object into the ddbb
     public void insert (Client c) {
     	if (c == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -58,6 +62,7 @@ public class CtrlClient {
     	session.getTransaction().commit();
     }
     
+    // update () - Updates existing client object on the ddbb with new parameters
     public void update (Client c) {
     	if (c == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -65,7 +70,8 @@ public class CtrlClient {
     	session.update(c);
     	session.getTransaction().commit();
     }
-    
+   
+    // delete () - Deletes existing client object from the ddbb
     public void delete (Client c) {
     	if (c == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();

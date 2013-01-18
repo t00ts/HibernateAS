@@ -18,6 +18,7 @@ public class CtrlViatge {
     	hibernateCfg = cfg;
     }
 	
+    // getAll () - Returns all trips stored in the system
 	public ArrayList<Viatge> getAll(){
 	
 		Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -32,7 +33,7 @@ public class CtrlViatge {
 		return results;
 	}
 	
-	
+    // get () - Returns trip object by primary key
 	public Viatge get (String dniClient, Date dataIni) {
 		
 		Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -55,10 +56,12 @@ public class CtrlViatge {
 		
 	}
 	
+    // exists () - Returns true if trip identified by primary key given exists in the ddbb
 	public boolean exists(String dniClient, Date dataIni) {
 		return get(dniClient,dataIni)!=null;
 	}
 	
+    // insert () - Inserts a trip object into the ddbb
     public void insert (Viatge v) {
     	if (v == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -66,7 +69,8 @@ public class CtrlViatge {
     	session.save (v);
     	session.getTransaction().commit();
     }
-    
+   
+    // update () - Updates existing trip object on the ddbb with new parameters
     public void update (Viatge v) {
     	if (v == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -75,6 +79,7 @@ public class CtrlViatge {
     	session.getTransaction().commit();
     }
     
+    // delete () - Deletes existing trip object from the ddbb
     public void delete (Viatge v) {
     	if (v == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();

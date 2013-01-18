@@ -15,6 +15,7 @@ public class CtrlHotel {
     	hibernateCfg = cfg;
     }
 	
+    // getAll () - Returns all hotels stored in the system
 	public ArrayList<Hotel> getAll(){
 		Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
     	session.beginTransaction();
@@ -30,6 +31,7 @@ public class CtrlHotel {
 	}
 	
 	
+    // get () - Returns hotel object by primary key
 	public Hotel get(String nomHotel, String nomCiutat){
 		
 		Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -47,10 +49,12 @@ public class CtrlHotel {
 	
 	}
 	
+    // exists () - Returns true if hotel identified by primary key given exists in the ddbb
 	public boolean exists(String nomHotel, String nomCiutat){
 		return get(nomHotel, nomCiutat)!=null;
 	}
 	
+    // insert () - Inserts a hotel object into the ddbb
     public void insert (Hotel h) {
     	if (h == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -59,6 +63,7 @@ public class CtrlHotel {
     	session.getTransaction().commit();
     }
     
+    // update () - Updates existing hotel object on the ddbb with new parameters
     public void update (Hotel h) {
     	if (h == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -67,6 +72,7 @@ public class CtrlHotel {
     	session.getTransaction().commit();
     }
     
+    // delete () - Deletes existing hotel object from the ddbb
     public void delete (Hotel h) {
     	if (h == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();

@@ -17,6 +17,7 @@ public class CtrlHabitacio {
     	hibernateCfg = cfg;
     }
     
+    // getAll () - Returns all rooms stored in the system
     public ArrayList<Habitacio> getAll () {
     	
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -32,6 +33,7 @@ public class CtrlHabitacio {
     	
     }
     
+    // get () - Returns room object by primary key
     public Habitacio get (int numero, String nomHotel, String nomCiutat) {
     
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -53,10 +55,12 @@ public class CtrlHabitacio {
         
     }
     
+    // exists () - Returns true if room identified by primary key given exists in the ddbb
     public boolean exists (int numero, String nomHotel, String nomCiutat) {
     	return (get(numero, nomHotel, nomCiutat) != null);
     }
 
+    // insert () - Inserts a room object into the ddbb
     public void insert (Habitacio h) {
     	if (h == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -65,6 +69,7 @@ public class CtrlHabitacio {
     	session.getTransaction().commit();
     }
     
+    // update () - Updates existing room object on the ddbb with new parameters
     public void update (Habitacio h) {
     	if (h == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -73,6 +78,7 @@ public class CtrlHabitacio {
     	session.getTransaction().commit();
     }
     
+    // delete () - Deletes existing room object from the ddbb
     public void delete (Habitacio h) {
     	if (h == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();

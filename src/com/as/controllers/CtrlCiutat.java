@@ -12,11 +12,12 @@ import com.as.data.Ciutat;
 public class CtrlCiutat {
 
 	private Configuration hibernateCfg = null;
-
+	
     public CtrlCiutat (Configuration cfg) {
     	hibernateCfg = cfg;
     }
-    
+
+    // getAll () - Returns all cities stored in the system
     public ArrayList<Ciutat> getAll () {
     	
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -31,7 +32,8 @@ public class CtrlCiutat {
 		return results;
     	
     }
-    
+   
+    // get () - Returns city object by primary key
     public Ciutat get (String nom) {
     
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -47,11 +49,13 @@ public class CtrlCiutat {
         return res;
         
     }
-    
+   
+    // exists () - Returns true if city identified by primary key given exists in the ddbb
     public boolean exists (String nom) {
     	return (get(nom) != null);
     }
-     
+    
+    // insert () - Inserts a city object into the ddbb
     public void insert (Ciutat c) {
     	if (c == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
@@ -59,7 +63,8 @@ public class CtrlCiutat {
     	session.save (c);
     	session.getTransaction().commit();
     }
-    
+
+    // delete () - Deletes existing city object from the ddbb
     public void update (Ciutat c) {
     	if (c == null) return;
     	Session session = hibernateCfg.buildSessionFactory().getCurrentSession();
