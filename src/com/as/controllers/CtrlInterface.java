@@ -161,7 +161,7 @@ public class CtrlInterface {
 	    		Integer numTarg = Integer.parseInt(PagamentView2.get_numTarg());
 	    		String sdataCad = PagamentView2.get_dataCad();
 	    		SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
-	    		Date ddataCad= sdf.parse(sdataCard);
+	    		try { Date ddataCad= sdf.parse(sdataCad); } catch (Exception exc){}
 	    		try {
 	    			//TODO numTarg y dataCad vienen de la interfaz anterior, ponerlas como privates
 	    			
