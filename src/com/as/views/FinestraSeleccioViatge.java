@@ -169,7 +169,7 @@ public class FinestraSeleccioViatge extends JFrame {
 		
 		String col[] = {"Ciutat","Preu"};
 		//TODO Descomentar esto!
-		table = new JTable(/*ciu,col*/);
+		table = new JTable(ciu,col);
 		JTableHeader header = table.getTableHeader();
 		table.setCellSelectionEnabled(true);
 		
