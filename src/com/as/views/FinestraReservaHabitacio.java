@@ -91,6 +91,7 @@ public class FinestraReservaHabitacio extends JFrame {
 		btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnConfirmar.setBounds(315, 204, 105, 23);
+		btnConfirmar.setEnabled(false);
 		contentPane.add(btnConfirmar);
 		
 		//Labels amb la ciutat del viatge a reservar
@@ -149,6 +150,10 @@ public class FinestraReservaHabitacio extends JFrame {
 	
 	public JTable get_table() {
 		return this.table; 
+	}
+	
+	public JButton get_button() {
+		return this.btnConfirmar;
 	}
 }
 

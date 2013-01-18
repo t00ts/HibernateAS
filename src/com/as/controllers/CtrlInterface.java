@@ -45,6 +45,7 @@ public class CtrlInterface {
 	   private String DataIni, DataFi;
 	   private Date dIni, dFi;
 	   private float PreuTotal;
+	   private String[][] ciu;
 
 	   /** Constructor */
 	  public  CtrlInterface(FinestraContractarViatges ContractarViatgeView, DomainCtrl DC2) {
@@ -72,7 +73,7 @@ public class CtrlInterface {
 	    			AvisView2.addSurtListener(new Cancel_1Listener());
 	    		}else{
 	    			ContractarViatgeView2.setVisible(false);
-	    			String[][] ciu = DC.conversion(ciutats);
+	    			ciu = DC.conversion(ciutats);
 	    			
 	    			SeleccioViatgeView2 = new FinestraSeleccioViatge(ciu);
 	    			SeleccioViatgeView2.setVisible(true);
@@ -111,43 +112,55 @@ public class CtrlInterface {
 	    			AvisView2.addSurtListener(new Cancel_3Listener());
 	    		}else{
 	    			Date[] dates = SeleccioViatgeView2.get_dates();
-	    			dIni = dates[0];
-	    			dFi = dates[1];
-	    			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	    		 	DataIni = sdf.format(dIni);
-	    		 	DataFi = sdf.format(dFi);
-	    		 	CiutatSel = Sel;
-
-	    		 	PreuVol = DC.enregistraViatge(DniClient, dIni, dFi, CiutatSel);
-	    			if(SeleccioViatgeView2.get_check()) {
-	    				List<TupleCiutat>  Hotels = DC.mostraHotelsLliures(DniClient, Sel, dIni, dFi);
-	    				String[][] hot  = DC.conversion(Hotels);
-	    				if(Hotels.isEmpty()) {
-	    					SeleccioViatgeView2.setVisible(false);
-	    					AvisView2 = new Avis("nohotels");
-	    	    			AvisView2.setVisible(true);
-	    	    			AvisView2.setResizable(false);
-	    	    			
-	    	    			AvisView2.addSurtListener(new Cancel_2Listener_v2());
-	    				}else{
-	    					SeleccioViatgeView2.setVisible(false);
-	    					ReservaHabitacioView2 = new FinestraReservaHabitacio(Sel, DataIni, DataFi, hot);
-	    				
-	    					ReservaHabitacioView2.setVisible(true);
-	    					ReservaHabitacioView2.setResizable(false);
-	    					ReservaHabitacioView2.addSelectionListener(new SelectionListenerRH());
-	    					ReservaHabitacioView2.addConfirmar_RHListener(new Confirmar_RHListener());
-	    					ReservaHabitacioView2.addCancel_2Listener(new Cancel_2Listener());
-	    				}
-		    		}else{
-		    			SeleccioViatgeView2.setVisible(false);
-		    			PagamentView2 = new FinestraPagament(PreuSel, DataIni, DataFi, Sel, DniClient);
-			    		PagamentView2.setVisible(true);
-		    			PagamentView2.setResizable(false);
+	    			if (dates[0] == null && dates[1] == null){
 		    			
-		    		//	PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
-		    	    	PagamentView2.addCancel_1Listener(new Cancel_1Listener());
-		    		}
+		    			SeleccioViatgeView2 = new FinestraSeleccioViatge(ciu);
+		    			SeleccioViatgeView2.setVisible(true);
+		    			SeleccioViatgeView2.setResizable(false);
+		    			
+		    			SeleccioViatgeView2.addSelectionListener(new SelectionListener());
+		    			SeleccioViatgeView2.addConfirmar_SVListener(new Confirmar_SVListener());
+		    	    	SeleccioViatgeView2.addCancel_1Listener(new Cancel_1Listener());
+	    			}else{
+
+	    				dIni = dates[0];
+	    				dFi = dates[1];
+	    				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	    				DataIni = sdf.format(dIni);
+	    				DataFi = sdf.format(dFi);
+	    				CiutatSel = Sel;
+
+	    				PreuVol = DC.enregistraViatge(DniClient, dIni, dFi, CiutatSel);
+	    		 		if(SeleccioViatgeView2.get_check()) {
+	    		 			List<TupleCiutat>  Hotels = DC.mostraHotelsLliures(DniClient, Sel, dIni, dFi);
+	    		 			String[][] hot  = DC.conversion(Hotels);
+	    		 			if(Hotels.isEmpty()) {
+	    		 				SeleccioViatgeView2.setVisible(false);
+	    						AvisView2 = new Avis("nohotels");
+	    	    				AvisView2.setVisible(true);
+	    	    				AvisView2.setResizable(false);
+	    	    			
+	    	    				AvisView2.addSurtListener(new Cancel_2Listener_v2());
+	    		 			}else{
+	    		 				SeleccioViatgeView2.setVisible(false);
+	    		 				ReservaHabitacioView2 = new FinestraReservaHabitacio(Sel, DataIni, DataFi, hot);
+	    				
+	    		 				ReservaHabitacioView2.setVisible(true);
+	    		 				ReservaHabitacioView2.setResizable(false);
+	    		 				ReservaHabitacioView2.addSelectionListener(new SelectionListenerRH());
+	    		 				ReservaHabitacioView2.addConfirmar_RHListener(new Confirmar_RHListener());
+	    		 				ReservaHabitacioView2.addCancel_2Listener(new Cancel_2Listener());
+	    		 			}
+		    			}else{
+		    				SeleccioViatgeView2.setVisible(false);
+		    				PagamentView2 = new FinestraPagament(PreuSel, DataIni, DataFi, Sel, DniClient);
+		    				PagamentView2.setVisible(true);
+		    				PagamentView2.setResizable(false);
+		    			
+		    				//	PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
+		    				PagamentView2.addCancel_1Listener(new Cancel_1Listener());
+		    			}
+	    			}
 	    		}
 	    		Sel = null;
 	    	  }
@@ -220,6 +233,9 @@ public class CtrlInterface {
 	    		PagamentView2 = new FinestraPagament(PreuSel, DataIni, DataFi, CiutatSel, DniClient);
 	    		PagamentView2.setVisible(true);
 	    		PagamentView2.setResizable(false);
+	    		
+//	    		PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
+    	    	PagamentView2.addCancel_1Listener(new Cancel_1Listener());
 	    	}
 	    }// end inner class Cancel_2Listener
 	    
@@ -232,6 +248,9 @@ public class CtrlInterface {
 	    		PagamentView2 = new FinestraPagament(PreuSel, DataIni, DataFi, CiutatSel, DniClient);
 	    		PagamentView2.setVisible(true);
 	    		PagamentView2.setResizable(false);
+	    		
+//	    		PagamentView2.addConfirmar_PListener(new Confirmar_PListener());
+    	    	PagamentView2.addCancel_1Listener(new Cancel_1Listener());
 	    	}
 	    }// end inner class Cancel_2Listener_v2
 	 
@@ -246,17 +265,7 @@ public class CtrlInterface {
 	    	}
 	    }// end inner class Cancel_3Listener
 	    
-	    
-	    ////////////////////////////////////////////inner class Cancel_4Listener
-	    /**  Va la finestra de pagament desde avis */
 
-	    class Cancel_4Listener implements ActionListener {
-	    	public void actionPerformed(ActionEvent e) {
-	    		AvisView2.setVisible(false);
-	    		PagamentView2.setVisible(true);
-	    		PagamentView2.setResizable(false);
-	    	}
-	    }// end inner class Cancel_4Listener
 	    
 	    ////////////////////////////////////////////inner class SelectionListener
 	    /**  Agafa els valors seleccionats de la taula */
@@ -272,6 +281,8 @@ public class CtrlInterface {
 		        	  PreuSel = Float.parseFloat(Preuaux);
 
 		        }
+		        JButton baux = SeleccioViatgeView2.get_button();
+		        baux.setEnabled(true);
 	    	}
 
 	    }// end inner class SelectionListener
@@ -291,6 +302,8 @@ public class CtrlInterface {
 			        	  PreuSel = Float.parseFloat(Preuaux);
 
 			        }
+			        JButton baux = ReservaHabitacioView2.get_button();
+			        baux.setEnabled(true);
 		    	}
 
 	    }// end inner class SelectionListenerRH
