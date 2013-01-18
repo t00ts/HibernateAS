@@ -160,8 +160,8 @@ public class FinestraSeleccioViatge extends JFrame {
 		btnNewButton = new JButton("Confirmar");
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnNewButton.setBounds(257, 222, 105, 23);
+		btnNewButton.setEnabled(false);
 		contentPane.add(btnNewButton);
-		
 		//Botó cancel.lar
 		
 		btnNewButton_1 = new JButton("Cancel\u00B7lar");
@@ -218,5 +218,9 @@ public class FinestraSeleccioViatge extends JFrame {
 	
 	public JTable get_table() {
 		return this.table; 
+	}
+	
+	public JButton get_button() {
+		return this.btnNewButton;
 	}
 }

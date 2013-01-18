@@ -62,13 +62,14 @@ public class DomainCtrl {
 		
 	}
 	
-	/**PagamentClient es una clase del cliente que tiene el stub (adaptador) para conectar al Sv **/
+	/**PagamentClient es una clase del cliente que tiene el stub (adaptador) para conectar al Sv */
 	public String pagament(Integer numTarg, Date dataCad) {
-		System.out.println("XXXXXXXXXXX" + dataCad);
 		String autoritzat = PagamentClient.pagament(numTarg, dataCad);
 		if (autoritzat == "Autoritzat") guardarCambios();
 		return autoritzat;
 	}
+	
+	
 	
 	public List<TupleCiutat>  obteCiutats() {//devuelve una lista de nomciutat, preuvol de las ciudades del sistema
 		

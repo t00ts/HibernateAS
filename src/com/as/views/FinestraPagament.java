@@ -159,7 +159,7 @@ public class FinestraPagament extends JFrame {
 		label.setBounds(237, 130, 89, 22);
 		contentPane.add(label);
 		
-		JLabel label_1 = new JLabel("<html>Caducitat:<br/>(mm/yy)<html>");
+		JLabel label_1 = new JLabel("<html>Caducitat:<br/>(mm/yyyy)<html>");
 		label_1.setFont(new Font("Arial", Font.BOLD, 13));
 		label_1.setBounds(238, 154, 89, 44);
 		contentPane.add(label_1);
